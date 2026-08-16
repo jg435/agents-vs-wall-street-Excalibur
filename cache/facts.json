@@ -42,7 +42,8 @@
       "3900.0 @ 2026-05-20"
     ],
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.758801+00:00"
+    "extracted_at": "2026-08-16T12:47:53.758801+00:00",
+    "type": "management_guidance"
   },
   "ADI.eps_guide_mid": {
     "value": 3.3,
@@ -88,7 +89,8 @@
       "2.88 @ 2026-02-18",
       "3.3 @ 2026-05-20",
       "3.3 @ 2026-05-20"
-    ]
+    ],
+    "type": "management_guidance"
   },
   "ADI.adj_gross_margin_last": {
     "value": 73.0,
@@ -105,7 +107,8 @@
     "basis": "ADJUSTED",
     "is_latest": null,
     "revised_since_prior": false,
-    "extracted_at": "2026-08-16T12:47:53.759298+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759298+00:00",
+    "type": "reported_actual"
   },
   "HAS.op_profit_guide_note": {
     "value": 46.0,
@@ -117,7 +120,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759301+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759301+00:00",
+    "type": "management_guidance"
   },
   "HAS.op_profit_consensus": {
     "value": 43.5,
@@ -135,7 +139,8 @@
       "45.2 @ 2026-04-16",
       "43.5 @ 2026-07-10",
       "43.5 @ 2026-07-10"
-    ]
+    ],
+    "type": "company_published_consensus"
   },
   "HAS.q4_net_fees_lfl": {
     "value": -5.0,
@@ -147,7 +152,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759305+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759305+00:00",
+    "type": "reported_actual"
   },
   "HAS.shares_issued": {
     "value": 1591800000.0,
@@ -159,7 +165,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759309+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759309+00:00",
+    "type": "reported_actual"
   },
   "DE.fy_net_income_guide_usdm": {
     "value": 4750.0,
@@ -177,7 +184,8 @@
       "4750.0 @ 2026-05-21"
     ],
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759311+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759311+00:00",
+    "type": "management_guidance"
   },
   "DE.ppa_fy_sales_guide": {
     "value": -7.5,
@@ -193,7 +201,8 @@
     "revision_trace": [
       "-17.5 @ 2023-11-22",
       "-7.5 @ 2026-05-21"
-    ]
+    ],
+    "type": "management_guidance"
   },
   "HD.fy_sales_growth_guide": {
     "value": 3.5,
@@ -211,7 +220,8 @@
       "3.5 @ 2026-05-19"
     ],
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759315+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759315+00:00",
+    "type": "management_guidance"
   },
   "HD.fy_comp_guide_mid": {
     "value": 1.0,
@@ -223,7 +233,8 @@
     "is_latest": true,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759320+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759320+00:00",
+    "type": "management_guidance"
   },
   "HD.fy_adj_eps_growth_mid": {
     "value": 2.0,
@@ -235,7 +246,8 @@
     "is_latest": true,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759323+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759323+00:00",
+    "type": "reported_actual"
   },
   "HD.q2_fy25_net_sales_usdm": {
     "value": 45300.0,
@@ -247,7 +259,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759325+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759325+00:00",
+    "type": "reported_actual"
   },
   "HD.q2_fy25_adj_eps": {
     "value": 4.68,
@@ -259,7 +272,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759327+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759327+00:00",
+    "type": "reported_actual"
   },
   "HD.q2_fy25_comp_pct": {
     "value": 1.0,
@@ -271,7 +285,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759329+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759329+00:00",
+    "type": "reported_actual"
   },
   "DE.q3_fy25_revenues_usdm": {
     "value": 12018.0,
@@ -283,7 +298,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759331+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759331+00:00",
+    "type": "reported_actual"
   },
   "DE.q3_fy25_ppa_net_sales_usdm": {
     "value": 4273.0,
@@ -295,7 +311,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759333+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759333+00:00",
+    "type": "reported_actual"
   },
   "DE.q3_fy25_ppa_op_profit_usdm": {
     "value": 580.0,
@@ -307,7 +324,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759337+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759337+00:00",
+    "type": "reported_actual"
   },
   "DE.q3_fy25_sat_net_sales_usdm": {
     "value": 3025.0,
@@ -319,7 +337,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759339+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759339+00:00",
+    "type": "reported_actual"
   },
   "DE.q3_fy25_sat_op_profit_usdm": {
     "value": 485.0,
@@ -331,7 +350,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759340+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759340+00:00",
+    "type": "reported_actual"
   },
   "DE.q3_fy25_cf_net_sales_usdm": {
     "value": 3059.0,
@@ -343,7 +363,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759530+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759530+00:00",
+    "type": "reported_actual"
   },
   "DE.q3_fy25_cf_op_profit_usdm": {
     "value": 237.0,
@@ -355,7 +376,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759532+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759532+00:00",
+    "type": "reported_actual"
   },
   "HAS.fy25_net_fees_gbpm": {
     "value": 972.4,
@@ -367,7 +389,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759534+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759534+00:00",
+    "type": "reported_actual"
   },
   "HAS.fy25_op_profit_gbpm": {
     "value": 45.6,
@@ -379,7 +402,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759536+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759536+00:00",
+    "type": "reported_actual"
   },
   "HAS.fy25_net_finance_charge_gbpm": {
     "value": 13.4,
@@ -391,7 +415,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759538+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759538+00:00",
+    "type": "reported_actual"
   },
   "HAS.fy25_pre_exceptional_etr_pct": {
     "value": 35.1,
@@ -403,7 +428,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759540+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759540+00:00",
+    "type": "reported_actual"
   },
   "ADI.rev_guide_beat_median_pct": {
     "value": 3.17,
@@ -415,7 +441,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759541+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759541+00:00",
+    "type": "derived_statistic"
   },
   "DE.q3_fy25_equip_net_sales_usdm": {
     "value": 10357.0,
@@ -427,7 +454,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759543+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759543+00:00",
+    "type": "reported_actual"
   },
   "ADI.q3_gm_guide_seq_change_pp": {
     "value": -0.5,
@@ -439,7 +467,8 @@
     "is_latest": true,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759545+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759545+00:00",
+    "type": "management_guidance"
   },
   "DE.ppa_fy_margin_guide_pct": {
     "value": 12.0,
@@ -472,7 +501,8 @@
       "12.0 @ 2026-05-21"
     ],
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759547+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759547+00:00",
+    "type": "management_guidance"
   },
   "DE.q2_tariff_refund_usdm": {
     "value": 272.0,
@@ -484,7 +514,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759549+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759549+00:00",
+    "type": "reported_actual"
   },
   "DE.sat_fy_sales_guide": {
     "value": 15.0,
@@ -496,7 +527,8 @@
     "is_latest": true,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759550+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759550+00:00",
+    "type": "management_guidance"
   },
   "HAS.q1_net_fees_lfl": {
     "value": -8.0,
@@ -508,7 +540,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759552+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759552+00:00",
+    "type": "reported_actual"
   },
   "HAS.q2_net_fees_lfl": {
     "value": -10.0,
@@ -520,7 +553,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759554+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759554+00:00",
+    "type": "reported_actual"
   },
   "HAS.q3_net_fees_lfl": {
     "value": -8.0,
@@ -532,7 +566,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759556+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759556+00:00",
+    "type": "reported_actual"
   },
   "HAS.h1_fy25_net_fees_gbpm": {
     "value": 496.0,
@@ -544,7 +579,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759557+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759557+00:00",
+    "type": "reported_actual"
   },
   "HAS.fy26_disposed_net_fees_gbpm": {
     "value": 15.0,
@@ -556,7 +592,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759559+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759559+00:00",
+    "type": "reported_actual"
   },
   "HAS.fy26_net_finance_charge_guide_gbpm": {
     "value": 13.0,
@@ -575,7 +612,8 @@
       "13.0 @ 2026-02-27"
     ],
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759561+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759561+00:00",
+    "type": "management_guidance"
   },
   "HAS.fy26_etr_guide_pct": {
     "value": 45.0,
@@ -595,7 +633,8 @@
       "45.0 @ 2026-02-27"
     ],
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759563+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759563+00:00",
+    "type": "management_guidance"
   },
   "HD.q1_fy26_net_sales_usdm": {
     "value": 41765.0,
@@ -616,7 +655,8 @@
     "basis": "GAAP-REPORTED",
     "is_latest": null,
     "revised_since_prior": false,
-    "extracted_at": "2026-08-16T12:47:53.759565+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759565+00:00",
+    "type": "reported_actual"
   },
   "HD.q1_fy26_sales_yoy_pct": {
     "value": 4.8,
@@ -628,7 +668,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759566+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759566+00:00",
+    "type": "reported_actual"
   },
   "HD.q1_fy26_comp_pct": {
     "value": 0.6,
@@ -640,7 +681,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759568+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759568+00:00",
+    "type": "reported_actual"
   },
   "DE.h1_fy26_net_income_usdm": {
     "value": 2429.0,
@@ -652,7 +694,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759570+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759570+00:00",
+    "type": "reported_actual"
   },
   "DE.q3_fy25_net_income_usdm": {
     "value": 1289.0,
@@ -664,7 +707,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759571+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759571+00:00",
+    "type": "reported_actual"
   },
   "DE.q4_fy25_net_income_usdm": {
     "value": 1065.0,
@@ -676,7 +720,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759573+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759573+00:00",
+    "type": "reported_actual"
   },
   "DE.cf_fy_sales_guide": {
     "value": 20.0,
@@ -688,7 +733,8 @@
     "is_latest": true,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759575+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759575+00:00",
+    "type": "management_guidance"
   },
   "DE.q2_fy26_diluted_shares_m": {
     "value": 270.8,
@@ -700,7 +746,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759577+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759577+00:00",
+    "type": "reported_actual"
   },
   "HD.q1_fy26_adj_eps": {
     "value": 3.43,
@@ -712,7 +759,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759578+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759578+00:00",
+    "type": "reported_actual"
   },
   "HD.q1_fy25_adj_eps": {
     "value": 3.56,
@@ -724,7 +772,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759580+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759580+00:00",
+    "type": "reported_actual"
   },
   "HAS.h1_fy26_weighted_avg_shares_m": {
     "value": 1595.7,
@@ -736,7 +785,8 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759582+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759582+00:00",
+    "type": "reported_actual"
   },
   "HD.apr_fy26_comp_pct": {
     "value": -0.5,
@@ -748,6 +798,20 @@
     "is_latest": null,
     "revised_since_prior": false,
     "one_offs": [],
-    "extracted_at": "2026-08-16T12:47:53.759584+00:00"
+    "extracted_at": "2026-08-16T12:47:53.759584+00:00",
+    "type": "reported_actual"
+  },
+  "HAS.op_profit_guide_gbpm": {
+    "value": 46.0,
+    "period": "FY2026",
+    "basis": "PRE-EXCEPTIONAL",
+    "doc": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
+    "quote": "we currently expect FY26 pre -exceptional operating profit will be at the top of the \u00a337.0 -46.0m consensus range (2)",
+    "type": "management_guidance",
+    "note": "agent+verified; 'top of the \u00a337.0-46.0m range' -> range top",
+    "is_latest": true,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T13:01:07.685041+00:00"
   }
 }

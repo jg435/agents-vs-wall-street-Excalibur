@@ -92,7 +92,7 @@ check("ETR latest vintage is 45", series and series[-1][1] == 45.0)
 print("3. engine coverage + validation")
 for tk in PERIOD:
     c = json.loads((REPO / "cache" / "contracts" / f"{tk}.json").read_text())
-    fc = provisional_engine(c)
+    fc, _uses = provisional_engine(c)
     check(f"{tk} all metrics", set(fc) == set(METRICS[tk]))
     try:
         validate(tk, fc)
@@ -170,6 +170,15 @@ with tempfile.TemporaryDirectory() as td:
                                             column=cell.column + 2).value
     check("roundtrip cells", all(found.get(m) == vals[m] for m in vals), str(found))
 workbook.SUBMISSION = REPO / "submission"
+
+# 5b. RECEIPTS: one structured receipt per forecast, facts resolvable
+print("5b. structured forecast receipts")
+rc = json.loads((REPO / "cache" / "receipts.json").read_text())["receipts"]
+check("12 receipts", len(rc) == 12, str(len(rc)))
+for r in rc:
+    ok_facts = all(v.get("value") is not None for v in r["consumed_facts"].values())
+    check(f"receipt {r['company']}:{r['metric'][:24]}",
+          bool(r["value"] is not None and r["formula"] and r["anchor_tier"]) and ok_facts)
 
 # 6. STRICT JSON caches
 print("6. strict-JSON caches")

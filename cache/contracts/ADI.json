@@ -63,7 +63,8 @@
         "3900.0 @ 2026-05-20"
       ],
       "one_offs": [],
-      "extracted_at": "2026-08-16T12:47:53.758801+00:00"
+      "extracted_at": "2026-08-16T12:47:53.758801+00:00",
+      "type": "management_guidance"
     },
     "eps_guide_mid": {
       "value": 3.3,
@@ -109,7 +110,8 @@
         "2.88 @ 2026-02-18",
         "3.3 @ 2026-05-20",
         "3.3 @ 2026-05-20"
-      ]
+      ],
+      "type": "management_guidance"
     },
     "adj_gross_margin_last": {
       "value": 73.0,
@@ -126,7 +128,8 @@
       "basis": "ADJUSTED",
       "is_latest": null,
       "revised_since_prior": false,
-      "extracted_at": "2026-08-16T12:47:53.759298+00:00"
+      "extracted_at": "2026-08-16T12:47:53.759298+00:00",
+      "type": "reported_actual"
     },
     "rev_guide_beat_median_pct": {
       "value": 3.17,
@@ -138,7 +141,8 @@
       "is_latest": null,
       "revised_since_prior": false,
       "one_offs": [],
-      "extracted_at": "2026-08-16T12:47:53.759541+00:00"
+      "extracted_at": "2026-08-16T12:47:53.759541+00:00",
+      "type": "derived_statistic"
     },
     "q3_gm_guide_seq_change_pp": {
       "value": -0.5,
@@ -150,7 +154,8 @@
       "is_latest": true,
       "revised_since_prior": false,
       "one_offs": [],
-      "extracted_at": "2026-08-16T12:47:53.759545+00:00"
+      "extracted_at": "2026-08-16T12:47:53.759545+00:00",
+      "type": "management_guidance"
     }
   },
   "notes": [

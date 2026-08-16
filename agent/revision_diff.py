@@ -56,6 +56,9 @@ GUIDE_PATTERNS = {
     "DE.cf_fy_sales_guide": (
         "DE", r"Construction & Forestry[^|\n]{0,40}\|[^|\n]{0,10}\| Up ~([\d.]+)%",
         lambda m: float(m.group(1))),
+    "HAS.op_profit_guide_gbpm": (
+        "HAS", r"top of the £[\d\s.]+-\s*([\d\s.]+)m consensus range",
+        lambda m: float(m.group(1).replace(" ", ""))),
     "HAS.op_profit_consensus": (
         "HAS", r"consensus for FY26 pre ?-exceptional operating profit is £([\d\s.]+)m",
         lambda m: float(m.group(1).replace(" ", ""))),

@@ -1,0 +1,20 @@
+2026-08-16T13:02:55.453337+00:00 EXCALIBUR run start
+2026-08-16T13:02:55.454264+00:00 WARNING: consensus cache is 2.2h old (markets closed today; acceptable)
+2026-08-16T13:02:58.279801+00:00 revision-diff: all guide facts are latest vintage
+2026-08-16T13:02:58.282303+00:00 HD | Net sales = 47191.0  [TIER1 consensus $47,235m + 0.8x gap to phase+temper target $47,180m (mean(FY +3.5%, Q1 +4.8%) = +4.15% on Q2-FY25 base; Q1 incl GMS/FX one-offs, flagged)]
+2026-08-16T13:02:58.282326+00:00 HD | Adjusted diluted EPS = 4.65  [TIER1 consensus $4.69 + 0.8x gap to phase+temper target $4.64 (mean(FY +2%, Q1 -3.7%) = -0.83% on Q2-FY25 $4.68) [period: FY2026 guide phased+tempered]]
+2026-08-16T13:02:58.282339+00:00 HD | Comparable sales, total company = 0.2  [TIER2 double-temper: mean(mean(FY guide +1.0, Q1 +0.6), April -0.5) = +0.15pp ~ flat (April flipped negative; storm compares) [periods: FY2026 guide, Q1-FY2026, Apr-FY2026]]
+2026-08-16T13:02:58.299666+00:00 HD -> submission/HD-FY2026Q2.xlsx
+2026-08-16T13:02:58.299832+00:00 ADI | Revenue = 3905.0  [TIER1 consensus $3,925m + 0.8x gap to $3,900m guide mid [period: Q3-FY2026]]
+2026-08-16T13:02:58.299857+00:00 ADI | Adjusted diluted EPS = 3.31  [TIER1 consensus $3.33 + 0.8x gap to $3.30 guide mid [period: Q3-FY2026]]
+2026-08-16T13:02:58.299865+00:00 ADI | Adjusted gross margin = 72.5  [TIER3 derived: Q2 actual 73.0% (one-off flagged) + guided sequential -0.5pp (CFO, Q2 call) [period: Q3-FY2026-sequential]]
+2026-08-16T13:02:58.311980+00:00 ADI -> submission/ADI-FY2026Q3.xlsx
+2026-08-16T13:02:58.312134+00:00 HAS | Net fees = 881.8  [TIER3 derived: H1 £496m x (1-9.0%) + H2 £476m x (1-6.5%) minus £15m disposed-country fees (cited) [periods: H1-FY2025 base, Q1..Q4-FY2026 LFL]]
+2026-08-16T13:02:58.312154+00:00 HAS | Pre-exceptional basic EPS = 1.12  [TIER3 derived: (OP £45.5m [rule-derived] - £13m FY26 finance-charge guide, Feb-26 UPDATE) x (1 - 45% FY26 ETR guide, Feb-26 UPDATE 'consistent with H1') / 1,595.7m weighted-avg shares [periods: latest FY2026 guides supersede Aug-25 set]]
+2026-08-16T13:02:58.312168+00:00 HAS | Pre-exceptional operating profit = 45.5  [TIER1 consensus 43.5 + 0.8x gap to guidance 46.0 [types: company_published_consensus anchor, management_guidance adjustment; period: FY2026]]
+2026-08-16T13:02:58.323439+00:00 HAS -> submission/HAS-FY2026.xlsx
+2026-08-16T13:02:58.323600+00:00 DE | Worldwide net sales and revenues = 12689.0  [TIER1 consensus equip+bridge $12,393m + 0.8x gap to segment-sum target $12,763m (PPA -7.5%, SAT +15%, CF +20% on FY25 Q3 bases + $1661m fin-svcs) [period: FY2026 guides phased]]
+2026-08-16T13:02:58.323618+00:00 DE | Diluted EPS (GAAP) = 4.7  [TIER1 consensus $4.72 + 0.8x gap to phased-guide target $4.69 ((FY NI mid $4,750m - H1 $2,429m) x Q3-share 54.8% / 270.8m sh) [period: FY2026 guide phased]]
+2026-08-16T13:02:58.323630+00:00 DE | Production & Precision Ag operating profit = 474.0  [TIER3 derived: FY25 Q3 PPA sales x (1-7.5% FY guide) x 12% FY margin guide mid [NOT Q2's 15.7% — $272m tariff-refund one-off] [period: FY2026 guide, phased]]
+2026-08-16T13:02:58.336565+00:00 DE -> submission/DE-FY2026Q3.xlsx
+2026-08-16T13:02:58.337802+00:00 structured receipts for 12 forecasts -> cache/receipts.json (+7 rejected facts with reasons)

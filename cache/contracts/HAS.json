@@ -32,7 +32,8 @@
       "is_latest": null,
       "revised_since_prior": false,
       "one_offs": [],
-      "extracted_at": "2026-08-16T12:47:53.759301+00:00"
+      "extracted_at": "2026-08-16T12:47:53.759301+00:00",
+      "type": "management_guidance"
     },
     "op_profit_consensus": {
       "value": 43.5,
@@ -50,7 +51,8 @@
         "45.2 @ 2026-04-16",
         "43.5 @ 2026-07-10",
         "43.5 @ 2026-07-10"
-      ]
+      ],
+      "type": "company_published_consensus"
     },
     "q4_net_fees_lfl": {
       "value": -5.0,
@@ -62,7 +64,8 @@
       "is_latest": null,
       "revised_since_prior": false,
       "one_offs": [],
-      "extracted_at": "2026-08-16T12:47:53.759305+00:00"
+      "extracted_at": "2026-08-16T12:47:53.759305+00:00",
+      "type": "reported_actual"
     },
     "shares_issued": {
       "value": 1591800000.0,
@@ -74,7 +77,8 @@
       "is_latest": null,
       "revised_since_prior": false,
       "one_offs": [],
-      "extracted_at": "2026-08-16T12:47:53.759309+00:00"
+      "extracted_at": "2026-08-16T12:47:53.759309+00:00",
+      "type": "reported_actual"
     },
     "fy25_net_fees_gbpm": {
       "value": 972.4,
@@ -86,7 +90,8 @@
       "is_latest": null,
       "revised_since_prior": false,
       "one_offs": [],
-      "extracted_at": "2026-08-16T12:47:53.759534+00:00"
+      "extracted_at": "2026-08-16T12:47:53.759534+00:00",
+      "type": "reported_actual"
     },
     "fy25_op_profit_gbpm": {
       "value": 45.6,
@@ -98,7 +103,8 @@
       "is_latest": null,
       "revised_since_prior": false,
       "one_offs": [],
-      "extracted_at": "2026-08-16T12:47:53.759536+00:00"
+      "extracted_at": "2026-08-16T12:47:53.759536+00:00",
+      "type": "reported_actual"
     },
     "fy25_net_finance_charge_gbpm": {
       "value": 13.4,
@@ -110,7 +116,8 @@
       "is_latest": null,
       "revised_since_prior": false,
       "one_offs": [],
-      "extracted_at": "2026-08-16T12:47:53.759538+00:00"
+      "extracted_at": "2026-08-16T12:47:53.759538+00:00",
+      "type": "reported_actual"
     },
     "fy25_pre_exceptional_etr_pct": {
       "value": 35.1,
@@ -122,7 +129,8 @@
       "is_latest": null,
       "revised_since_prior": false,
       "one_offs": [],
-      "extracted_at": "2026-08-16T12:47:53.759540+00:00"
+      "extracted_at": "2026-08-16T12:47:53.759540+00:00",
+      "type": "reported_actual"
     },
     "q1_net_fees_lfl": {
       "value": -8.0,
@@ -134,7 +142,8 @@
       "is_latest": null,
       "revised_since_prior": false,
       "one_offs": [],
-      "extracted_at": "2026-08-16T12:47:53.759552+00:00"
+      "extracted_at": "2026-08-16T12:47:53.759552+00:00",
+      "type": "reported_actual"
     },
     "q2_net_fees_lfl": {
       "value": -10.0,
@@ -146,7 +155,8 @@
       "is_latest": null,
       "revised_since_prior": false,
       "one_offs": [],
-      "extracted_at": "2026-08-16T12:47:53.759554+00:00"
+      "extracted_at": "2026-08-16T12:47:53.759554+00:00",
+      "type": "reported_actual"
     },
     "q3_net_fees_lfl": {
       "value": -8.0,
@@ -158,7 +168,8 @@
       "is_latest": null,
       "revised_since_prior": false,
       "one_offs": [],
-      "extracted_at": "2026-08-16T12:47:53.759556+00:00"
+      "extracted_at": "2026-08-16T12:47:53.759556+00:00",
+      "type": "reported_actual"
     },
     "h1_fy25_net_fees_gbpm": {
       "value": 496.0,
@@ -170,7 +181,8 @@
       "is_latest": null,
       "revised_since_prior": false,
       "one_offs": [],
-      "extracted_at": "2026-08-16T12:47:53.759557+00:00"
+      "extracted_at": "2026-08-16T12:47:53.759557+00:00",
+      "type": "reported_actual"
     },
     "fy26_disposed_net_fees_gbpm": {
       "value": 15.0,
@@ -182,7 +194,8 @@
       "is_latest": null,
       "revised_since_prior": false,
       "one_offs": [],
-      "extracted_at": "2026-08-16T12:47:53.759559+00:00"
+      "extracted_at": "2026-08-16T12:47:53.759559+00:00",
+      "type": "reported_actual"
     },
     "fy26_net_finance_charge_guide_gbpm": {
       "value": 13.0,
@@ -201,7 +214,8 @@
         "13.0 @ 2026-02-27"
       ],
       "one_offs": [],
-      "extracted_at": "2026-08-16T12:47:53.759561+00:00"
+      "extracted_at": "2026-08-16T12:47:53.759561+00:00",
+      "type": "management_guidance"
     },
     "fy26_etr_guide_pct": {
       "value": 45.0,
@@ -221,7 +235,8 @@
         "45.0 @ 2026-02-27"
       ],
       "one_offs": [],
-      "extracted_at": "2026-08-16T12:47:53.759563+00:00"
+      "extracted_at": "2026-08-16T12:47:53.759563+00:00",
+      "type": "management_guidance"
     },
     "h1_fy26_weighted_avg_shares_m": {
       "value": 1595.7,
@@ -233,7 +248,21 @@
       "is_latest": null,
       "revised_since_prior": false,
       "one_offs": [],
-      "extracted_at": "2026-08-16T12:47:53.759582+00:00"
+      "extracted_at": "2026-08-16T12:47:53.759582+00:00",
+      "type": "reported_actual"
+    },
+    "op_profit_guide_gbpm": {
+      "value": 46.0,
+      "period": "FY2026",
+      "basis": "PRE-EXCEPTIONAL",
+      "doc": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
+      "quote": "we currently expect FY26 pre -exceptional operating profit will be at the top of the \u00a337.0 -46.0m consensus range (2)",
+      "type": "management_guidance",
+      "note": "agent+verified; 'top of the \u00a337.0-46.0m range' -> range top",
+      "is_latest": true,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T13:01:07.685041+00:00"
     }
   },
   "notes": []

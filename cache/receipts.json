@@ -1,0 +1,837 @@
+{
+  "receipts": [
+    {
+      "company": "HD",
+      "metric": "Net sales",
+      "period": "FY2026Q2",
+      "value": 47191.0,
+      "anchor_tier": "TIER1",
+      "formula": "TIER1 consensus $47,235m + 0.8x gap to phase+temper target $47,180m (mean(FY +3.5%, Q1 +4.8%) = +4.15% on Q2-FY25 base; Q1 incl GMS/FX one-offs, flagged)",
+      "consumed_facts": {
+        "fy_sales_growth_guide": {
+          "value": 3.5,
+          "period": "FY2026",
+          "basis": "GAAP-REPORTED",
+          "type": "management_guidance",
+          "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+          "is_latest": true,
+          "revised_since_prior": true,
+          "one_offs": []
+        },
+        "q1_fy26_sales_yoy_pct": {
+          "value": 4.8,
+          "period": "Q1-FY2026",
+          "basis": "GAAP-REPORTED",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        },
+        "q2_fy25_net_sales_usdm": {
+          "value": 45300.0,
+          "period": "Q2-FY2025",
+          "basis": "GAAP-REPORTED",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/home-depot/filings/2025-08-20__hd-us-20250820-q2-8k__143688.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        },
+        "q1_fy26_net_sales_usdm": {
+          "value": 41765.0,
+          "period": "Q1-FY2026",
+          "basis": "GAAP-REPORTED",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": [
+            {
+              "name": "GMS acquisition inorganic sales (per amendment4 read; anniversaries in FY26)",
+              "impact": 1300
+            },
+            {
+              "name": "FX tailwind",
+              "impact": 220
+            }
+          ]
+        }
+      },
+      "consensus_inputs": {},
+      "checks_passed": [
+        "anchor_period_and_basis_vs_metric_schema",
+        "sanity_range",
+        "all_12_present",
+        "revision_diff_latest_vintage",
+        "consensus_freshness"
+      ],
+      "metric_schema": {
+        "bases": [
+          "GAAP-REPORTED"
+        ],
+        "periods": [
+          "FY2026",
+          "Q1-FY2026",
+          "Q2-FY2025",
+          "Q2-FY2026"
+        ]
+      }
+    },
+    {
+      "company": "HD",
+      "metric": "Adjusted diluted EPS",
+      "period": "FY2026Q2",
+      "value": 4.65,
+      "anchor_tier": "TIER1",
+      "formula": "TIER1 consensus $4.69 + 0.8x gap to phase+temper target $4.64 (mean(FY +2%, Q1 -3.7%) = -0.83% on Q2-FY25 $4.68) [period: FY2026 guide phased+tempered]",
+      "consumed_facts": {
+        "fy_adj_eps_growth_mid": {
+          "value": 2.0,
+          "period": "FY2026",
+          "basis": "ADJUSTED",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+          "is_latest": true,
+          "revised_since_prior": false,
+          "one_offs": []
+        },
+        "q1_fy26_adj_eps": {
+          "value": 3.43,
+          "period": "Q1-FY2026",
+          "basis": "ADJUSTED",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        },
+        "q1_fy25_adj_eps": {
+          "value": 3.56,
+          "period": "Q1-FY2025",
+          "basis": "ADJUSTED",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        },
+        "q2_fy25_adj_eps": {
+          "value": 4.68,
+          "period": "Q2-FY2025",
+          "basis": "ADJUSTED",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/home-depot/filings/2025-08-20__hd-us-20250820-q2-8k__143688.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        }
+      },
+      "consensus_inputs": {},
+      "checks_passed": [
+        "anchor_period_and_basis_vs_metric_schema",
+        "sanity_range",
+        "all_12_present",
+        "revision_diff_latest_vintage",
+        "consensus_freshness"
+      ],
+      "metric_schema": {
+        "bases": [
+          "ADJUSTED"
+        ],
+        "periods": [
+          "FY2026",
+          "Q1-FY2025",
+          "Q1-FY2026",
+          "Q2-FY2025",
+          "Q2-FY2026"
+        ]
+      }
+    },
+    {
+      "company": "HD",
+      "metric": "Comparable sales, total company",
+      "period": "FY2026Q2",
+      "value": 0.2,
+      "anchor_tier": "TIER2",
+      "formula": "TIER2 double-temper: mean(mean(FY guide +1.0, Q1 +0.6), April -0.5) = +0.15pp ~ flat (April flipped negative; storm compares) [periods: FY2026 guide, Q1-FY2026, Apr-FY2026]",
+      "consumed_facts": {
+        "fy_comp_guide_mid": {
+          "value": 1.0,
+          "period": "FY2026",
+          "basis": "COMPARABLE-SALES",
+          "type": "management_guidance",
+          "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+          "is_latest": true,
+          "revised_since_prior": false,
+          "one_offs": []
+        },
+        "q1_fy26_comp_pct": {
+          "value": 0.6,
+          "period": "Q1-FY2026",
+          "basis": "COMPARABLE-SALES",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        },
+        "apr_fy26_comp_pct": {
+          "value": -0.5,
+          "period": "Apr-FY2026",
+          "basis": "COMPARABLE-SALES",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/home-depot/call-transcripts/2026-05-19__hd-us-20260519-call-pres__1039117.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        }
+      },
+      "consensus_inputs": {},
+      "checks_passed": [
+        "anchor_period_and_basis_vs_metric_schema",
+        "sanity_range",
+        "all_12_present",
+        "revision_diff_latest_vintage",
+        "consensus_freshness"
+      ],
+      "metric_schema": {
+        "bases": [
+          "COMPARABLE-SALES"
+        ],
+        "periods": [
+          "Apr-FY2026",
+          "FY2026",
+          "Q1-FY2026"
+        ]
+      }
+    },
+    {
+      "company": "ADI",
+      "metric": "Revenue",
+      "period": "FY2026Q3",
+      "value": 3905.0,
+      "anchor_tier": "TIER1",
+      "formula": "TIER1 consensus $3,925m + 0.8x gap to $3,900m guide mid [period: Q3-FY2026]",
+      "consumed_facts": {
+        "rev_guide_mid_usdm": {
+          "value": 3900.0,
+          "period": "Q3-FY2026",
+          "basis": "GAAP-REPORTED",
+          "type": "management_guidance",
+          "doc": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
+          "is_latest": true,
+          "revised_since_prior": true,
+          "one_offs": []
+        }
+      },
+      "consensus_inputs": {},
+      "checks_passed": [
+        "anchor_period_and_basis_vs_metric_schema",
+        "sanity_range",
+        "all_12_present",
+        "revision_diff_latest_vintage",
+        "consensus_freshness"
+      ],
+      "metric_schema": {
+        "bases": [
+          "GAAP-REPORTED"
+        ],
+        "periods": [
+          "Q3-FY2026"
+        ]
+      }
+    },
+    {
+      "company": "ADI",
+      "metric": "Adjusted diluted EPS",
+      "period": "FY2026Q3",
+      "value": 3.31,
+      "anchor_tier": "TIER1",
+      "formula": "TIER1 consensus $3.33 + 0.8x gap to $3.30 guide mid [period: Q3-FY2026]",
+      "consumed_facts": {
+        "eps_guide_mid": {
+          "value": 3.3,
+          "period": "Q3-FY2026",
+          "basis": "ADJUSTED",
+          "type": "management_guidance",
+          "doc": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
+          "is_latest": true,
+          "revised_since_prior": true,
+          "one_offs": []
+        }
+      },
+      "consensus_inputs": {},
+      "checks_passed": [
+        "anchor_period_and_basis_vs_metric_schema",
+        "sanity_range",
+        "all_12_present",
+        "revision_diff_latest_vintage",
+        "consensus_freshness"
+      ],
+      "metric_schema": {
+        "bases": [
+          "ADJUSTED"
+        ],
+        "periods": [
+          "Q3-FY2026"
+        ]
+      }
+    },
+    {
+      "company": "ADI",
+      "metric": "Adjusted gross margin",
+      "period": "FY2026Q3",
+      "value": 72.5,
+      "anchor_tier": "TIER3",
+      "formula": "TIER3 derived: Q2 actual 73.0% (one-off flagged) + guided sequential -0.5pp (CFO, Q2 call) [period: Q3-FY2026-sequential]",
+      "consumed_facts": {
+        "adj_gross_margin_last": {
+          "value": 73.0,
+          "period": "Q2-FY2026",
+          "basis": "ADJUSTED",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": [
+            {
+              "name": "one-time channel repricing benefit (CFO, Q2 call)",
+              "impact_pp": 0.5
+            }
+          ]
+        },
+        "q3_gm_guide_seq_change_pp": {
+          "value": -0.5,
+          "period": "Q3-FY2026-sequential",
+          "basis": "ADJUSTED",
+          "type": "management_guidance",
+          "doc": "challenge/offline-data/analog-devices/call-transcripts/2026-05-20__adi-us-20260520-call-qna__1041159.md",
+          "is_latest": true,
+          "revised_since_prior": false,
+          "one_offs": []
+        }
+      },
+      "consensus_inputs": {},
+      "checks_passed": [
+        "anchor_period_and_basis_vs_metric_schema",
+        "sanity_range",
+        "all_12_present",
+        "revision_diff_latest_vintage",
+        "consensus_freshness"
+      ],
+      "metric_schema": {
+        "bases": [
+          "ADJUSTED"
+        ],
+        "periods": [
+          "Q2-FY2026",
+          "Q3-FY2026-sequential"
+        ]
+      }
+    },
+    {
+      "company": "HAS",
+      "metric": "Net fees",
+      "period": "FY2026",
+      "value": 881.8,
+      "anchor_tier": "TIER3",
+      "formula": "TIER3 derived: H1 \u00a3496m x (1-9.0%) + H2 \u00a3476m x (1-6.5%) minus \u00a315m disposed-country fees (cited) [periods: H1-FY2025 base, Q1..Q4-FY2026 LFL]",
+      "consumed_facts": {
+        "h1_fy25_net_fees_gbpm": {
+          "value": 496.0,
+          "period": "H1-FY2025",
+          "basis": "NET-FEES",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/hays/filings/2025-02-20__has-ln-20250220-q2-8k__119730.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        },
+        "fy25_net_fees_gbpm": {
+          "value": 972.4,
+          "period": "FY2025",
+          "basis": "NET-FEES",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k-2__671218.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        },
+        "q1_net_fees_lfl": {
+          "value": -8.0,
+          "period": "Q1-FY2026",
+          "basis": "NET-FEES",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/hays/filings/2025-10-10__has-ln-20251010-q1-8k__148167.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        },
+        "q2_net_fees_lfl": {
+          "value": -10.0,
+          "period": "Q2-FY2026",
+          "basis": "NET-FEES",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/hays/filings/2026-01-14__has-ln-20260114-q2-8k__401006.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        },
+        "q3_net_fees_lfl": {
+          "value": -8.0,
+          "period": "Q3-FY2026",
+          "basis": "NET-FEES",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/hays/filings/2026-04-16__has-ln-20260416-q3-8k-2__955907.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        },
+        "q4_net_fees_lfl": {
+          "value": -5.0,
+          "period": "Q4-FY2026",
+          "basis": "NET-FEES",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        },
+        "fy26_disposed_net_fees_gbpm": {
+          "value": 15.0,
+          "period": "FY2026",
+          "basis": "NET-FEES",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-filing-2__1572799.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        }
+      },
+      "consensus_inputs": {},
+      "checks_passed": [
+        "anchor_period_and_basis_vs_metric_schema",
+        "sanity_range",
+        "all_12_present",
+        "revision_diff_latest_vintage",
+        "consensus_freshness"
+      ],
+      "metric_schema": {
+        "bases": [
+          "NET-FEES"
+        ],
+        "periods": [
+          "FY2025",
+          "FY2026",
+          "H1-FY2025",
+          "Q1-FY2026",
+          "Q2-FY2026",
+          "Q3-FY2026",
+          "Q4-FY2026"
+        ]
+      }
+    },
+    {
+      "company": "HAS",
+      "metric": "Pre-exceptional basic EPS",
+      "period": "FY2026",
+      "value": 1.12,
+      "anchor_tier": "TIER3",
+      "formula": "TIER3 derived: (OP \u00a345.5m [rule-derived] - \u00a313m FY26 finance-charge guide, Feb-26 UPDATE) x (1 - 45% FY26 ETR guide, Feb-26 UPDATE 'consistent with H1') / 1,595.7m weighted-avg shares [periods: latest FY2026 guides supersede Aug-25 set]",
+      "consumed_facts": {
+        "fy26_net_finance_charge_guide_gbpm": {
+          "value": 13.0,
+          "period": "FY2026",
+          "basis": "PRE-EXCEPTIONAL",
+          "type": "management_guidance",
+          "doc": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
+          "is_latest": true,
+          "revised_since_prior": true,
+          "one_offs": []
+        },
+        "fy26_etr_guide_pct": {
+          "value": 45.0,
+          "period": "FY2026",
+          "basis": "PRE-EXCEPTIONAL",
+          "type": "management_guidance",
+          "doc": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
+          "is_latest": true,
+          "revised_since_prior": true,
+          "one_offs": []
+        },
+        "h1_fy26_weighted_avg_shares_m": {
+          "value": 1595.7,
+          "period": "H1-FY2026",
+          "basis": "SHARE-COUNT",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        }
+      },
+      "consensus_inputs": {},
+      "checks_passed": [
+        "anchor_period_and_basis_vs_metric_schema",
+        "sanity_range",
+        "all_12_present",
+        "revision_diff_latest_vintage",
+        "consensus_freshness"
+      ],
+      "metric_schema": {
+        "bases": [
+          "PRE-EXCEPTIONAL",
+          "SHARE-COUNT"
+        ],
+        "periods": [
+          "FY2026",
+          "H1-FY2026"
+        ]
+      }
+    },
+    {
+      "company": "HAS",
+      "metric": "Pre-exceptional operating profit",
+      "period": "FY2026",
+      "value": 45.5,
+      "anchor_tier": "TIER1",
+      "formula": "TIER1 consensus 43.5 + 0.8x gap to guidance 46.0 [types: company_published_consensus anchor, management_guidance adjustment; period: FY2026]",
+      "consumed_facts": {
+        "op_profit_consensus": {
+          "value": 43.5,
+          "period": "FY2026",
+          "basis": "PRE-EXCEPTIONAL",
+          "type": "company_published_consensus",
+          "doc": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
+          "is_latest": true,
+          "revised_since_prior": true,
+          "one_offs": []
+        },
+        "op_profit_guide_gbpm": {
+          "value": 46.0,
+          "period": "FY2026",
+          "basis": "PRE-EXCEPTIONAL",
+          "type": "management_guidance",
+          "doc": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
+          "is_latest": true,
+          "revised_since_prior": false,
+          "one_offs": []
+        }
+      },
+      "consensus_inputs": {},
+      "checks_passed": [
+        "anchor_period_and_basis_vs_metric_schema",
+        "sanity_range",
+        "all_12_present",
+        "revision_diff_latest_vintage",
+        "consensus_freshness"
+      ],
+      "metric_schema": {
+        "bases": [
+          "PRE-EXCEPTIONAL"
+        ],
+        "periods": [
+          "FY2026"
+        ]
+      }
+    },
+    {
+      "company": "DE",
+      "metric": "Worldwide net sales and revenues",
+      "period": "FY2026Q3",
+      "value": 12689.0,
+      "anchor_tier": "TIER1",
+      "formula": "TIER1 consensus equip+bridge $12,393m + 0.8x gap to segment-sum target $12,763m (PPA -7.5%, SAT +15%, CF +20% on FY25 Q3 bases + $1661m fin-svcs) [period: FY2026 guides phased]",
+      "consumed_facts": {
+        "q3_fy25_revenues_usdm": {
+          "value": 12018.0,
+          "period": "Q3-FY2025",
+          "basis": "GAAP-REPORTED",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        },
+        "q3_fy25_equip_net_sales_usdm": {
+          "value": 10357.0,
+          "period": "Q3-FY2025",
+          "basis": "GAAP-REPORTED",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        },
+        "q3_fy25_ppa_net_sales_usdm": {
+          "value": 4273.0,
+          "period": "Q3-FY2025",
+          "basis": "SEGMENT",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        },
+        "ppa_fy_sales_guide": {
+          "value": -7.5,
+          "period": "FY2026",
+          "basis": "SEGMENT",
+          "type": "management_guidance",
+          "doc": "challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k__1042167.md",
+          "is_latest": true,
+          "revised_since_prior": true,
+          "one_offs": []
+        },
+        "q3_fy25_sat_net_sales_usdm": {
+          "value": 3025.0,
+          "period": "Q3-FY2025",
+          "basis": "SEGMENT",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        },
+        "sat_fy_sales_guide": {
+          "value": 15.0,
+          "period": "FY2026",
+          "basis": "SEGMENT",
+          "type": "management_guidance",
+          "doc": "challenge/offline-data/deere/call-transcripts/2026-05-21__de-us-20260521-call-pres__1042774.md",
+          "is_latest": true,
+          "revised_since_prior": false,
+          "one_offs": []
+        },
+        "q3_fy25_cf_net_sales_usdm": {
+          "value": 3059.0,
+          "period": "Q3-FY2025",
+          "basis": "SEGMENT",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        },
+        "cf_fy_sales_guide": {
+          "value": 20.0,
+          "period": "FY2026",
+          "basis": "SEGMENT",
+          "type": "management_guidance",
+          "doc": "challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k__1042167.md",
+          "is_latest": true,
+          "revised_since_prior": false,
+          "one_offs": []
+        }
+      },
+      "consensus_inputs": {},
+      "checks_passed": [
+        "anchor_period_and_basis_vs_metric_schema",
+        "sanity_range",
+        "all_12_present",
+        "revision_diff_latest_vintage",
+        "consensus_freshness"
+      ],
+      "metric_schema": {
+        "bases": [
+          "GAAP-REPORTED",
+          "SEGMENT"
+        ],
+        "periods": [
+          "FY2026",
+          "Q3-FY2025"
+        ]
+      }
+    },
+    {
+      "company": "DE",
+      "metric": "Diluted EPS (GAAP)",
+      "period": "FY2026Q3",
+      "value": 4.7,
+      "anchor_tier": "TIER1",
+      "formula": "TIER1 consensus $4.72 + 0.8x gap to phased-guide target $4.69 ((FY NI mid $4,750m - H1 $2,429m) x Q3-share 54.8% / 270.8m sh) [period: FY2026 guide phased]",
+      "consumed_facts": {
+        "fy_net_income_guide_usdm": {
+          "value": 4750.0,
+          "period": "FY2026",
+          "basis": "GAAP",
+          "type": "management_guidance",
+          "doc": "challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k__1042167.md",
+          "is_latest": true,
+          "revised_since_prior": true,
+          "one_offs": []
+        },
+        "h1_fy26_net_income_usdm": {
+          "value": 2429.0,
+          "period": "H1-FY2026",
+          "basis": "GAAP",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k__1042167.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        },
+        "q3_fy25_net_income_usdm": {
+          "value": 1289.0,
+          "period": "Q3-FY2025",
+          "basis": "GAAP",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        },
+        "q4_fy25_net_income_usdm": {
+          "value": 1065.0,
+          "period": "Q4-FY2025",
+          "basis": "GAAP",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/deere/filings/2025-11-26__de-us-20251126-q4-8k__361233.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        },
+        "q2_fy26_diluted_shares_m": {
+          "value": 270.8,
+          "period": "Q2-FY2026",
+          "basis": "SHARE-COUNT",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-10q__1055929.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        }
+      },
+      "consensus_inputs": {},
+      "checks_passed": [
+        "anchor_period_and_basis_vs_metric_schema",
+        "sanity_range",
+        "all_12_present",
+        "revision_diff_latest_vintage",
+        "consensus_freshness"
+      ],
+      "metric_schema": {
+        "bases": [
+          "GAAP",
+          "SHARE-COUNT"
+        ],
+        "periods": [
+          "FY2026",
+          "H1-FY2026",
+          "Q2-FY2026",
+          "Q3-FY2025",
+          "Q4-FY2025"
+        ]
+      }
+    },
+    {
+      "company": "DE",
+      "metric": "Production & Precision Ag operating profit",
+      "period": "FY2026Q3",
+      "value": 474.0,
+      "anchor_tier": "TIER3",
+      "formula": "TIER3 derived: FY25 Q3 PPA sales x (1-7.5% FY guide) x 12% FY margin guide mid [NOT Q2's 15.7% \u2014 $272m tariff-refund one-off] [period: FY2026 guide, phased]",
+      "consumed_facts": {
+        "q3_fy25_ppa_net_sales_usdm": {
+          "value": 4273.0,
+          "period": "Q3-FY2025",
+          "basis": "SEGMENT",
+          "type": "reported_actual",
+          "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
+          "is_latest": null,
+          "revised_since_prior": false,
+          "one_offs": []
+        },
+        "ppa_fy_sales_guide": {
+          "value": -7.5,
+          "period": "FY2026",
+          "basis": "SEGMENT",
+          "type": "management_guidance",
+          "doc": "challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k__1042167.md",
+          "is_latest": true,
+          "revised_since_prior": true,
+          "one_offs": []
+        },
+        "ppa_fy_margin_guide_pct": {
+          "value": 12.0,
+          "period": "FY2026",
+          "basis": "SEGMENT",
+          "type": "management_guidance",
+          "doc": "challenge/offline-data/deere/call-transcripts/2026-05-21__de-us-20260521-call-pres__1042774.md",
+          "is_latest": true,
+          "revised_since_prior": true,
+          "one_offs": []
+        }
+      },
+      "consensus_inputs": {},
+      "checks_passed": [
+        "anchor_period_and_basis_vs_metric_schema",
+        "sanity_range",
+        "all_12_present",
+        "revision_diff_latest_vintage",
+        "consensus_freshness"
+      ],
+      "metric_schema": {
+        "bases": [
+          "SEGMENT"
+        ],
+        "periods": [
+          "FY2026",
+          "Q3-FY2025"
+        ]
+      }
+    }
+  ],
+  "rejected_facts": [
+    {
+      "fact": "ADI.q3_gm_guide_seq_change_pp",
+      "reason": "not found in challenge/offline-data/analog-devices/filings/2026-01-23__adi-us-20260123-filing__403452.md",
+      "claim": {
+        "value": null
+      }
+    },
+    {
+      "fact": "DE.ppa_fy_margin_guide_pct",
+      "reason": "not found in challenge/offline-data/deere/filings/2026-01-14__de-us-20260114-filing__401151.md",
+      "claim": {
+        "value": null
+      }
+    },
+    {
+      "fact": "DE.q2_tariff_refund_usdm",
+      "reason": "not found in challenge/offline-data/deere/filings/2026-01-14__de-us-20260114-filing__401151.md",
+      "claim": {
+        "value": null
+      }
+    },
+    {
+      "fact": "DE.sat_fy_sales_guide",
+      "reason": "not found in challenge/offline-data/deere/filings/2026-01-14__de-us-20260114-filing__401151.md",
+      "claim": {
+        "value": null
+      }
+    },
+    {
+      "fact": "HAS.q1_net_fees_lfl",
+      "reason": "not found in challenge/offline-data/hays/filings/2026-06-29__has-ln-20260629-filing-2__1549804.md",
+      "claim": {
+        "value": null
+      }
+    },
+    {
+      "fact": "HAS.q2_net_fees_lfl",
+      "reason": "not found in challenge/offline-data/hays/filings/2026-06-29__has-ln-20260629-filing-2__1549804.md",
+      "claim": {
+        "value": null
+      }
+    },
+    {
+      "fact": "HAS.q3_net_fees_lfl",
+      "reason": "not found in challenge/offline-data/hays/filings/2026-06-29__has-ln-20260629-filing-2__1549804.md",
+      "claim": {
+        "value": null
+      }
+    }
+  ]
+}

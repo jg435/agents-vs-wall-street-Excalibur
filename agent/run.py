@@ -68,6 +68,17 @@ def validate_anchor_periods(tk, facts, uses):
 GAP_FRACTION = 0.8  # Tier-1 adjustment: fraction of (guide target - consensus)
 
 
+def tier1_anchor(consensus_value, guidance_value):
+    """Anchor-selection rule (Viktor): when BOTH consensus and guidance exist,
+    consensus anchors and guidance is the signed adjustment at GAP_FRACTION.
+    With no consensus, guidance itself is the anchor (Tier 2)."""
+    if consensus_value is None:
+        return guidance_value, "TIER2 guidance anchor (no consensus)"
+    fc = consensus_value + GAP_FRACTION * (guidance_value - consensus_value)
+    return fc, (f"TIER1 consensus {consensus_value} + {GAP_FRACTION}x gap to "
+                f"guidance {guidance_value}")
+
+
 def temper(fy_guide_mid_pct, last_q_actual_yoy_pct):
     """Amendment-4 phase+temper, Viktor-blessed deterministic rule:
     tempered growth = mean(FY guide midpoint, last quarter's actual YoY)."""
@@ -186,7 +197,10 @@ def provisional_engine(c):
                 "ppa_fy_margin_guide_pct"],
         }
     elif tk == "HAS":
-        op = 46.0  # 'top of the £37.0-46.0m consensus range' — Viktor to ratify vs £43.5m
+        # DERIVED, not typed (Viktor's rule): company-published consensus is
+        # the Tier-1 anchor; management's 'top of range' guide is the signed
+        # adjustment. 43.5 + 0.8 x (46.0 - 43.5) = 45.5
+        op, op_note = tier1_anchor(v("op_profit_consensus"), v("op_profit_guide_gbpm"))
         # WEIGHTED build-up (H1/H2 bases; quarterly bases not disclosed):
         # FY26 = H1_25 x (1 + avg(Q1,Q2 LFL)) + H2_25 x (1 + avg(Q3,Q4 LFL)).
         # Disposal (6 countries, 16 Jun 2026) NOT quantified in corpus -> no adj.
@@ -205,11 +219,12 @@ def provisional_engine(c):
                 f"TIER3 derived: H1 £{h1:.0f}m x (1{g1:+.1%}) + H2 £{h2:.0f}m x (1{g2:+.1%}) "
                 "minus £15m disposed-country fees (cited) [periods: H1-FY2025 base, Q1..Q4-FY2026 LFL]"),
             "Pre-exceptional basic EPS": (round(eps_pence, 2),
-                "TIER3 derived: (OP £46m - £13m FY26 finance-charge guide, Feb-26 UPDATE) "
+                f"TIER3 derived: (OP £{op:.1f}m [rule-derived] - £13m FY26 finance-charge guide, Feb-26 UPDATE) "
                 "x (1 - 45% FY26 ETR guide, Feb-26 UPDATE 'consistent with H1') / 1,595.7m "
                 "weighted-avg shares [periods: latest FY2026 guides supersede Aug-25 set]"),
-            "Pre-exceptional operating profit": (op,
-                "TIER1/2: management 'top of the £37.0-46.0m consensus range' (co. consensus £43.5m)"),
+            "Pre-exceptional operating profit": (round(op, 1),
+                op_note + " [types: company_published_consensus anchor, "
+                "management_guidance adjustment; period: FY2026]"),
         }
         uses = {
             "Net fees": ["h1_fy25_net_fees_gbpm", "fy25_net_fees_gbpm",
@@ -219,9 +234,11 @@ def provisional_engine(c):
             "Pre-exceptional basic EPS": ["fy26_net_finance_charge_guide_gbpm",
                                           "fy26_etr_guide_pct",
                                           "h1_fy26_weighted_avg_shares_m"],
+            "Pre-exceptional operating profit": ["op_profit_consensus",
+                                                 "op_profit_guide_gbpm"],
         }
     validate_anchor_periods(tk, f, uses)
-    return fc
+    return fc, uses
 
 
 def validate(tk, forecasts):
@@ -260,19 +277,50 @@ def main():
     if revision_diff.main() != 0:
         raise ValueError("stale guidance detected — refusing to forecast")
     log("revision-diff: all guide facts are latest vintage")
+    receipts = []
     contract_mod.build()
     for tk in PERIOD:
         c = json.loads((CACHE / "contracts" / f"{tk}.json").read_text())
-        forecasts = provisional_engine(c)
+        forecasts, uses = provisional_engine(c)
         missing = set(METRICS[tk]) - set(forecasts)  # all-12 seam check: an
         if missing:                                  # engine gap fails HERE, by name
             raise ValueError(f"{tk}: engine produced no forecast for {missing}")
         validate(tk, forecasts)
         for label, (value, note) in forecasts.items():
-            log(f"{tk} | {label} = {value}  [{note}] PROVISIONAL")
+            log(f"{tk} | {label} = {value}  [{note}]")
+            # STRUCTURED RECEIPT: value, formula, consumed facts, tier, checks
+            fact_ids = uses.get(label, [])
+            schema = METRIC_SCHEMA.get(f"{tk}:{label}", {})
+            receipts.append({
+                "company": tk, "metric": label, "period": PERIOD[tk],
+                "value": value,
+                "anchor_tier": (note.split()[0] if note.startswith("TIER") else "TIER1"),
+                "formula": note,
+                "consumed_facts": {
+                    n: {k2: (c["facts"].get(n) or {}).get(k2) for k2 in
+                        ("value", "period", "basis", "type", "doc", "is_latest",
+                         "revised_since_prior", "one_offs")}
+                    for n in fact_ids},
+                "consensus_inputs": {k2: v2 for k2, v2 in
+                                     c.get("consensus", {}).items()
+                                     if "yfinance" in note and k2 in ("eps", "revenue_usdm")
+                                     and v2},
+                "checks_passed": [
+                    "anchor_period_and_basis_vs_metric_schema",
+                    "sanity_range", "all_12_present",
+                    "revision_diff_latest_vintage", "consensus_freshness",
+                ],
+                "metric_schema": {k2: sorted(v2) for k2, v2 in schema.items()},
+            })
         out = workbook.fill(OUTPUT[tk], PERIOD[tk],
                             {k: v for k, (v, _) in forecasts.items()})
         log(f"{tk} -> {out.relative_to(REPO)}")
+    rejected = json.loads((CACHE / "rejected_facts.json").read_text()) \
+        if (CACHE / "rejected_facts.json").exists() else []
+    (CACHE / "receipts.json").write_text(json.dumps(
+        {"receipts": receipts, "rejected_facts": rejected}, indent=2))
+    log(f"structured receipts for {len(receipts)} forecasts -> cache/receipts.json "
+        f"(+{len(rejected)} rejected facts with reasons)")
     LOGS.mkdir(exist_ok=True)
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     (LOGS / f"run-{stamp}.log").write_text("\n".join(LOG_LINES) + "\n")
