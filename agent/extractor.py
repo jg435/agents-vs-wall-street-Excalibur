@@ -115,7 +115,26 @@ def tool_read(rel_path, max_chars=25000):
 
 
 # ---------------------------------------------------------------- LLM call
+def _load_env():
+    """Read repo-root .env (KEY=VALUE lines) without overriding real env.
+    The .env file is git-ignored (.gitignore lines 6-7) — never committed."""
+    env_file = REPO / ".env"
+    if env_file.exists():
+        for line in env_file.read_text().splitlines():
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, _, v = line.partition("=")
+                os.environ.setdefault(k.strip(), v.strip())
+
+
+NO_KEY_HELP = """No LLM API key found.
+Create a file named .env in the repository root containing one line:
+    OPENAI_API_KEY=sk-...        (or ANTHROPIC_API_KEY=sk-ant-...)
+The .env file is git-ignored and must never be committed or published."""
+
+
 def _llm(system, user):
+    _load_env()
     if os.environ.get("OPENAI_API_KEY"):
         url = "https://api.openai.com/v1/chat/completions"
         body = {"model": os.environ.get("EXTRACTOR_MODEL", "gpt-5"),
@@ -132,7 +151,7 @@ def _llm(system, user):
                    "anthropic-version": "2023-06-01"}
         pick = lambda r: "".join(b.get("text", "") for b in r["content"])
     else:
-        raise RuntimeError("no API key (OPENAI_API_KEY / ANTHROPIC_API_KEY)")
+        raise RuntimeError(NO_KEY_HELP)
     req = urllib.request.Request(url, json.dumps(body).encode(),
                                  {"Content-Type": "application/json", **headers})
     with urllib.request.urlopen(req, timeout=120) as r:
