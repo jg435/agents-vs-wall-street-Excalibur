@@ -1,0 +1,222 @@
+=== Agents vs Wall Street — EXCALIBUR final run 20260816-155426 ===
+commit: dd8fec1711bc284bcab631811e2dd41d26496fd4
+--- tier1 baseline (seasonal-naive) -> baseline/ for comparison ---
+Tier 1 run — 2026-08-16 15:54:26 BST
+
+Home Depot (HD) -> FY2026Q2
+  Net sales [USDm]
+      recent YoY FY2025Q1->FY2026Q1: +4.8%
+      seasonal YoY FY2024Q2->FY2025Q2: +4.9%
+      growth method: FY2025Q2=45,277.00 x (1+0.048) = 47,456.36
+      => 47456.4
+  Adjusted diluted EPS [USD / share]
+      recent YoY FY2025Q1->FY2026Q1: -3.7%
+      seasonal YoY FY2024Q2->FY2025Q2: +0.2%
+      growth method: FY2025Q2=4.68 x (1-0.025) = 4.56
+      => 4.56
+  Comparable sales, total company [%]
+      pct_blend: 0.6xFY2026Q1(0.60) + 0.4xFY2025Q2(1.00) = 0.76
+      => 0.8
+    Summary!C7 <- 47456.4  (Net sales, USDm)
+    Summary!C8 <- 4.56  (Adjusted diluted EPS, USD / share)
+    Summary!C9 <- 0.8  (Comparable sales, total company, %)
+  wrote submission/HD-FY2026Q2.xlsx
+
+Analog Devices (ADI) -> FY2026Q3
+  Revenue [USDm]
+      OVERRIDE 3900.0 — Company guidance in 2026-05-20 q2-8k line 71: Q3 FY2026 revenue $3.9B +/- $100M
+      => 3900.0
+  Adjusted diluted EPS [USD / share]
+      OVERRIDE 3.3 — Company guidance in 2026-05-20 call-pres line 47: adjusted EPS $3.30 +/- $0.15
+      => 3.3
+  Adjusted gross margin [%]
+      pct_blend: 0.6xFY2026Q2(73.00) + 0.4xFY2025Q3(69.20) = 71.48
+      => 71.5
+    Summary!C7 <- 3900.0  (Revenue, USDm)
+    Summary!C8 <- 3.3  (Adjusted diluted EPS, USD / share)
+    Summary!C9 <- 71.5  (Adjusted gross margin, %)
+  wrote submission/ADI-FY2026Q3.xlsx
+
+Hays plc (HAS) -> FY2026
+  Net fees [GBPm]
+      interim YoY FY2025H1->FY2026H1: -9.0%
+      growth method: FY2025=972.40 x (1-0.090) = 884.59
+      => 884.6
+  Pre-exceptional basic EPS [GBp]
+      interim YoY FY2025H1->FY2026H1: -43.2%
+      seasonal YoY FY2024->FY2025: -67.5%
+      WARNING blended growth -50.5% is extreme — check the inputs
+      growth method: FY2025=1.31 x (1-0.505) = 0.65
+      => 0.65
+  Pre-exceptional operating profit [GBPm]
+      OVERRIDE 46.0 — Company guidance in 2026-07-10 q4-8k line 71: FY26 pre-exceptional operating profit at the TOP of the GBP 37.0-46.0m range (consensus 43.5m)
+      => 46.0
+    Summary!C7 <- 884.6  (Net fees, GBPm)
+    Summary!C8 <- 0.65  (Pre-exceptional basic EPS, GBp)
+    Summary!C9 <- 46.0  (Pre-exceptional operating profit, GBPm)
+  wrote submission/HAS-FY2026.xlsx
+
+Deere & Company (DE) -> FY2026Q3
+  Worldwide net sales and revenues [USDm]
+      recent YoY FY2025Q2->FY2026Q2: +4.7%
+      growth method: FY2025Q3=12,018.00 x (1+0.047) = 12,588.63
+      => 12588.6
+  Diluted EPS (GAAP) [USD / share]
+      recent YoY FY2025Q2->FY2026Q2: -1.4%
+      growth method: FY2025Q3=4.75 x (1-0.014) = 4.69
+      => 4.69
+  Production & Precision Ag operating profit [USDm]
+      recent YoY FY2025Q2->FY2026Q2: -38.5%
+      WARNING blended growth -38.5% is extreme — check the inputs
+      growth method: FY2025Q3=580.00 x (1-0.385) = 356.69
+      => 356.7
+    Summary!C7 <- 12588.6  (Worldwide net sales and revenues, USDm)
+    Summary!C8 <- 4.69  (Diluted EPS (GAAP), USD / share)
+    Summary!C9 <- 356.7  (Production & Precision Ag operating profit, USDm)
+  wrote submission/DE-FY2026Q3.xlsx
+
+log saved to logs/tier1-run-20260816-155426.log
+
+All four workbooks written. Now run: npm run check:submission
+baseline workbooks -> baseline/
+--- agent pipeline (consensus-anchored ledger) -> submission/ ---
+2026-08-16T14:54:27.039625+00:00 EXCALIBUR run start
+GUIDANCE REVISED HAS.fy26_net_finance_charge_guide_gbpm: 12.0 (2025-08-21) -> 13.0 (2026-02-27)
+HAS.fy26_net_finance_charge_guide_gbpm: 5 vintages, 1 revisions -> LATEST
+GUIDANCE REVISED HAS.fy26_etr_guide_pct: 38.0 (2025-08-21) -> 45.0 (2026-02-27)
+HAS.fy26_etr_guide_pct: 6 vintages, 1 revisions -> LATEST
+GUIDANCE REVISED DE.fy_net_income_guide_usdm: 4375.0 (2025-11-26) -> 4750.0 (2026-02-19)
+DE.fy_net_income_guide_usdm: 4 vintages, 1 revisions -> LATEST
+GUIDANCE REVISED DE.ppa_fy_margin_guide_pct: 20.0 (2021-02-19) -> 20.5 (2021-05-21)
+GUIDANCE REVISED DE.ppa_fy_margin_guide_pct: 20.5 (2021-11-24) -> 21.5 (2022-02-18)
+GUIDANCE REVISED DE.ppa_fy_margin_guide_pct: 21.5 (2022-05-20) -> 20.5 (2022-08-19)
+GUIDANCE REVISED DE.ppa_fy_margin_guide_pct: 20.5 (2022-08-19) -> 22.5 (2022-11-23)
+GUIDANCE REVISED DE.ppa_fy_margin_guide_pct: 22.5 (2022-11-23) -> 24.0 (2023-02-17)
+GUIDANCE REVISED DE.ppa_fy_margin_guide_pct: 24.0 (2023-02-17) -> 25.5 (2023-05-19)
+GUIDANCE REVISED DE.ppa_fy_margin_guide_pct: 25.5 (2023-05-19) -> 15.5 (2023-11-22)
+GUIDANCE REVISED DE.ppa_fy_margin_guide_pct: 15.5 (2023-11-22) -> 22.0 (2024-02-15)
+GUIDANCE REVISED DE.ppa_fy_margin_guide_pct: 22.0 (2024-02-15) -> 21.0 (2024-05-16)
+GUIDANCE REVISED DE.ppa_fy_margin_guide_pct: 21.0 (2024-08-15) -> 12.0 (2024-11-21)
+GUIDANCE REVISED DE.ppa_fy_margin_guide_pct: 12.0 (2024-11-21) -> 16.25 (2025-05-15)
+GUIDANCE REVISED DE.ppa_fy_margin_guide_pct: 16.25 (2025-05-15) -> 13.25 (2025-11-26)
+GUIDANCE REVISED DE.ppa_fy_margin_guide_pct: 13.25 (2025-11-26) -> 12.0 (2026-02-19)
+DE.ppa_fy_margin_guide_pct: 19 vintages, 13 revisions -> LATEST
+GUIDANCE REVISED HD.fy_sales_growth_guide: 4.5 (2015-05-21) -> 3.5 (2026-02-24)
+HD.fy_sales_growth_guide: 4 vintages, 1 revisions -> LATEST
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 1500.0 (2019-02-20) -> 1450.0 (2019-05-22)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 1450.0 (2019-08-21) -> 1300.0 (2019-11-26)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 1300.0 (2019-11-26) -> 1350.0 (2020-02-19)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 1350.0 (2020-02-19) -> 1320.0 (2020-05-20)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 1320.0 (2020-05-20) -> 1440.0 (2020-08-19)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 1440.0 (2020-08-19) -> 1500.0 (2020-10-24)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 1500.0 (2020-11-24) -> 1600.0 (2021-02-17)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 1600.0 (2021-02-17) -> 1700.0 (2021-05-19)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 1700.0 (2021-05-19) -> 1780.0 (2021-08-18)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 1780.0 (2021-08-18) -> 2800.0 (2022-02-16)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 2800.0 (2022-02-16) -> 3050.0 (2022-05-18)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 3050.0 (2022-05-18) -> 3150.0 (2022-08-17)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 3150.0 (2022-11-22) -> 3200.0 (2023-02-15)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 3200.0 (2023-02-15) -> 3100.0 (2023-05-24)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 3100.0 (2023-05-24) -> 2700.0 (2023-08-23)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 2700.0 (2023-08-23) -> 2500.0 (2023-11-21)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 2500.0 (2023-11-21) -> 2100.0 (2024-02-21)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 2100.0 (2024-02-21) -> 2270.0 (2024-05-22)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 2270.0 (2024-05-22) -> 2400.0 (2024-08-21)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 2400.0 (2024-08-21) -> 2350.0 (2024-11-26)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 2350.0 (2024-11-26) -> 2500.0 (2025-02-19)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 2500.0 (2025-02-19) -> 2750.0 (2025-05-22)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 2750.0 (2025-05-22) -> 3000.0 (2025-08-20)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 3000.0 (2025-08-20) -> 3100.0 (2025-11-25)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 3100.0 (2025-11-25) -> 3500.0 (2026-02-18)
+GUIDANCE REVISED ADI.rev_guide_mid_usdm: 3500.0 (2026-02-18) -> 3900.0 (2026-05-20)
+ADI.rev_guide_mid_usdm: 31 vintages, 26 revisions -> LATEST
+GUIDANCE REVISED ADI.eps_guide_mid: 1.3 (2019-02-20) -> 1.22 (2019-05-22)
+GUIDANCE REVISED ADI.eps_guide_mid: 1.22 (2019-08-21) -> 1.0 (2019-11-26)
+GUIDANCE REVISED ADI.eps_guide_mid: 1.0 (2019-11-26) -> 1.1 (2020-02-19)
+GUIDANCE REVISED ADI.eps_guide_mid: 1.1 (2020-02-19) -> 1.08 (2020-05-20)
+GUIDANCE REVISED ADI.eps_guide_mid: 1.08 (2020-05-20) -> 1.32 (2020-08-19)
+GUIDANCE REVISED ADI.eps_guide_mid: 1.32 (2020-08-19) -> 1.3 (2020-10-24)
+GUIDANCE REVISED ADI.eps_guide_mid: 1.3 (2020-11-24) -> 1.44 (2021-02-17)
+GUIDANCE REVISED ADI.eps_guide_mid: 1.44 (2021-02-17) -> 1.61 (2021-05-19)
+GUIDANCE REVISED ADI.eps_guide_mid: 1.61 (2021-05-19) -> 1.72 (2021-08-18)
+GUIDANCE REVISED ADI.eps_guide_mid: 1.72 (2021-08-18) -> 1.78 (2021-11-23)
+GUIDANCE REVISED ADI.eps_guide_mid: 1.78 (2021-11-23) -> 2.07 (2022-02-16)
+GUIDANCE REVISED ADI.eps_guide_mid: 2.07 (2022-02-16) -> 2.42 (2022-05-18)
+GUIDANCE REVISED ADI.eps_guide_mid: 2.42 (2022-05-18) -> 2.57 (2022-08-17)
+GUIDANCE REVISED ADI.eps_guide_mid: 2.57 (2022-08-17) -> 2.6 (2022-11-22)
+GUIDANCE REVISED ADI.eps_guide_mid: 2.6 (2022-11-22) -> 2.75 (2023-02-15)
+GUIDANCE REVISED ADI.eps_guide_mid: 2.75 (2023-02-15) -> 2.52 (2023-05-24)
+GUIDANCE REVISED ADI.eps_guide_mid: 2.52 (2023-05-24) -> 2.0 (2023-08-23)
+GUIDANCE REVISED ADI.eps_guide_mid: 2.0 (2023-08-23) -> 1.7 (2023-11-21)
+GUIDANCE REVISED ADI.eps_guide_mid: 1.7 (2023-11-21) -> 1.26 (2024-02-21)
+GUIDANCE REVISED ADI.eps_guide_mid: 1.26 (2024-02-21) -> 1.5 (2024-05-22)
+GUIDANCE REVISED ADI.eps_guide_mid: 1.5 (2024-05-22) -> 1.63 (2024-08-21)
+GUIDANCE REVISED ADI.eps_guide_mid: 1.63 (2024-08-21) -> 1.53 (2024-11-26)
+GUIDANCE REVISED ADI.eps_guide_mid: 1.53 (2024-11-26) -> 1.68 (2025-02-19)
+GUIDANCE REVISED ADI.eps_guide_mid: 1.68 (2025-02-19) -> 1.92 (2025-05-22)
+GUIDANCE REVISED ADI.eps_guide_mid: 1.92 (2025-05-22) -> 2.22 (2025-08-20)
+GUIDANCE REVISED ADI.eps_guide_mid: 2.22 (2025-08-20) -> 2.29 (2025-11-25)
+GUIDANCE REVISED ADI.eps_guide_mid: 2.29 (2025-11-25) -> 2.88 (2026-02-18)
+GUIDANCE REVISED ADI.eps_guide_mid: 2.88 (2026-02-18) -> 3.3 (2026-05-20)
+ADI.eps_guide_mid: 32 vintages, 28 revisions -> LATEST
+ADI.q3_gm_guide_seq_change_pp: 1 vintages, 0 revisions -> LATEST
+HD.fy_comp_guide_mid: 4 vintages, 0 revisions -> LATEST
+HD.fy_adj_eps_growth_mid: 3 vintages, 0 revisions -> LATEST
+GUIDANCE REVISED DE.ppa_fy_sales_guide: -17.5 (2023-11-22) -> -7.5 (2026-05-21)
+DE.ppa_fy_sales_guide: 2 vintages, 1 revisions -> LATEST
+DE.sat_fy_sales_guide: 1 vintages, 0 revisions -> LATEST
+DE.cf_fy_sales_guide: 1 vintages, 0 revisions -> LATEST
+HAS.op_profit_guide_gbpm: 2 vintages, 0 revisions -> LATEST
+GUIDANCE REVISED HAS.op_profit_consensus: 45.2 (2026-04-16) -> 43.5 (2026-07-10)
+HAS.op_profit_consensus: 4 vintages, 1 revisions -> LATEST
+
+all engine guide facts are the latest vintage
+2026-08-16T14:54:29.458891+00:00 revision-diff: all guide facts are latest vintage
+HD   contract: 12 facts, consensus keys ['eps', 'eps_range', 'report_date', 'revenue_usdm']
+ADI  contract: 5 facts, consensus keys ['eps', 'eps_range', 'report_date', 'revenue_usdm']
+HAS  contract: 17 facts, consensus keys ['eps', 'eps_range', 'report_date', 'revenue_usdm']
+DE   contract: 21 facts, consensus keys ['eps', 'eps_range', 'report_date', 'revenue_usdm']
+2026-08-16T14:54:29.461853+00:00 HD | Net sales = 47191.0  [TIER1 consensus $47,235m + 0.8x gap to phase+temper target $47,180m (mean(FY +3.5%, Q1 +4.8%) = +4.15% on Q2-FY25 base; Q1 incl GMS/FX one-offs, flagged)]
+2026-08-16T14:54:29.461875+00:00 HD | Adjusted diluted EPS = 4.65  [TIER1 consensus $4.69 + 0.8x gap to phase+temper target $4.64 (mean(FY +2%, Q1 -3.7%) = -0.83% on Q2-FY25 $4.68) [period: FY2026 guide phased+tempered]]
+2026-08-16T14:54:29.461888+00:00 HD | Comparable sales, total company = 0.2  [TIER2 double-temper: mean(mean(FY guide +1.0, Q1 +0.6), April -0.5) = +0.15pp ~ flat (April flipped negative; storm compares) [periods: FY2026 guide, Q1-FY2026, Apr-FY2026]]
+2026-08-16T14:54:29.461898+00:00 HD GATES PASSED: consensus-freshness | revision-diff(latest-vintage) | period+basis-vs-metric-schema | one-off-companion | sanity-range | all-12-present
+2026-08-16T14:54:29.478256+00:00 HD -> submission/HD-FY2026Q2.xlsx
+2026-08-16T14:54:29.478505+00:00 ADI | Revenue = 3905.0  [TIER1 consensus $3,925m + 0.8x gap to $3,900m guide mid [period: Q3-FY2026]]
+2026-08-16T14:54:29.478518+00:00 ADI | Adjusted diluted EPS = 3.31  [TIER1 consensus $3.33 + 0.8x gap to $3.30 guide mid [period: Q3-FY2026]]
+2026-08-16T14:54:29.478526+00:00 ADI | Adjusted gross margin = 72.5  [TIER3 derived: Q2 actual 73.0% (one-off flagged) + guided sequential -0.5pp (CFO, Q2 call) [period: Q3-FY2026-sequential]]
+2026-08-16T14:54:29.478535+00:00 ADI GATES PASSED: consensus-freshness | revision-diff(latest-vintage) | period+basis-vs-metric-schema | one-off-companion | sanity-range | all-12-present
+2026-08-16T14:54:29.490678+00:00 ADI -> submission/ADI-FY2026Q3.xlsx
+2026-08-16T14:54:29.490862+00:00 HAS | Net fees = 881.8  [TIER3 derived: H1 £496m x (1-9.0%) + H2 £476m x (1-6.5%) minus £15m disposed-country fees (cited) [periods: H1-FY2025 base, Q1..Q4-FY2026 LFL]]
+2026-08-16T14:54:29.490884+00:00 HAS | Pre-exceptional basic EPS = 1.12  [TIER3 derived: (OP £45.5m [rule-derived] - £13m FY26 finance-charge guide, Feb-26 UPDATE) x (1 - 45% FY26 ETR guide, Feb-26 UPDATE 'consistent with H1') / 1,595.7m weighted-avg shares [periods: latest FY2026 guides supersede Aug-25 set]]
+2026-08-16T14:54:29.490897+00:00 HAS | Pre-exceptional operating profit = 45.5  [TIER1 consensus 43.5 + 0.8x gap to guidance 46.0 [types: company_published_consensus anchor, management_guidance adjustment; period: FY2026]]
+2026-08-16T14:54:29.490906+00:00 HAS GATES PASSED: consensus-freshness | revision-diff(latest-vintage) | period+basis-vs-metric-schema | one-off-companion | sanity-range | all-12-present
+2026-08-16T14:54:29.502246+00:00 HAS -> submission/HAS-FY2026.xlsx
+2026-08-16T14:54:29.502496+00:00 DE | Worldwide net sales and revenues = 12342.0  [equipment consensus (TIER1, yfinance $10,732m) + finance bridge $1,314m (OUR ESTIMATE from Q2-FY26 actual; excludes ~$277m other revenues per ruling) = anchor $12,046m, + 0.8x gap to segment-sum target $12,416m (PPA -7.5%, SAT +15%, CF +20%) [period: FY2026 guides phased]]
+2026-08-16T14:54:29.502515+00:00 DE | Diluted EPS (GAAP) = 4.7  [TIER1 consensus $4.72 + 0.8x gap to phased-guide target $4.69 ((FY NI mid $4,750m - H1 $2,429m) x Q3-share 54.8% / 270.8m sh) [period: FY2026 guide phased]]
+2026-08-16T14:54:29.502529+00:00 DE | Production & Precision Ag operating profit = 474.0  [TIER3 derived: FY25 Q3 PPA sales x (1-7.5% FY guide) x 12% FY margin guide mid [NOT Q2's 15.7% — $272m tariff-refund one-off] [period: FY2026 guide, phased]]
+2026-08-16T14:54:29.502542+00:00 DE GATES PASSED: consensus-freshness | revision-diff(latest-vintage) | period+basis-vs-metric-schema | one-off-companion | sanity-range | all-12-present
+2026-08-16T14:54:29.515534+00:00 DE -> submission/DE-FY2026Q3.xlsx
+2026-08-16T14:54:29.516511+00:00 structured receipts for 12 forecasts -> cache/receipts.json
+2026-08-16T14:54:29.516521+00:00 REJECTED VALUES (7) — claims refused by the verify gate:
+2026-08-16T14:54:29.516526+00:00   REJECTED ADI.q3_gm_guide_seq_change_pp: not found in challenge/offline-data/analog-devices/filings/2026-01-23__adi-us-20260123-filing__403452.md
+2026-08-16T14:54:29.516528+00:00   REJECTED DE.ppa_fy_margin_guide_pct: not found in challenge/offline-data/deere/filings/2026-01-14__de-us-20260114-filing__401151.md
+2026-08-16T14:54:29.516531+00:00   REJECTED DE.q2_tariff_refund_usdm: not found in challenge/offline-data/deere/filings/2026-01-14__de-us-20260114-filing__401151.md
+2026-08-16T14:54:29.516533+00:00   REJECTED DE.sat_fy_sales_guide: not found in challenge/offline-data/deere/filings/2026-01-14__de-us-20260114-filing__401151.md
+2026-08-16T14:54:29.516535+00:00   REJECTED HAS.q1_net_fees_lfl: not found in challenge/offline-data/hays/filings/2026-06-29__has-ln-20260629-filing-2__1549804.md
+2026-08-16T14:54:29.516537+00:00   REJECTED HAS.q2_net_fees_lfl: not found in challenge/offline-data/hays/filings/2026-06-29__has-ln-20260629-filing-2__1549804.md
+2026-08-16T14:54:29.516538+00:00   REJECTED HAS.q3_net_fees_lfl: not found in challenge/offline-data/hays/filings/2026-06-29__has-ln-20260629-filing-2__1549804.md
+2026-08-16T14:54:29.516834+00:00 run complete — log saved logs/run-20260816T145429Z.log
+--- regenerate architecture page from receipts ---
+architecture/index.html generated: 26,982 bytes, 12 receipts, 7 rejections, 73 revision lines embedded
+--- validation ---
+
+> agents-vs-wall-street-starter@0.1.0 check:forecasts
+> node scripts/check-forecasts.mjs submission
+
+PASS HD-FY2026Q2.xlsx
+PASS ADI-FY2026Q3.xlsx
+PASS HAS-FY2026.xlsx
+PASS DE-FY2026Q3.xlsx
+
+All four forecast workbooks are ready for manual upload.
+=== done: submission/ ready — upload manually to openstocks.com ===
