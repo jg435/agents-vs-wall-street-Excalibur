@@ -74,13 +74,13 @@ def build():
          "73.0 + (−0.5)", 72.5),
         ("DE", "Worldwide net sales and revenues",
          "anchor + 0.8×(segment-sum target − anchor); anchor = equip cons + finance bridge",
-         "anchor 10,732+1,314=12,046; target 4,503×0.925+3,025×1.15+3,059×1.20+1,314=12,416 → blend", 12342),
+         "anchor 10,732+1,314=12,046; target 4,273×0.925+3,025×1.15+3,059×1.20+1,314=12,416 → blend", 12342),
         ("DE", "Diluted EPS (GAAP)",
          "cons + 0.8×(target − cons); target = (FY NI guide − H1 actual) × yearago Q3-share of H2 ÷ shares",
          "(4,750−2,429)×54.8%÷270.8=4.69 → 4.72+0.8×(4.69−4.72)", 4.7),
         ("DE", "Production & Precision Ag operating profit",
          "yearago segment sales × (1 + guided sales change) × guided margin mid — derived",
-         "4,503×0.925×12%", 474),
+         "4,273×0.925×12%", 474),
         ("HAS", "Net fees",
          "H1 base×(1+avg(Q1,Q2 LFL)) + H2 base×(1+avg(Q3,Q4 LFL)) − disposed fees — build-up",
          "496×(1−9.0%)+476.4×(1−6.5%)−15", 881.8),
@@ -388,17 +388,22 @@ writing a line of code. The ledger of what we used and rejected:</p>
 NOT take its forecasting — hardcoded heuristics; borrow the pattern, not the
 brain</td><td>used</td></tr>
 <tr><td>SAE-FiRE <span class="src">arXiv:2505.14420</span></td>
-<td>the SUE framing — surprise = (actual − consensus) ÷ volatility. Did not
-build its classifier (needs training data, fragile, redundant)</td><td>used</td></tr>
+<td>the SUE framing — surprise = (actual − consensus) ÷ volatility — shaped
+our thinking about beat persistence. NOT in the running code: no volatility
+measure or beat-prior is implemented (see "not built")</td>
+<td>design influence only</td></tr>
 <tr><td>FinReport <span class="src">arXiv:2403.02647 · WWW'24</span></td>
-<td>the evidence-to-report pipeline shape</td><td>used</td></tr>
+<td>the evidence-to-report pipeline shape — realised here as the
+per-forecast receipts and the generated write-up</td><td>shape used</td></tr>
 <tr><td>DatedGPT <span class="src">arXiv:2603.11838</span></td>
-<td>the no-lookahead discipline — never let a model "predict" a quarter it has
-already seen reported</td><td>used</td></tr>
+<td>the no-lookahead discipline. Applied in the backtest replay (only
+pre-cutoff documents per replayed quarter); its prompt-anonymization
+technique is NOT implemented</td><td>partially applied</td></tr>
 <tr><td>Kim / Muhn / Nikolaev <span class="src">arXiv:2407.17866</span></td>
 <td>structured LLM reasoning over bare statements beats analysts on direction.
-The arXiv version was withdrawn for data inconsistencies; we cite the SSRN
-revision for method only, never its numbers</td><td>method only</td></tr>
+The arXiv version was withdrawn for data inconsistencies. Its practical
+influence on this code was architectural: reinforcing that the LLM reads
+documents and never predicts a number</td><td>influence only</td></tr>
 <tr><td>"Man vs Machine" LLM-beats-analysts <span class="src">RFS 2023</span></td>
 <td><b>Rejected.</b> Under an Expression of Concern after
 Zhang–Zhu–Linnainmaa (RFS 2025) showed unannounced earnings had leaked into
