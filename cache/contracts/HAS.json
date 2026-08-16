@@ -57,6 +57,18 @@
       "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k__143890.md",
       "quote": "| Operating profit (before exceptional items) (2)         | 45.6    | 105.1   | (57)%         | (56)%        |",
       "note": "FY2025 full-year pre-exceptional operating profit"
+    },
+    "fy25_net_finance_charge_gbpm": {
+      "value": 13.4,
+      "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k__143890.md",
+      "quote": "The net finance charge for FY25 was \u00a313.4 million (FY24: \u00a310.4 million). The increase YoY was primarily due to a \u00a33.3 million increase in net bank interest payable (including amortisation of arrangement fees) to \u00a37.3 million (FY24: \u00a34.0 million) due to higher average drawings on the Group's revolvin",
+      "note": ""
+    },
+    "fy25_pre_exceptional_etr_pct": {
+      "value": 35.1,
+      "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k__143890.md",
+      "quote": "The tax charge for the year ended 30 June 2025 of \u00a311.3 million (FY24: \u00a330.7 million) represented a pre-exceptional effective tax rate ('ETR') of 35.1% (FY24: 32.4%). The higher ETR was driven by the geographic mix of profit together with the impact of tax losses in some country operations in H2 and",
+      "note": ""
     }
   },
   "notes": []

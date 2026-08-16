@@ -38,11 +38,47 @@
       "quote": "Worldwide net sales and revenues decreased 9 percent, to $12.018 billion, for the third",
       "note": ""
     },
+    "q3_fy25_ppa_net_sales_usdm": {
+      "value": 4273.0,
+      "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
+      "quote": "| Net sales         | $ 4,273         | $ 5,099         | -16%         |",
+      "note": ""
+    },
     "q3_fy25_ppa_op_profit_usdm": {
       "value": 580.0,
       "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
       "quote": "| Operating profit         | $ 580         | $ 1,162         | -50%         |",
       "note": ""
+    },
+    "q3_fy25_sat_net_sales_usdm": {
+      "value": 3025.0,
+      "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
+      "quote": "| Net sales         | $ 3,025         | $ 3,053         | -1%         |",
+      "note": ""
+    },
+    "q3_fy25_sat_op_profit_usdm": {
+      "value": 485.0,
+      "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
+      "quote": "| Operating profit         | $ 485         | $ 496         | -2%         |",
+      "note": ""
+    },
+    "q3_fy25_cf_net_sales_usdm": {
+      "value": 3059.0,
+      "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
+      "quote": "| Net sales         | $ 3,059         | $ 3,235         | -5%         |",
+      "note": ""
+    },
+    "q3_fy25_cf_op_profit_usdm": {
+      "value": 237.0,
+      "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
+      "quote": "| Operating profit         | $ 237         | $ 448         | -47%         |",
+      "note": ""
+    },
+    "q3_fy25_equip_net_sales_usdm": {
+      "value": 10357.0,
+      "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
+      "quote": "Net sales were $10.357 billion for the quarter and $28.338 billion for nine months, compared with $11.387 billion and $35.484 billion last year, respectively.",
+      "note": "agent+verified (Claude Code interactive; ok)"
     }
   },
   "notes": [

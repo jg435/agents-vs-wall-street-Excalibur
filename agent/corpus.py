@@ -106,23 +106,42 @@ def extract_facts():
             F["HD.q2_fy25_comp_pct"] = fact(float(m.group(1)), doc, line)
     for doc, line in search("HD", r"Adjusted diluted earnings per share for the second quarter of fiscal 2025 were \$([\d.]+)", "filings", 1):
         F["HD.q2_fy25_adj_eps"] = fact(_first_number(line, r"were \$([\d.]+)"), doc, line)
+    # comp is its own search (was buried in the sales-line branch and never fired)
+    for doc, line in search("HD", r"Comparable sales for the second quarter of fiscal 2025 increased ([\d.]+)%", "filings", 1):
+        F["HD.q2_fy25_comp_pct"] = fact(
+            _first_number(line, r"increased ([\d.]+)%"), doc, line,
+            "Q2 FY25 total-company comparable sales, base for the comp recipe")
 
-    # DE FY2025 Q3 actuals (Aug-2025 8-K): total revenues + PPA segment op profit
+    # DE FY2025 Q3 actuals (Aug-2025 8-K): total revenues, equipment net sales
+    # (fin-svcs bridge = revenues - net sales), and ALL THREE segment tables
     for doc, line in search("DE", r"net sales and revenues decreased.*to \$([\d.]+) billion, for the third", "filings", 1):
         F["DE.q3_fy25_revenues_usdm"] = fact(_first_number(line, r"to \$([\d.]+) billion") * 1000, doc, line)
+        m = re.search(r"Net sales were \$([\d.]+) billion for the quarter", line)
+        if m:
+            F["DE.q3_fy25_equip_net_sales_usdm"] = fact(
+                float(m.group(1)) * 1000, doc, line,
+                "equipment-ops net sales; worldwide minus this = fin-svcs+other revenue bridge")
     de_q3 = [d for d in docs("DE", "filings") if "2025-08-15" in d.name and "q3-8k" in d.name]
     if de_q3:
         lines = de_q3[0].read_text(errors="ignore").splitlines()
-        for i, ln in enumerate(lines):
-            if "Production & Precision Ag" in ln:
-                for ln2 in lines[i:i + 12]:
-                    if "Operating profit" in ln2:
-                        v = _first_number(ln2, r"([\d,]+)")
-                        if v:
-                            F["DE.q3_fy25_ppa_op_profit_usdm"] = fact(
-                                v, de_q3[0].relative_to(REPO).as_posix(), ln2)
-                        break
-                break
+        rel = de_q3[0].relative_to(REPO).as_posix()
+        SEGMENTS = {"Production & Precision Ag": "ppa",
+                    "Small Agriculture & Turf": "sat",
+                    "Construction & Forestry": "cf"}
+        for header, key in SEGMENTS.items():
+            for i, ln in enumerate(lines):
+                if header in ln and "Third Quarter" in ln:
+                    for ln2 in lines[i:i + 12]:
+                        if "Net sales" in ln2 and f"DE.q3_fy25_{key}_net_sales_usdm" not in F:
+                            v = _first_number(ln2, r"\$ ?([\d,]+)")
+                            if v:
+                                F[f"DE.q3_fy25_{key}_net_sales_usdm"] = fact(v, rel, ln2)
+                        if "Operating profit" in ln2:
+                            v = _first_number(ln2, r"\$ ?([\d,]+)")
+                            if v:
+                                F[f"DE.q3_fy25_{key}_op_profit_usdm"] = fact(v, rel, ln2)
+                            break
+                    break
 
     # HAS FY2025 actuals (Aug-2025 results)
     for doc, line in search("HAS", r"Net fees \(1\)[ |]+([\d,]+\.\d)", "filings", 1):
@@ -139,21 +158,48 @@ def extract_facts():
         if "HAS.fy25_op_profit_gbpm" in F:
             break
 
-    # ADI guided-vs-actual revenue pairs (beat-prior measurement; ok if sparse)
-    guided = []
-    for doc in docs("ADI", "filings"):
+    # HAS FY25 income-statement inputs for the EPS derivation (were hardcoded
+    # guesses -5m/28% — actuals are 13.4m/35.1%, a ~30% EPS difference)
+    for doc, line in search("HAS", r"net finance charge for FY25 was £([\d.\s]+) million", "filings", 1):
+        F["HAS.fy25_net_finance_charge_gbpm"] = fact(
+            float(re.search(r"£([\d.\s]+) million", line).group(1).replace(" ", "")),
+            doc, line)
+    for doc, line in search("HAS", r"pre-exceptional effective tax rate \('?ETR'?\) of ([\d.\s]+)%", "filings", 1):
+        F["HAS.fy25_pre_exceptional_etr_pct"] = fact(
+            float(re.search(r"of ([\d.\s]+)%", line).group(1).replace(" ", "")),
+            doc, line)
+
+    # ADI guided-vs-actual revenue PAIRS (beat-prior measured, not assumed).
+    # Each 8-K guides the NEXT quarter and reports the CURRENT quarter's actual
+    # ("* Third quarter revenue of $X billion"), so guide from filing i pairs
+    # with the actual in the next (later) filing.
+    events = []  # oldest -> newest: {date, guided_usdm|None, actual_usdm|None}
+    for doc in sorted(docs("ADI", "filings"), key=lambda p: p.name):
+        e = {"doc": doc.relative_to(REPO).as_posix(), "date": doc.name[:10],
+             "guided_usdm": None, "actual_usdm": None}
         for line in doc.read_text(errors="ignore").splitlines():
-            m = re.search(r"forecasting revenue of \$([\d.]+) billion", line)
-            if m:
-                guided.append({"doc": doc.relative_to(REPO).as_posix(),
-                               "guided_usdm": float(m.group(1)) * 1000,
-                               "quote": line.strip()[:200]})
-                break
-    F["ADI.guided_revenue_history"] = fact(len(guided), "multiple",
-                                           "see research/adi_guides.json",
-                                           "guided midpoints per 8-K; David/Viktor pair with actuals")
-    (RESEARCH / "adi_guides.json").parent.mkdir(exist_ok=True)
-    (RESEARCH / "adi_guides.json").write_text(json.dumps(guided, indent=2))
+            m = re.search(r"forecasting revenue of \$([\d.\s]+) billion", line)
+            if m and e["guided_usdm"] is None:
+                e["guided_usdm"] = float(m.group(1).replace(" ", "")) * 1000
+            m = re.search(r"(?:First|Second|Third|Fourth) quarter revenue of \$([\d.\s]+) billion", line)
+            if m and e["actual_usdm"] is None:
+                e["actual_usdm"] = float(m.group(1).replace(" ", "")) * 1000
+        if e["guided_usdm"] or e["actual_usdm"]:
+            events.append(e)
+    pairs = []
+    for a, b in zip(events, events[1:]):
+        if a["guided_usdm"] and b["actual_usdm"]:
+            pairs.append({"guided": a["guided_usdm"], "actual": b["actual_usdm"],
+                          "beat_pct": round(b["actual_usdm"] / a["guided_usdm"] - 1, 4),
+                          "guide_doc": a["doc"], "actual_doc": b["doc"]})
+    (RESEARCH).mkdir(exist_ok=True)
+    (RESEARCH / "adi_guides.json").write_text(json.dumps(pairs, indent=2))
+    recent = [p["beat_pct"] for p in pairs[-8:]]
+    F["ADI.rev_guide_beat_median_pct"] = fact(
+        round(100 * sorted(recent)[len(recent) // 2], 2) if recent else None,
+        "research/adi_guides.json",
+        f"{len(pairs)} guided-vs-actual pairs; last 8 beats: {recent}",
+        "median % by which ADI actual revenue beats its own guide midpoint")
 
     RESEARCH.mkdir(exist_ok=True)
     (RESEARCH / "facts.json").write_text(json.dumps(F, indent=2))

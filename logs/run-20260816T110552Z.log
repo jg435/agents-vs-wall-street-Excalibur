@@ -1,0 +1,17 @@
+2026-08-16T11:05:52.935705+00:00 EXCALIBUR run start (engine=PROVISIONAL anchors)
+2026-08-16T11:05:52.937156+00:00 HD | Net sales = 47235.4491  [consensus revenue (yfinance)] PROVISIONAL
+2026-08-16T11:05:52.937162+00:00 HD | Adjusted diluted EPS = 4.69  [consensus EPS (yfinance)] PROVISIONAL
+2026-08-16T11:05:52.937164+00:00 HD | Comparable sales, total company = 1.0  [FY comp guide mid (flat to +2% -> +1.0pp), Q1-8K] PROVISIONAL
+2026-08-16T11:05:52.953166+00:00 HD -> submission/HD-FY2026Q2.xlsx
+2026-08-16T11:05:52.953280+00:00 ADI | Revenue = 3925.03652  [consensus (already above $3.9bn guide mid)] PROVISIONAL
+2026-08-16T11:05:52.953285+00:00 ADI | Adjusted diluted EPS = 3.33  [consensus (above $3.30 guide mid)] PROVISIONAL
+2026-08-16T11:05:52.953288+00:00 ADI | Adjusted gross margin = 73.0  [Q2 FY26 actual adj GM (not guided; trailing anchor)] PROVISIONAL
+2026-08-16T11:05:52.964530+00:00 ADI -> submission/ADI-FY2026Q3.xlsx
+2026-08-16T11:05:52.964646+00:00 HAS | Net fees = 923.8  [FY25 £972.4m x (1 - 5% LFL) [FX bridge pending]] PROVISIONAL
+2026-08-16T11:05:52.964651+00:00 HAS | Pre-exceptional basic EPS = 1.35  [derived: (OP £46.0m - £13.4m net finance charge, FY25 actual) x (1 - 35.1% pre-exceptional ETR, FY25 actual) / 1570m shares] PROVISIONAL
+2026-08-16T11:05:52.964654+00:00 HAS | Pre-exceptional operating profit = 46.0  ['top of the £37.0-46.0m consensus range' — company's own words] PROVISIONAL
+2026-08-16T11:05:52.975222+00:00 HAS -> submission/HAS-FY2026.xlsx
+2026-08-16T11:05:52.975323+00:00 DE | Worldwide net sales and revenues = 12018.0  [FY25 Q3 base $12,018m flat (consensus is equipment-ops basis — see note)] PROVISIONAL
+2026-08-16T11:05:52.975328+00:00 DE | Diluted EPS (GAAP) = 4.72  [consensus EPS (yfinance)] PROVISIONAL
+2026-08-16T11:05:52.975331+00:00 DE | Production & Precision Ag operating profit = 580.0  [FY25 Q3 PPA actual $580m flat (guide: sales down 5-10% FY)] PROVISIONAL
+2026-08-16T11:05:52.986140+00:00 DE -> submission/DE-FY2026Q3.xlsx

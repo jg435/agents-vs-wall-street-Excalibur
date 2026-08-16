@@ -38,11 +38,11 @@
       "quote": "| Adjusted gross margin percentage | 73.0 | % | | 69.4 | % | | 360 bps |",
       "note": "Q2 FY26 actual adjusted gross margin %"
     },
-    "guided_revenue_history": {
-      "value": 31,
-      "doc": "multiple",
-      "quote": "see research/adi_guides.json",
-      "note": "guided midpoints per 8-K; David/Viktor pair with actuals"
+    "rev_guide_beat_median_pct": {
+      "value": 3.17,
+      "doc": "research/adi_guides.json",
+      "quote": "4 guided-vs-actual pairs; last 8 beats: [0.3146, 0.0317, 0.0, 0.0267]",
+      "note": "median % by which ADI actual revenue beats its own guide midpoint"
     }
   },
   "notes": [

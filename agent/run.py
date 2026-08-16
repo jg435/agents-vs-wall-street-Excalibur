@@ -59,11 +59,17 @@ def provisional_engine(c):
         op = 46.0  # 'top of the £37.0-46.0m consensus range' (Jul-10 update)
         fees = v("fy25_net_fees_gbpm", 972.4) * (1 - 0.05)
         shares_m = v("shares_issued", 1_570_252_226) / 1e6
-        eps_pence = (op - 5.0) * (1 - 0.28) / shares_m * 100  # rough interest/tax
+        finance = v("fy25_net_finance_charge_gbpm")
+        etr = v("fy25_pre_exceptional_etr_pct")
+        if finance is None or etr is None:
+            log("HAS WARNING: finance/tax facts missing — using FY25-guess fallback")
+            finance, etr = 13.4, 35.1
+        eps_pence = (op - finance) * (1 - etr / 100) / shares_m * 100
         return {
             "Net fees": (round(fees, 1), "FY25 £972.4m x (1 - 5% LFL) [FX bridge pending]"),
-            "Pre-exceptional basic EPS": (round(eps_pence, 1),
-                "derived: (OP £46m - ~£5m interest) x (1-28% tax) / 1,570m sh"),
+            "Pre-exceptional basic EPS": (round(eps_pence, 2),
+                f"derived: (OP £{op}m - £{finance}m net finance charge, FY25 actual) "
+                f"x (1 - {etr}% pre-exceptional ETR, FY25 actual) / {shares_m:.0f}m shares"),
             "Pre-exceptional operating profit": (op,
                 "'top of the £37.0-46.0m consensus range' — company's own words"),
         }
@@ -85,12 +91,27 @@ def validate(tk, forecasts):
                 raise ValueError(f"{tk}/{label}: {value} outside sanity range [{lo},{hi}]")
 
 
+def check_consensus_freshness():
+    """Estimates were fetched during the event; warn if stale, fail if not today."""
+    C = json.loads((CACHE / "consensus.json").read_text())
+    fetched = datetime.fromisoformat(C["fetched_at"])
+    age_h = (datetime.now(timezone.utc) - fetched).total_seconds() / 3600
+    if fetched.date() != datetime.now(timezone.utc).date():
+        raise ValueError(f"consensus cache is from {fetched.date()} — refetch: python -m agent.consensus")
+    if age_h > 2:
+        log(f"WARNING: consensus cache is {age_h:.1f}h old (markets closed today; acceptable)")
+
+
 def main():
     log("EXCALIBUR run start (engine=PROVISIONAL anchors)")
+    check_consensus_freshness()
     contract_mod.build()
     for tk in PERIOD:
         c = json.loads((CACHE / "contracts" / f"{tk}.json").read_text())
         forecasts = provisional_engine(c)
+        missing = set(METRICS[tk]) - set(forecasts)  # all-12 seam check: an
+        if missing:                                  # engine gap fails HERE, by name
+            raise ValueError(f"{tk}: engine produced no forecast for {missing}")
         validate(tk, forecasts)
         for label, (value, note) in forecasts.items():
             log(f"{tk} | {label} = {value}  [{note}] PROVISIONAL")

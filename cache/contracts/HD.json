@@ -49,6 +49,12 @@
       "doc": "challenge/offline-data/home-depot/filings/2025-08-20__hd-us-20250820-q2-8k__143688.md",
       "quote": "Adjusted diluted earnings per share for the second quarter of fiscal 2025 were $4.68, compared with",
       "note": ""
+    },
+    "q2_fy25_comp_pct": {
+      "value": 1.0,
+      "doc": "challenge/offline-data/home-depot/filings/2025-08-25__hd-us-20250825-q2-10q__144029.md",
+      "quote": "Total comparable sales for the second quarter of fiscal 2025 increased 1.0%, primarily reflecting a 1.4% increase in comparable average ticket and a 0.4% decrease in comparable customer transactions compared to the second quarter of fiscal 2024. Foreign exchange rates negatively impacted comparable ",
+      "note": "Q2 FY25 total-company comparable sales, base for the comp recipe"
     }
   },
   "notes": []
