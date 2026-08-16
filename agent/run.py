@@ -32,9 +32,9 @@ ALLOWED_ANCHOR_PERIODS = {
     # forecast period + anchor classes allowed to touch it (Amendment 3 rule 2,
     # enforced as a real comparison): same-period guide (incl. -sequential),
     # FY guide (phased), prior-year same-quarter base, dated share counts.
-    "HD": {"Q2-FY2026", "FY2026", "Q2-FY2025"},
+    "HD": {"Q2-FY2026", "FY2026", "Q2-FY2025", "Q1-FY2026", "Q1-FY2025"},
     "ADI": {"Q3-FY2026", "Q3-FY2026-sequential", "Q2-FY2026", "FY2026"},
-    "DE": {"Q3-FY2026", "FY2026", "Q3-FY2025"},
+    "DE": {"Q3-FY2026", "FY2026", "Q3-FY2025", "H1-FY2026", "Q4-FY2025", "Q2-FY2026"},
     "HAS": {"FY2026", "FY2025", "H1-FY2025", "Q1-FY2026", "Q2-FY2026",
             "Q3-FY2026", "Q4-FY2026", "2026-07-31"},
 }
@@ -59,6 +59,15 @@ def validate_anchor_periods(tk, facts, uses):
                                      "anchor alone (needs a period-specific guide companion)")
 
 
+GAP_FRACTION = 0.8  # Tier-1 adjustment: fraction of (guide target - consensus)
+
+
+def temper(fy_guide_mid_pct, last_q_actual_yoy_pct):
+    """Amendment-4 phase+temper, Viktor-blessed deterministic rule:
+    tempered growth = mean(FY guide midpoint, last quarter's actual YoY)."""
+    return (fy_guide_mid_pct + last_q_actual_yoy_pct) / 2
+
+
 def provisional_engine(c):
     """{metric: (value, note)}, plus a uses-map of fact names per metric.
     NO silent defaults on guide/base inputs (Amendment 3 rule: a missing guide
@@ -73,46 +82,94 @@ def provisional_engine(c):
         return val
 
     if tk == "HD":
+        # phase+temper: FY-only guidance pulled toward Q1 momentum (Q1 EPS
+        # printed DOWN -3.7% vs a flat-to-+4% FY guide)
+        g_sales = temper(v("fy_sales_growth_guide"), v("q1_fy26_sales_yoy_pct"))
+        sales_target = v("q2_fy25_net_sales_usdm") * (1 + g_sales / 100)
+        eps_yoy_q1 = (v("q1_fy26_adj_eps") / v("q1_fy25_adj_eps") - 1) * 100
+        g_eps = temper(v("fy_adj_eps_growth_mid"), eps_yoy_q1)
+        eps_target = v("q2_fy25_adj_eps") * (1 + g_eps / 100)
+        comp = temper(v("fy_comp_guide_mid"), v("q1_fy26_comp_pct"))
+        sales = cons.get("revenue_usdm") + GAP_FRACTION * (sales_target - cons.get("revenue_usdm"))
+        eps = cons.get("eps") + GAP_FRACTION * (eps_target - cons.get("eps"))
         fc = {
-            "Net sales": (cons.get("revenue_usdm"),
-                "TIER1 consensus revenue (yfinance)"),
-            "Adjusted diluted EPS": (cons.get("eps"), "TIER1 consensus EPS (yfinance)"),
-            "Comparable sales, total company": (v("fy_comp_guide_mid"),
-                "TIER2 guidance mid (flat to +2% -> +1.0pp) [period: FY2026, phased]"),
+            "Net sales": (round(sales, 0),
+                f"TIER1 consensus ${cons.get('revenue_usdm'):,.0f}m + {GAP_FRACTION}x gap to "
+                f"phase+temper target ${sales_target:,.0f}m (mean(FY +3.5%, Q1 +4.8%) = "
+                f"{g_sales:+.2f}% on Q2-FY25 base; Q1 incl GMS/FX one-offs, flagged)"),
+            "Adjusted diluted EPS": (round(eps, 2),
+                f"TIER1 consensus ${cons.get('eps')} + {GAP_FRACTION}x gap to phase+temper "
+                f"target ${eps_target:.2f} (mean(FY +2%, Q1 {eps_yoy_q1:+.1f}%) = {g_eps:+.2f}% "
+                "on Q2-FY25 $4.68) [period: FY2026 guide phased+tempered]"),
+            "Comparable sales, total company": (round(comp, 1),
+                f"TIER2 guidance mid +1.0pp tempered by Q1 actual +0.6pp -> {comp:+.1f}pp "
+                "[period: FY2026 guide + Q1-FY2026 momentum]"),
         }
-        uses = {"Comparable sales, total company": ["fy_comp_guide_mid"]}
+        uses = {
+            "Net sales": ["fy_sales_growth_guide", "q1_fy26_sales_yoy_pct",
+                          "q2_fy25_net_sales_usdm", "q1_fy26_net_sales_usdm"],
+            "Adjusted diluted EPS": ["fy_adj_eps_growth_mid", "q1_fy26_adj_eps",
+                                     "q1_fy25_adj_eps", "q2_fy25_adj_eps"],
+            "Comparable sales, total company": ["fy_comp_guide_mid", "q1_fy26_comp_pct"],
+        }
     elif tk == "ADI":
         gm = v("adj_gross_margin_last") + v("q3_gm_guide_seq_change_pp")
+        rev = cons.get("revenue_usdm") + GAP_FRACTION * (v("rev_guide_mid_usdm") - cons.get("revenue_usdm"))
+        eps = cons.get("eps") + GAP_FRACTION * (v("eps_guide_mid") - cons.get("eps"))
         fc = {
-            "Revenue": (cons.get("revenue_usdm"),
-                "TIER1 consensus (already above $3.9bn guide mid)"),
-            "Adjusted diluted EPS": (cons.get("eps"),
-                "TIER1 consensus (above $3.30 guide mid)"),
+            "Revenue": (round(rev, 0),
+                f"TIER1 consensus ${cons.get('revenue_usdm'):,.0f}m + {GAP_FRACTION}x gap to "
+                "$3,900m guide mid [period: Q3-FY2026]"),
+            "Adjusted diluted EPS": (round(eps, 2),
+                f"TIER1 consensus ${cons.get('eps')} + {GAP_FRACTION}x gap to $3.30 guide mid "
+                "[period: Q3-FY2026]"),
             "Adjusted gross margin": (round(gm, 1),
                 "TIER3 derived: Q2 actual 73.0% (one-off flagged) + guided sequential "
                 "-0.5pp (CFO, Q2 call) [period: Q3-FY2026-sequential]"),
         }
-        uses = {"Adjusted gross margin": ["adj_gross_margin_last",
+        uses = {"Revenue": ["rev_guide_mid_usdm"],
+                "Adjusted diluted EPS": ["eps_guide_mid"],
+                "Adjusted gross margin": ["adj_gross_margin_last",
                                           "q3_gm_guide_seq_change_pp"]}
     elif tk == "DE":
         bridge = v("q3_fy25_revenues_usdm") - v("q3_fy25_equip_net_sales_usdm")
-        worldwide = cons.get("revenue_usdm") + bridge if cons.get("revenue_usdm") else None
-        ppa_profit = (v("q3_fy25_ppa_net_sales_usdm")
-                      * (1 + v("ppa_fy_sales_guide") / 100)
+        cons_worldwide = cons.get("revenue_usdm") + bridge
+        seg_target = (v("q3_fy25_ppa_net_sales_usdm") * (1 + v("ppa_fy_sales_guide") / 100)
+                      + v("q3_fy25_sat_net_sales_usdm") * (1 + v("sat_fy_sales_guide") / 100)
+                      + v("q3_fy25_cf_net_sales_usdm") * (1 + v("cf_fy_sales_guide") / 100)
+                      + bridge)
+        worldwide = cons_worldwide + GAP_FRACTION * (seg_target - cons_worldwide)
+        # EPS: FY NI guide phased to Q3 by FY25's Q3 share of H2, over diluted shares
+        q3_share_h2 = v("q3_fy25_net_income_usdm") / (v("q3_fy25_net_income_usdm")
+                                                      + v("q4_fy25_net_income_usdm"))
+        q3_ni_target = (v("fy_net_income_guide_usdm") - v("h1_fy26_net_income_usdm")) * q3_share_h2
+        eps_target = q3_ni_target / v("q2_fy26_diluted_shares_m")
+        eps = cons.get("eps") + GAP_FRACTION * (eps_target - cons.get("eps"))
+        ppa_profit = (v("q3_fy25_ppa_net_sales_usdm") * (1 + v("ppa_fy_sales_guide") / 100)
                       * v("ppa_fy_margin_guide_pct") / 100)
         fc = {
-            "Worldwide net sales and revenues": (round(worldwide, 0) if worldwide else None,
-                f"TIER1 consensus equipment net sales (yfinance) + fin-svcs bridge "
-                f"${bridge:.0f}m (FY25 Q3 worldwide minus equipment) [period: Q3-FY2026]"),
-            "Diluted EPS (GAAP)": (cons.get("eps"), "TIER1 consensus EPS (yfinance)"),
+            "Worldwide net sales and revenues": (round(worldwide, 0),
+                f"TIER1 consensus equip+bridge ${cons_worldwide:,.0f}m + {GAP_FRACTION}x gap to "
+                f"segment-sum target ${seg_target:,.0f}m (PPA -7.5%, SAT +15%, CF +20% on FY25 Q3 "
+                f"bases + ${bridge:.0f}m fin-svcs) [period: FY2026 guides phased]"),
+            "Diluted EPS (GAAP)": (round(eps, 2),
+                f"TIER1 consensus ${cons.get('eps')} + {GAP_FRACTION}x gap to phased-guide target "
+                f"${eps_target:.2f} ((FY NI mid $4,750m - H1 $2,429m) x Q3-share {q3_share_h2:.1%} "
+                f"/ 270.8m sh) [period: FY2026 guide phased]"),
             "Production & Precision Ag operating profit": (round(ppa_profit, 0),
                 f"TIER3 derived: FY25 Q3 PPA sales x (1{v('ppa_fy_sales_guide'):+.1f}% FY guide) "
                 f"x {v('ppa_fy_margin_guide_pct'):.0f}% FY margin guide mid "
                 "[NOT Q2's 15.7% — $272m tariff-refund one-off] [period: FY2026 guide, phased]"),
         }
         uses = {
-            "Worldwide net sales and revenues": ["q3_fy25_revenues_usdm",
-                                                 "q3_fy25_equip_net_sales_usdm"],
+            "Worldwide net sales and revenues": [
+                "q3_fy25_revenues_usdm", "q3_fy25_equip_net_sales_usdm",
+                "q3_fy25_ppa_net_sales_usdm", "ppa_fy_sales_guide",
+                "q3_fy25_sat_net_sales_usdm", "sat_fy_sales_guide",
+                "q3_fy25_cf_net_sales_usdm", "cf_fy_sales_guide"],
+            "Diluted EPS (GAAP)": ["fy_net_income_guide_usdm", "h1_fy26_net_income_usdm",
+                                   "q3_fy25_net_income_usdm", "q4_fy25_net_income_usdm",
+                                   "q2_fy26_diluted_shares_m"],
             "Production & Precision Ag operating profit": [
                 "q3_fy25_ppa_net_sales_usdm", "ppa_fy_sales_guide",
                 "ppa_fy_margin_guide_pct"],
@@ -126,25 +183,27 @@ def provisional_engine(c):
         h2 = v("fy25_net_fees_gbpm") - h1
         g1 = (v("q1_net_fees_lfl") + v("q2_net_fees_lfl")) / 2 / 100
         g2 = (v("q3_net_fees_lfl") + v("q4_net_fees_lfl")) / 2 / 100
-        fees = h1 * (1 + g1) + h2 * (1 + g2)
+        fees = h1 * (1 + g1) + h2 * (1 + g2) - v("fy26_disposed_net_fees_gbpm")
         shares_m = v("shares_issued") / 1e6
         eps_pence = (op - v("fy25_net_finance_charge_gbpm")) \
             * (1 - v("fy25_pre_exceptional_etr_pct") / 100) / shares_m * 100
         fc = {
             "Net fees": (round(fees, 1),
                 f"TIER3 derived: H1 £{h1:.0f}m x (1{g1:+.1%}) + H2 £{h2:.0f}m x (1{g2:+.1%}) "
-                "[periods: H1-FY2025 base, Q1..Q4-FY2026 LFL; disposal unquantified in corpus -> no adj]"),
+                "minus £15m disposed-country fees (cited) [periods: H1-FY2025 base, Q1..Q4-FY2026 LFL]"),
             "Pre-exceptional basic EPS": (round(eps_pence, 2),
-                "TIER3 derived: (OP - FY25 finance charge) x (1 - FY25 pre-exceptional ETR) / shares"),
+                "TIER3 derived: (OP £46m - £12m FY26 finance-charge GUIDE) x (1 - 38% FY26 ETR "
+                "GUIDE) / 1,570m shares (issued-treasury, receipted) [periods: FY2026 guides]"),
             "Pre-exceptional operating profit": (op,
                 "TIER1/2: management 'top of the £37.0-46.0m consensus range' (co. consensus £43.5m)"),
         }
         uses = {
             "Net fees": ["h1_fy25_net_fees_gbpm", "fy25_net_fees_gbpm",
                          "q1_net_fees_lfl", "q2_net_fees_lfl",
-                         "q3_net_fees_lfl", "q4_net_fees_lfl"],
-            "Pre-exceptional basic EPS": ["fy25_net_finance_charge_gbpm",
-                                          "fy25_pre_exceptional_etr_pct", "shares_issued"],
+                         "q3_net_fees_lfl", "q4_net_fees_lfl",
+                         "fy26_disposed_net_fees_gbpm"],
+            "Pre-exceptional basic EPS": ["fy26_net_finance_charge_guide_gbpm",
+                                          "fy26_etr_guide_pct", "shares_issued"],
         }
     validate_anchor_periods(tk, f, uses)
     return fc

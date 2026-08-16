@@ -256,5 +256,106 @@
     "quote": "| Net fees (1)         | 496.0  | 583.3  | (15)%         | (13)%        |",
     "period": "H1-FY2025",
     "note": "agent+verified (Claude Code interactive; ok); H1 FY25 net fees for weighted build-up"
+  },
+  "HAS.fy26_disposed_net_fees_gbpm": {
+    "value": 15.0,
+    "doc": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-filing-2__1572799.md",
+    "quote": "Czech Republic, Denmark, Hungary, Luxembourg, Romania, and Sweden contributed c.\u00a315m to reported group net fees in FY26.",
+    "period": "FY2026",
+    "note": "agent+verified (Claude Code interactive; ok)"
+  },
+  "HAS.fy26_net_finance_charge_guide_gbpm": {
+    "value": 12.0,
+    "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-filing__143845.md",
+    "quote": "We expect the net finance charge for FY26 to be c.\u00a312 million, slightly below FY25 due to the impact of the defined benefit pension buy-in and lower utilisation of our revolving credit facility, driven by improving working capital.",
+    "period": "FY2026",
+    "note": "agent+verified (Claude Code interactive; ok)"
+  },
+  "HAS.fy26_etr_guide_pct": {
+    "value": 38.0,
+    "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-filing__143845.md",
+    "quote": "We expect the Group's ETR in FY26 to be c.38%, consistent with H2 FY25, assuming no material change in geographic mix of profits, and to reduce as profits rebuild over time.",
+    "period": "FY2026",
+    "note": "agent+verified (Claude Code interactive; ok)"
+  },
+  "HD.q1_fy26_net_sales_usdm": {
+    "value": 41765.0,
+    "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+    "quote": "| Net sales         | $ 41,765         | $ 39,856         | 4.8%    |",
+    "period": "Q1-FY2026",
+    "note": "agent+verified (Claude Code interactive; ok)",
+    "one_offs": [
+      {
+        "name": "GMS acquisition inorganic sales (per amendment4 read; anniversaries in FY26)",
+        "impact": 1300
+      },
+      {
+        "name": "FX tailwind",
+        "impact": 220
+      }
+    ]
+  },
+  "HD.q1_fy26_sales_yoy_pct": {
+    "value": 4.8,
+    "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+    "quote": "| Net sales         | $ 41,765         | $ 39,856         | 4.8%    |",
+    "period": "Q1-FY2026",
+    "note": "agent+verified (Claude Code interactive; ok)"
+  },
+  "HD.q1_fy26_comp_pct": {
+    "value": 0.6,
+    "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+    "quote": "Comparable sales for the first quarter of fiscal 2026 increased 0.6%, and comparable sales in the U.S. increased 0.4%.",
+    "period": "Q1-FY2026",
+    "note": "agent+verified (Claude Code interactive; ok)"
+  },
+  "DE.h1_fy26_net_income_usdm": {
+    "value": 2429.0,
+    "doc": "challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k__1042167.md",
+    "quote": "| Net income attributable to Deere & Company | \u200b | $ | 1,773 | \u200b | $ | 1,804 | | -2 | \u200b | $ | 2,429 | \u200b | $ | 2,673 | | -9 | \u200b |",
+    "period": "H1-FY2026",
+    "note": "agent+verified (Claude Code interactive; ok)"
+  },
+  "DE.q3_fy25_net_income_usdm": {
+    "value": 1289.0,
+    "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
+    "quote": "Deere Reports Third Quarter Net Income of $1.289 Billion",
+    "period": "Q3-FY2025",
+    "note": "agent+verified (Claude Code interactive; ok)"
+  },
+  "DE.q4_fy25_net_income_usdm": {
+    "value": 1065.0,
+    "doc": "challenge/offline-data/deere/filings/2025-11-26__de-us-20251126-q4-8k__361233.md",
+    "quote": "Deere Reports Net Income of $1.065 Billion for Fourth Quarter, $5.027 Billion for",
+    "period": "Q4-FY2025",
+    "note": "agent+verified (Claude Code interactive; ok)"
+  },
+  "DE.cf_fy_sales_guide": {
+    "value": 20.0,
+    "doc": "challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k__1042167.md",
+    "quote": "| Construction & Forestry | \u200b | Up ~20% | \u200b | +2.0% | \u200b | ~ +2.5% | \u200b |",
+    "period": "FY2026",
+    "note": "agent+verified (Claude Code interactive; ok)"
+  },
+  "DE.q2_fy26_diluted_shares_m": {
+    "value": 270.8,
+    "doc": "challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-10q__1055929.md",
+    "quote": "| Diluted         | 270.8         | 271.8         | 270.9         | 272.1         |",
+    "period": "Q2-FY2026",
+    "note": "agent+verified (Claude Code interactive; ok)"
+  },
+  "HD.q1_fy26_adj_eps": {
+    "value": 3.43,
+    "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+    "quote": "Adjusted diluted earnings per share for the first quarter of fiscal 2026 were $3.43, compared with",
+    "period": "Q1-FY2026",
+    "note": "agent+verified (Claude Code interactive; ok)"
+  },
+  "HD.q1_fy25_adj_eps": {
+    "value": 3.56,
+    "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+    "quote": "adjusted diluted earnings per share of $3.56 in the same period of fiscal 2025.",
+    "period": "Q1-FY2025",
+    "note": "agent+verified (Claude Code interactive; ok)"
   }
 }

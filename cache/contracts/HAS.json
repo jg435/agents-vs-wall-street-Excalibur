@@ -105,6 +105,27 @@
       "quote": "| Net fees (1)         | 496.0  | 583.3  | (15)%         | (13)%        |",
       "period": "H1-FY2025",
       "note": "agent+verified (Claude Code interactive; ok); H1 FY25 net fees for weighted build-up"
+    },
+    "fy26_disposed_net_fees_gbpm": {
+      "value": 15.0,
+      "doc": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-filing-2__1572799.md",
+      "quote": "Czech Republic, Denmark, Hungary, Luxembourg, Romania, and Sweden contributed c.\u00a315m to reported group net fees in FY26.",
+      "period": "FY2026",
+      "note": "agent+verified (Claude Code interactive; ok)"
+    },
+    "fy26_net_finance_charge_guide_gbpm": {
+      "value": 12.0,
+      "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-filing__143845.md",
+      "quote": "We expect the net finance charge for FY26 to be c.\u00a312 million, slightly below FY25 due to the impact of the defined benefit pension buy-in and lower utilisation of our revolving credit facility, driven by improving working capital.",
+      "period": "FY2026",
+      "note": "agent+verified (Claude Code interactive; ok)"
+    },
+    "fy26_etr_guide_pct": {
+      "value": 38.0,
+      "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-filing__143845.md",
+      "quote": "We expect the Group's ETR in FY26 to be c.38%, consistent with H2 FY25, assuming no material change in geographic mix of profits, and to reduce as profits rebuild over time.",
+      "period": "FY2026",
+      "note": "agent+verified (Claude Code interactive; ok)"
     }
   },
   "notes": []

@@ -61,6 +61,14 @@ REQUIRED = [
     "ADI.q3_gm_guide_seq_change_pp", "DE.ppa_fy_margin_guide_pct",
     "DE.q2_tariff_refund_usdm", "DE.sat_fy_sales_guide",
     "HAS.q1_net_fees_lfl", "HAS.q2_net_fees_lfl", "HAS.q3_net_fees_lfl",
+    # Amendment 4/5: phase+temper inputs, Hays FY26 guides, DE phasing set
+    "HD.q1_fy26_net_sales_usdm", "HD.q1_fy26_sales_yoy_pct",
+    "HD.q1_fy26_adj_eps", "HD.q1_fy25_adj_eps", "HD.q1_fy26_comp_pct",
+    "HAS.fy26_disposed_net_fees_gbpm", "HAS.fy26_net_finance_charge_guide_gbpm",
+    "HAS.fy26_etr_guide_pct", "HAS.h1_fy25_net_fees_gbpm",
+    "DE.h1_fy26_net_income_usdm", "DE.q3_fy25_net_income_usdm",
+    "DE.q4_fy25_net_income_usdm", "DE.cf_fy_sales_guide",
+    "DE.q2_fy26_diluted_shares_m",
 ]
 PERIOD_LABELED = REQUIRED  # ALL facts carry a period label (Amendment 3 rule 2)
 print("2. required-fact coverage")

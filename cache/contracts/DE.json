@@ -110,6 +110,41 @@
       "quote": "We continue to expect net sales to be up approximately 15% for the full year.",
       "period": "FY2026",
       "note": "agent+verified (Claude Code interactive; ok)"
+    },
+    "h1_fy26_net_income_usdm": {
+      "value": 2429.0,
+      "doc": "challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k__1042167.md",
+      "quote": "| Net income attributable to Deere & Company | \u200b | $ | 1,773 | \u200b | $ | 1,804 | | -2 | \u200b | $ | 2,429 | \u200b | $ | 2,673 | | -9 | \u200b |",
+      "period": "H1-FY2026",
+      "note": "agent+verified (Claude Code interactive; ok)"
+    },
+    "q3_fy25_net_income_usdm": {
+      "value": 1289.0,
+      "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
+      "quote": "Deere Reports Third Quarter Net Income of $1.289 Billion",
+      "period": "Q3-FY2025",
+      "note": "agent+verified (Claude Code interactive; ok)"
+    },
+    "q4_fy25_net_income_usdm": {
+      "value": 1065.0,
+      "doc": "challenge/offline-data/deere/filings/2025-11-26__de-us-20251126-q4-8k__361233.md",
+      "quote": "Deere Reports Net Income of $1.065 Billion for Fourth Quarter, $5.027 Billion for",
+      "period": "Q4-FY2025",
+      "note": "agent+verified (Claude Code interactive; ok)"
+    },
+    "cf_fy_sales_guide": {
+      "value": 20.0,
+      "doc": "challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k__1042167.md",
+      "quote": "| Construction & Forestry | \u200b | Up ~20% | \u200b | +2.0% | \u200b | ~ +2.5% | \u200b |",
+      "period": "FY2026",
+      "note": "agent+verified (Claude Code interactive; ok)"
+    },
+    "q2_fy26_diluted_shares_m": {
+      "value": 270.8,
+      "doc": "challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-10q__1055929.md",
+      "quote": "| Diluted         | 270.8         | 271.8         | 270.9         | 272.1         |",
+      "period": "Q2-FY2026",
+      "note": "agent+verified (Claude Code interactive; ok)"
     }
   },
   "notes": [
