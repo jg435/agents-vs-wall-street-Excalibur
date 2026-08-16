@@ -309,34 +309,46 @@ declared in entry.json, verifiable in the commit history.</li>
 
 <h2>The research basis — where the idea came from, and what we threw away</h2>
 <p>We surveyed the published literature on LLM earnings forecasting before
-writing a line of code. The ledger of what we used and rejected:</p>
+writing a line of code. The ledger below states only what is actually in the
+running pipeline — a feature we designed but did not ship is not claimed as
+used.</p>
 <div style="overflow-x:auto"><table>
 <tr><th>Paper</th><th>What we took</th><th>Status</th></tr>
 <tr><td>FinRobot <span class="src">arXiv:2411.08804</span></td>
-<td>the 3-layer pipeline shape (evidence → forecast → quality). Explicitly did
-NOT take its forecasting — hardcoded heuristics; borrow the pattern, not the
-brain</td><td>used</td></tr>
-<tr><td>SAE-FiRE <span class="src">arXiv:2505.14420</span></td>
-<td>the SUE framing — surprise = (actual − consensus) ÷ volatility — shaped
-our thinking about beat persistence. NOT in the running code: no volatility
-measure or beat-prior is implemented (see "not built")</td>
-<td>design influence only</td></tr>
+<td>the staged pipeline shape — evidence, typed contract, forecast,
+validation — with the LLM confined to extracting evidence, never computing a
+number. Did NOT take its forecasting, which is hardcoded heuristics</td>
+<td>used</td></tr>
 <tr><td>FinReport <span class="src">arXiv:2403.02647 · WWW'24</span></td>
-<td>the evidence-to-report pipeline shape — realised here as the
-per-forecast receipts and the generated write-up</td><td>shape used</td></tr>
+<td>the evidence-to-report pipeline shape — receipts, a rejected-facts list,
+and the four output workbooks (same pipeline credit as FinRobot)</td>
+<td>used</td></tr>
 <tr><td>DatedGPT <span class="src">arXiv:2603.11838</span></td>
-<td>the no-lookahead discipline. Applied in the backtest replay (only
-pre-cutoff documents per replayed quarter); its prompt-anonymization
-technique is NOT implemented</td><td>partially applied</td></tr>
+<td>the no-lookahead discipline, enforced mechanically: every replayed
+backtest quarter uses only documents published before it, and
+stale-guidance / same-day-consensus gates refuse to run on outdated
+inputs</td><td>used</td></tr>
+<tr><td>Walk-down / PEAD <span class="src">Richardson–Teoh–Wysocki 2004 ·
+Bernard &amp; Thomas 1990</span></td>
+<td>the engine's actual core: consensus is systematically walked down to a
+beatable level, so forecast = consensus + a bounded fraction of the guidance
+gap — this is where the 0.8 gap rule comes from; the ~75% beat rate is the
+empirical backdrop</td><td>used</td></tr>
+<tr><td>SAE-FiRE <span class="src">arXiv:2505.14420</span></td>
+<td>the SUE / beat-persistence concept as the rationale for a per-firm beat
+prior in our design. The surprise = (actual − consensus) ÷ volatility formula
+is designed-not-built — the shipped forecast anchors on consensus and
+management guidance, not on a surprise model. Its classifier was not
+built</td><td>framing only</td></tr>
 <tr><td>Kim / Muhn / Nikolaev <span class="src">arXiv:2407.17866</span></td>
-<td>structured LLM reasoning over bare statements beats analysts on direction.
-The arXiv version was withdrawn for data inconsistencies. Its practical
-influence on this code was architectural: reinforcing that the LLM reads
-documents and never predicts a number</td><td>influence only</td></tr>
+<td>the method of structured LLM reading of statements into typed signals.
+The arXiv version was withdrawn for data inconsistencies; we cite the SSRN
+revision for method only, never its numbers</td><td>method only</td></tr>
 <tr><td>"Man vs Machine" LLM-beats-analysts <span class="src">RFS 2023</span></td>
 <td><b>Rejected.</b> Under an Expression of Concern after
 Zhang–Zhu–Linnainmaa (RFS 2025) showed unannounced earnings had leaked into
-its features. Leak removed: linear ≈ ML ≈ analysts</td><td class="warn">rejected</td></tr>
+its features. Leak removed: linear ≈ ML ≈ analysts</td>
+<td class="warn">rejected</td></tr>
 </table></div>
 <p>The rejected paper is the load-bearing one. The leakage-free literature
 says "ask an LLM for a number" loses to a simple linear model — <b>so we
@@ -344,10 +356,6 @@ don't ask</b>. We anchor on consensus and make small, auditable,
 evidence-cited adjustments instead. That finding is the scientific argument
 for the entire design: a simple interpretable model is as good as a black box
 here, and only the simple one is auditable.</p>
-<p>The underlying edges the design rests on: the walk-down /
-post-earnings-announcement drift (the ~75% beat rate — consensus is
-systematically low) and SUE, the persistence of a firm's beat/miss habit
-quarter to quarter.</p>
 
 <h2>Reproduce it</h2>
 <div class="card"><p style="margin:0"><code>npm install</code> ·
