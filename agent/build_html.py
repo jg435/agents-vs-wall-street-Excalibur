@@ -243,6 +243,25 @@ EPS itself, so it is computed from figures that ARE anchored:<br>
 × (1 − 45% guided tax rate) ÷ 1,595.7m shares = 1.12 pence</code></p>
 </div>
 
+<h3 style="margin:26px 0 8px">Why 0.8? A principled prior, not a tuned constant</h3>
+<p>The 0.8 guidance weight encodes a documented mechanism, not a fitted
+parameter. A manual band study of ADI's guidance history (team read, all
+quarters with a stated $-band) found every quarter landing at or above the
+guided band, mean position ≈1.0–1.17 of the band — companies set guidance as
+a floor they intend to beat. The pipeline's own extraction confirms the
+direction on the quarters it can pair cleanly: 4/4 at or above the band
+floor, 4/4 at or above the guide midpoint. That is why we lean 80% toward
+guidance rather than anchoring purely on consensus.</p>
+<p>We also know its limits, and say so: 0.8 is a single global weight, while
+guidance reliability is genuinely ticker-dependent — tight quarterly $-bands
+(ADI) deserve the most trust; annual-only or qualitative guides (Deere, Home
+Depot, Hays) less; and a downcycle can break the floor outright (Deere
+missed below an already-downgraded range in FY2024, visible in our guidance
+revision traces). With more time we would have regressed the optimal
+guidance weight per name and per metric over the historical corpus and
+shipped twelve calibrated constants; the single 0.8 is the honest, documented
+fallback where that per-cell optimization was beyond a one-day build.</p>
+
 <h2>The pipeline</h2>
 <div class="flow">
 <svg viewBox="0 0 880 335" role="img" aria-label="Pipeline: the corpus feeds an LLM extractor whose claims pass a deterministic verify gate; accepted facts enter the typed fact store which the engine reads; consensus anchors flow directly to the engine, never through the LLM; the engine emits twelve receipts into four workbooks; rejected claims are logged with reasons.">
