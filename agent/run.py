@@ -322,6 +322,8 @@ def main():
                 ],
                 "metric_schema": {k2: sorted(v2) for k2, v2 in schema.items()},
             })
+        log(f"{tk} GATES PASSED: consensus-freshness | revision-diff(latest-vintage) | "
+            "period+basis-vs-metric-schema | one-off-companion | sanity-range | all-12-present")
         out = workbook.fill(OUTPUT[tk], PERIOD[tk],
                             {k: v for k, (v, _) in forecasts.items()})
         log(f"{tk} -> {out.relative_to(REPO)}")
@@ -329,8 +331,10 @@ def main():
         if (CACHE / "rejected_facts.json").exists() else []
     (CACHE / "receipts.json").write_text(json.dumps(
         {"receipts": receipts, "rejected_facts": rejected}, indent=2))
-    log(f"structured receipts for {len(receipts)} forecasts -> cache/receipts.json "
-        f"(+{len(rejected)} rejected facts with reasons)")
+    log(f"structured receipts for {len(receipts)} forecasts -> cache/receipts.json")
+    log(f"REJECTED VALUES ({len(rejected)}) — claims refused by the verify gate:")
+    for rj in rejected:
+        log(f"  REJECTED {rj.get('fact', '?')}: {rj.get('reason', '?')[:110]}")
     LOGS.mkdir(exist_ok=True)
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     (LOGS / f"run-{stamp}.log").write_text("\n".join(LOG_LINES) + "\n")
