@@ -1,0 +1,48 @@
+{
+  "fetched_at": "2026-08-16T10:42:36.096650+00:00",
+  "source": "yfinance (public, fetched during event)",
+  "HD": {
+    "eps": 4.69,
+    "report_date": "2026-08-18",
+    "revenue_usdm": 47235.4491,
+    "eps_range": [
+      4.64,
+      4.86216
+    ]
+  },
+  "ADI": {
+    "eps": 3.33,
+    "report_date": "2026-08-19",
+    "revenue_usdm": 3925.03652,
+    "eps_range": [
+      3.29,
+      3.42
+    ]
+  },
+  "DE": {
+    "eps": 4.72,
+    "report_date": "2026-08-20",
+    "revenue_usdm": 10731.54221,
+    "eps_range": [
+      4.33,
+      5.02
+    ]
+  },
+  "HAS": {
+    "eps": NaN,
+    "report_date": "2026-08-20",
+    "revenue_usdm": 0.0,
+    "eps_range": [
+      NaN,
+      NaN
+    ]
+  },
+  "no_public_consensus": {
+    "HD.comparable_sales_pct": "no public consensus feed; anchor = FY guidance phased to Q2",
+    "ADI.adj_gross_margin_pct": "not guided, no consensus feed; anchor = trailing actuals + revenue link",
+    "DE.ppa_op_profit_usdm": "segment-level; anchor = segment guidance x FY25 Q3 base",
+    "HAS.net_fees_gbpm": "anchor = FY25 base x quarterly LFL path (trading updates)",
+    "HAS.pre_exceptional_op_profit_gbpm": "company-published consensus range in trading update",
+    "HAS.pre_exceptional_basic_eps_gbp": "derived from op profit, interest, tax, shares"
+  }
+}

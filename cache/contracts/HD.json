@@ -1,0 +1,55 @@
+{
+  "ticker": "HD",
+  "period": "FY2026Q2",
+  "output_file": "HD-FY2026Q2.xlsx",
+  "metrics": [
+    "Net sales",
+    "Adjusted diluted EPS",
+    "Comparable sales, total company"
+  ],
+  "consensus": {
+    "eps": 4.69,
+    "report_date": "2026-08-18",
+    "revenue_usdm": 47235.4491,
+    "eps_range": [
+      4.64,
+      4.86216
+    ]
+  },
+  "consensus_gaps": {
+    "HD.comparable_sales_pct": "no public consensus feed; anchor = FY guidance phased to Q2"
+  },
+  "facts": {
+    "fy_sales_growth_guide": {
+      "value": 3.5,
+      "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+      "quote": "\u2022 Total sales growth of approximately 2.5% to 4.5%",
+      "note": ""
+    },
+    "fy_comp_guide_mid": {
+      "value": 1.0,
+      "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+      "quote": "\u2022 Comparable sales growth of approximately flat to 2.0%",
+      "note": "flat to +2.0% -> mid +1.0pp"
+    },
+    "fy_adj_eps_growth_mid": {
+      "value": 2.0,
+      "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
+      "quote": "\u2022 Diluted earnings-per-share to grow approximately flat to 4.0% from $14.23 in fiscal 2025",
+      "note": "flat to +4% -> mid +2%"
+    },
+    "q2_fy25_net_sales_usdm": {
+      "value": 45300.0,
+      "doc": "challenge/offline-data/home-depot/filings/2025-08-20__hd-us-20250820-q2-8k__143688.md",
+      "quote": "reported sales of $45.3 billion for the second quarter of fiscal 2025, an increase of $2.1 billion, or 4.9%",
+      "note": ""
+    },
+    "q2_fy25_adj_eps": {
+      "value": 4.68,
+      "doc": "challenge/offline-data/home-depot/filings/2025-08-20__hd-us-20250820-q2-8k__143688.md",
+      "quote": "Adjusted diluted earnings per share for the second quarter of fiscal 2025 were $4.68, compared with",
+      "note": ""
+    }
+  },
+  "notes": []
+}

@@ -1,0 +1,51 @@
+{
+  "ticker": "ADI",
+  "period": "FY2026Q3",
+  "output_file": "ADI-FY2026Q3.xlsx",
+  "metrics": [
+    "Revenue",
+    "Adjusted diluted EPS",
+    "Adjusted gross margin"
+  ],
+  "consensus": {
+    "eps": 3.33,
+    "report_date": "2026-08-19",
+    "revenue_usdm": 3925.03652,
+    "eps_range": [
+      3.29,
+      3.42
+    ]
+  },
+  "consensus_gaps": {
+    "ADI.adj_gross_margin_pct": "not guided, no consensus feed; anchor = trailing actuals + revenue link"
+  },
+  "facts": {
+    "rev_guide_mid_usdm": {
+      "value": 3900.0,
+      "doc": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
+      "quote": "For the third quarter of fiscal 2026, we are forecasting revenue of $3.9 billion, +/- $100 million. At the midpoint of this revenue outlook, we expect reported operating margin of approximately 39.0%, +/-150 bps, and adjusted operating margin of approximately 49.0%, +/-100 bps. We are planning for r",
+      "note": ""
+    },
+    "eps_guide_mid": {
+      "value": 3.3,
+      "doc": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
+      "quote": "For the third quarter of fiscal 2026, we are forecasting revenue of $3.9 billion, +/- $100 million. At the midpoint of this revenue outlook, we expect reported operating margin of approximately 39.0%, +/-150 bps, and adjusted operating margin of approximately 49.0%, +/-100 bps. We are planning for r",
+      "note": ""
+    },
+    "adj_gross_margin_last": {
+      "value": 73.0,
+      "doc": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
+      "quote": "| Adjusted gross margin percentage | 73.0 | % | | 69.4 | % | | 360 bps |",
+      "note": "Q2 FY26 actual adjusted gross margin %"
+    },
+    "guided_revenue_history": {
+      "value": 31,
+      "doc": "multiple",
+      "quote": "see research/adi_guides.json",
+      "note": "guided midpoints per 8-K; David/Viktor pair with actuals"
+    }
+  },
+  "notes": [
+    "Consensus ($3.33/$3,925m) already sits ABOVE guide mid ($3.30/$3,900m): the Street has priced ADI's beat habit \u2014 tilt from consensus, don't re-add the guide gap on top."
+  ]
+}

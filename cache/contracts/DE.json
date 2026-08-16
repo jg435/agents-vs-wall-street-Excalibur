@@ -1,0 +1,51 @@
+{
+  "ticker": "DE",
+  "period": "FY2026Q3",
+  "output_file": "DE-FY2026Q3.xlsx",
+  "metrics": [
+    "Worldwide net sales and revenues",
+    "Diluted EPS (GAAP)",
+    "Production & Precision Ag operating profit"
+  ],
+  "consensus": {
+    "eps": 4.72,
+    "report_date": "2026-08-20",
+    "revenue_usdm": 10731.54221,
+    "eps_range": [
+      4.33,
+      5.02
+    ]
+  },
+  "consensus_gaps": {
+    "DE.ppa_op_profit_usdm": "segment-level; anchor = segment guidance x FY25 Q3 base"
+  },
+  "facts": {
+    "fy_net_income_guide_usdm": {
+      "value": 4750.0,
+      "doc": "challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k__1042167.md",
+      "quote": "Net income attributable to Deere & Company for fiscal 2026 is forecasted to be in a range of $4.5 billion to $5.0 billion.",
+      "note": ""
+    },
+    "ppa_fy_sales_guide": {
+      "value": -7.5,
+      "doc": "challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k__1042167.md",
+      "quote": "| Production & Precision Ag | \u200b | Down 5 to 10% | \u200b | +3.0% | \u200b | ~ +1.0% | \u200b |",
+      "note": "FY sales down 5-10%, mid -7.5%"
+    },
+    "q3_fy25_revenues_usdm": {
+      "value": 12018.0,
+      "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
+      "quote": "Worldwide net sales and revenues decreased 9 percent, to $12.018 billion, for the third",
+      "note": ""
+    },
+    "q3_fy25_ppa_op_profit_usdm": {
+      "value": 580.0,
+      "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
+      "quote": "| Operating profit         | $ 580         | $ 1,162         | -50%         |",
+      "note": ""
+    }
+  },
+  "notes": [
+    "BASIS TRAP: yfinance revenue consensus (~$10.7bn) is equipment-ops net sales; the metric is WORLDWIDE net sales AND revenues (FY25 Q3 = $12.018bn incl ~$1.6bn financial services). Engine must add fin-svcs revenue or anchor on the FY25 base."
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "ticker": "HAS",
+  "period": "FY2026",
+  "output_file": "HAS-FY2026.xlsx",
+  "metrics": [
+    "Net fees",
+    "Pre-exceptional basic EPS",
+    "Pre-exceptional operating profit"
+  ],
+  "consensus": {
+    "eps": null,
+    "report_date": "2026-08-20",
+    "revenue_usdm": 0.0,
+    "eps_range": [
+      null,
+      null
+    ]
+  },
+  "consensus_gaps": {
+    "HAS.net_fees_gbpm": "anchor = FY25 base x quarterly LFL path (trading updates)",
+    "HAS.pre_exceptional_op_profit_gbpm": "company-published consensus range in trading update",
+    "HAS.pre_exceptional_basic_eps_gbp": "derived from op profit, interest, tax, shares"
+  },
+  "facts": {
+    "op_profit_guide_note": {
+      "value": 46.0,
+      "doc": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
+      "quote": "- Our actions to deliver strong consultant net fee productivity growth and cost discipline continued to offset our lower net fees in H2 26 and we currently expect FY26 pre -exceptional operating profit will be at the top of the \u00a337.0 -46.0m consensus range (2)",
+      "note": "'top of the \u00a337.0\u201346.0m consensus range'"
+    },
+    "q4_net_fees_lfl": {
+      "value": -5.0,
+      "doc": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
+      "quote": "- Group net fees  down 5% YoY (1) with Temp &amp; Contracting and Perm down 3% and  7% respectively",
+      "note": ""
+    },
+    "shares_issued": {
+      "value": 1570252226,
+      "doc": "challenge/offline-data/hays/filings/2026-08-03__has-ln-20260803-filing__1600192.md",
+      "quote": "On 31 July, the issued share capital of Hays plc was 1,600,433,092 Ordinary shares of 1p each, of which 30,180,866 Ordinary shares were held in treasury.",
+      "note": "issued minus treasury (Aug-3 RNS)"
+    },
+    "fy25_net_fees_gbpm": {
+      "value": 972.4,
+      "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k__143890.md",
+      "quote": "| Net fees (1)         | 972.4   | 1,113.6 | (13)%         | (11)%        |",
+      "note": ""
+    },
+    "fy25_op_profit_gbpm": {
+      "value": 45.6,
+      "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k__143890.md",
+      "quote": "| Operating profit (before exceptional items) (2)         | 45.6    | 105.1   | (57)%         | (56)%        |",
+      "note": "FY2025 full-year pre-exceptional operating profit"
+    }
+  },
+  "notes": []
+}
