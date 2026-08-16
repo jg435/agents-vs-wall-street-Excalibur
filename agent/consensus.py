@@ -8,6 +8,7 @@ so the engine anchors on guidance instead — never a silent gap.
 Usage: python -m agent.consensus   -> cache/consensus.json
 """
 import json
+import math
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -64,8 +65,17 @@ def main():
         "HAS.pre_exceptional_op_profit_gbpm": "company-published consensus range in trading update",
         "HAS.pre_exceptional_basic_eps_gbp": "derived from op profit, interest, tax, shares",
     }
+    def scrub(x):  # NaN/inf are not legal strict JSON — null them at the source
+        if isinstance(x, float) and not math.isfinite(x):
+            return None
+        if isinstance(x, dict):
+            return {k: scrub(v) for k, v in x.items()}
+        if isinstance(x, list):
+            return [scrub(v) for v in x]
+        return x
+
     CACHE.mkdir(exist_ok=True)
-    (CACHE / "consensus.json").write_text(json.dumps(C, indent=2))
+    (CACHE / "consensus.json").write_text(json.dumps(scrub(C), indent=2, allow_nan=False))
     print("-> cache/consensus.json")
 
 

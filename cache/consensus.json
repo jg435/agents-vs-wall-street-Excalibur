@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-08-16T10:42:36.096650+00:00",
+  "fetched_at": "2026-08-16T10:51:39.534302+00:00",
   "source": "yfinance (public, fetched during event)",
   "HD": {
     "eps": 4.69,
@@ -29,12 +29,12 @@
     ]
   },
   "HAS": {
-    "eps": NaN,
+    "eps": null,
     "report_date": "2026-08-20",
     "revenue_usdm": 0.0,
     "eps_range": [
-      NaN,
-      NaN
+      null,
+      null
     ]
   },
   "no_public_consensus": {

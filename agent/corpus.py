@@ -69,8 +69,12 @@ def extract_facts():
     for doc, line in search("HAS", r"£3?7\.0\s*-\s*46\.0m consensus|top of the £[\d.]+", "filings", 1):
         F["HAS.op_profit_guide_note"] = fact(46.0, doc, line,
                                              "'top of the £37.0–46.0m consensus range'")
-    for doc, line in search("HAS", r"consensus.*£?43\.5", None, 1):
-        F["HAS.op_profit_consensus"] = fact(43.5, doc, line, "company-compiled consensus")
+    # NB: corpus PDF->md conversion inserts spaces inside digits ("£4 3.5 m")
+    for doc, line in search("HAS", r"consensus for FY26 pre ?-exceptional operating profit is £[\d\s.]+m", None, 1):
+        m = re.search(r"is £([\d\s.]+)m", line)
+        F["HAS.op_profit_consensus"] = fact(
+            float(m.group(1).replace(" ", "")), doc, line,
+            "company-compiled consensus, 10 analysts, as of 9 Jul 2026")
     for doc, line in search("HAS", r"net fees\s*down\s*5", "filings", 1):
         F["HAS.q4_net_fees_lfl"] = fact(-5.0, doc, line)
     for doc, line in search("HAS", r"issued share capital .* ([\d,]+) Ordinary", "filings", 1):
