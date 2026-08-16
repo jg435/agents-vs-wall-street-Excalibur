@@ -44,6 +44,9 @@ mkdir -p logs baseline
     "$PY" -m agent.run
   fi
 
+  echo "--- regenerate architecture page from receipts ---"
+  "$PY" -m agent.build_html || echo "html generation failed (non-blocking)"
+
   echo "--- validation ---"
   npm run check:forecasts
 

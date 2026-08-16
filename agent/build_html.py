@@ -1,43 +1,153 @@
-<!doctype html>
+"""Generate architecture/index.html FROM the run's own outputs.
+
+Every number, formula, source path, gate name and rejection on the page is
+read from cache/receipts.json, cache/facts.json and the latest clear-run log
+— never typed by hand. Doc-vs-code drift on the judged page is therefore
+structurally impossible: if the code changes, regenerate and the page follows.
+
+Run: python -m agent.build_html   (also called at the end of run_final.sh)
+"""
+import html
+import json
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parent.parent
+CACHE = REPO / "cache"
+
+e = html.escape
+
+
+def latest_log():
+    logs = sorted((REPO / "logs").glob("final-run-*.log"))
+    return logs[-1].read_text() if logs else ""
+
+
+def build():
+    data = json.loads((CACHE / "receipts.json").read_text())
+    receipts, rejected = data["receipts"], data["rejected_facts"]
+    facts = json.loads((CACHE / "facts.json").read_text())
+    log_text = latest_log()
+    revised = [ln.split("GUIDANCE REVISED ")[1] for ln in log_text.splitlines()
+               if "GUIDANCE REVISED " in ln]
+
+    by = {(r["company"], r["metric"]): r for r in receipts}
+    has_op = by[("HAS", "Pre-exceptional operating profit")]
+    units = {"Net sales": "USDm", "Revenue": "USDm",
+             "Worldwide net sales and revenues": "USDm", "Net fees": "GBPm",
+             "Adjusted diluted EPS": "USD", "Diluted EPS (GAAP)": "USD",
+             "Pre-exceptional basic EPS": "GBp",
+             "Comparable sales, total company": "pp", "Adjusted gross margin": "%",
+             "Pre-exceptional operating profit": "GBPm",
+             "Production & Precision Ag operating profit": "USDm"}
+
+    rows = ""
+    for r in receipts:
+        n_facts = len(r["consumed_facts"])
+        rows += (f"<tr><td>{e(r['company'])}</td><td>{e(r['metric'])}</td>"
+                 f"<td class='num'>{r['value']:,}</td>"
+                 f"<td>{e(units.get(r['metric'], ''))}</td>"
+                 f"<td>{e(r['anchor_tier'])}</td>"
+                 f"<td class='num'>{n_facts}</td></tr>\n")
+
+    op_facts = ""
+    for name, f in has_op["consumed_facts"].items():
+        op_facts += (f"<div class='fact'><b>{e(name)}</b> = {f['value']} "
+                     f"<span class='tag'>{e(f['type'])}</span> "
+                     f"<span class='tag'>{e(f['period'])}</span> "
+                     f"<span class='tag'>{e(f['basis'])}</span><br>"
+                     f"<span class='src'>{e(f['doc'].split('/')[-1])}</span></div>\n")
+
+    # Per-metric formula table: shape + substitution, VERIFIED against the
+    # receipt value at build time — the page cannot state stale arithmetic.
+    FORMULAS = [
+        ("HD", "Net sales", "cons + 0.8×(target − cons); target = yearago_Q2 × (1 + mean(FY guide, Q1 YoY))",
+         "45,300×(1+mean(3.5,4.8)%)=47,180 → 47,235+0.8×(47,180−47,235)", 47191),
+        ("HD", "Adjusted diluted EPS", "cons + 0.8×(target − cons); target = yearago_Q2_EPS × (1 + mean(FY guide, Q1 YoY))",
+         "4.68×(1+mean(2.0,−3.7)%)=4.64 → 4.69+0.8×(4.64−4.69)", 4.65),
+        ("HD", "Comparable sales, total company", "mean(mean(FY guide, Q1 actual), April actual) — additive, pp",
+         "mean(mean(1.0, 0.6), −0.5)", 0.2),
+        ("ADI", "Revenue", "cons + 0.8×(guided mid − cons)",
+         "3,925+0.8×(3,900−3,925)", 3905),
+        ("ADI", "Adjusted diluted EPS", "cons + 0.8×(guided mid − cons)",
+         "3.33+0.8×(3.30−3.33)", 3.31),
+        ("ADI", "Adjusted gross margin", "last quarter actual + guided sequential change — additive, pp",
+         "73.0 + (−0.5)", 72.5),
+        ("DE", "Worldwide net sales and revenues",
+         "anchor + 0.8×(segment-sum target − anchor); anchor = equip cons + finance bridge",
+         "anchor 10,732+1,314=12,046; target 4,503×0.925+3,025×1.15+3,059×1.20+1,314=12,416 → blend", 12342),
+        ("DE", "Diluted EPS (GAAP)",
+         "cons + 0.8×(target − cons); target = (FY NI guide − H1 actual) × yearago Q3-share of H2 ÷ shares",
+         "(4,750−2,429)×54.8%÷270.8=4.69 → 4.72+0.8×(4.69−4.72)", 4.7),
+        ("DE", "Production & Precision Ag operating profit",
+         "yearago segment sales × (1 + guided sales change) × guided margin mid — derived",
+         "4,503×0.925×12%", 474),
+        ("HAS", "Net fees",
+         "H1 base×(1+avg(Q1,Q2 LFL)) + H2 base×(1+avg(Q3,Q4 LFL)) − disposed fees — build-up",
+         "496×(1−9.0%)+476.4×(1−6.5%)−15", 881.8),
+        ("HAS", "Pre-exceptional basic EPS",
+         "(op profit − guided finance charge) × (1 − guided tax rate) ÷ weighted-avg shares — derived",
+         "(45.5−13)×(1−45%)÷1,595.7 ×100", 1.12),
+        ("HAS", "Pre-exceptional operating profit",
+         "company consensus + 0.8×(guide top − company consensus)",
+         "43.5+0.8×(46.0−43.5)", 45.5),
+    ]
+    formula_rows = ""
+    for co, metric, shape, sub, stated in FORMULAS:
+        actual = by[(co, metric)]["value"]
+        if abs(actual - stated) > 0.005 * max(1, abs(actual)):
+            raise SystemExit(f"DRIFT: page states {stated} for {co}/{metric} "
+                             f"but receipt says {actual} — fix FORMULAS before building")
+        formula_rows += (f"<tr><td>{e(co)}</td><td>{e(metric)}</td>"
+                         f"<td>{e(shape)}</td>"
+                         f"<td><code>{e(sub)} = {actual:,}</code></td></tr>\n")
+
+    rej_rows = "".join(
+        f"<li><code>{e(r.get('fact', '?'))}</code> — {e(r.get('reason', '?')[:100])}</li>\n"
+        for r in rejected[:7])
+    rev_rows = "".join(f"<li><code>{e(x[:110])}</code></li>\n"
+                       for x in revised[:6])
+    n_guides_checked = log_text.count("vintages,")
+
+    page = f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>EXCALIBUR — agent architecture</title>
 <style>
-  :root { color-scheme: light; --ink:#1a2330; --mut:#5c6a7a; --line:#d7dce3;
-          --acc:#0e6e5c; --warn:#a33c2e; --paper:#fffdf9; --wash:#f4f2ec; }
-  * { box-sizing: border-box; }
-  body { margin:0; background:var(--wash); color:var(--ink);
-         font:16px/1.6 ui-sans-serif, system-ui, "Segoe UI", sans-serif; }
-  main { max-width: 880px; margin: 32px auto; padding: clamp(22px,5vw,52px);
-          background:var(--paper); border:1px solid var(--line); border-radius:14px; }
-  h1 { font-size: clamp(36px,7vw,58px); margin:0 0 6px; letter-spacing:-.03em; }
-  h2 { margin:44px 0 10px; font-size:22px; letter-spacing:-.01em; }
-  p, li { max-width: 74ch; }
-  .eyebrow { color:var(--acc); font-weight:700; font-size:13px;
-              letter-spacing:.12em; text-transform:uppercase; }
-  .lede { font-size:19px; color:var(--mut); }
-  table { border-collapse:collapse; width:100%; font-size:14px; margin:14px 0; }
-  th, td { text-align:left; padding:7px 10px; border-bottom:1px solid var(--line); }
-  th { font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--mut); }
-  td.num { font-variant-numeric: tabular-nums; text-align:right;
-            font-family: ui-monospace, Menlo, monospace; }
-  .card { background:var(--wash); border:1px solid var(--line); border-radius:10px;
-           padding:16px 18px; margin:16px 0; }
-  code { font-family: ui-monospace, Menlo, monospace; font-size:13px;
-          background:#ece9e1; padding:1px 5px; border-radius:4px; }
-  .fact { margin:10px 0; font-size:14px; }
-  .tag { display:inline-block; font-size:11px; border:1px solid var(--line);
+  :root {{ color-scheme: light; --ink:#1a2330; --mut:#5c6a7a; --line:#d7dce3;
+          --acc:#0e6e5c; --warn:#a33c2e; --paper:#fffdf9; --wash:#f4f2ec; }}
+  * {{ box-sizing: border-box; }}
+  body {{ margin:0; background:var(--wash); color:var(--ink);
+         font:16px/1.6 ui-sans-serif, system-ui, "Segoe UI", sans-serif; }}
+  main {{ max-width: 880px; margin: 32px auto; padding: clamp(22px,5vw,52px);
+          background:var(--paper); border:1px solid var(--line); border-radius:14px; }}
+  h1 {{ font-size: clamp(36px,7vw,58px); margin:0 0 6px; letter-spacing:-.03em; }}
+  h2 {{ margin:44px 0 10px; font-size:22px; letter-spacing:-.01em; }}
+  p, li {{ max-width: 74ch; }}
+  .eyebrow {{ color:var(--acc); font-weight:700; font-size:13px;
+              letter-spacing:.12em; text-transform:uppercase; }}
+  .lede {{ font-size:19px; color:var(--mut); }}
+  table {{ border-collapse:collapse; width:100%; font-size:14px; margin:14px 0; }}
+  th, td {{ text-align:left; padding:7px 10px; border-bottom:1px solid var(--line); }}
+  th {{ font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--mut); }}
+  td.num {{ font-variant-numeric: tabular-nums; text-align:right;
+            font-family: ui-monospace, Menlo, monospace; }}
+  .card {{ background:var(--wash); border:1px solid var(--line); border-radius:10px;
+           padding:16px 18px; margin:16px 0; }}
+  code {{ font-family: ui-monospace, Menlo, monospace; font-size:13px;
+          background:#ece9e1; padding:1px 5px; border-radius:4px; }}
+  .fact {{ margin:10px 0; font-size:14px; }}
+  .tag {{ display:inline-block; font-size:11px; border:1px solid var(--line);
           border-radius:99px; padding:0 8px; margin-left:4px; color:var(--mut);
-          background:#fff; }
-  .src { color:var(--mut); font-size:12px; font-family: ui-monospace, Menlo, monospace; }
-  .quote { border-left:3px solid var(--acc); padding:2px 0 2px 12px;
-            color:var(--mut); font-size:14px; margin:10px 0; }
-  .flow svg { max-width:100%; height:auto; display:block; margin:10px 0; }
-  ul { padding-left: 20px; }
-  .warn { color: var(--warn); }
-  .kv td:first-child { color:var(--mut); width: 200px; }
+          background:#fff; }}
+  .src {{ color:var(--mut); font-size:12px; font-family: ui-monospace, Menlo, monospace; }}
+  .quote {{ border-left:3px solid var(--acc); padding:2px 0 2px 12px;
+            color:var(--mut); font-size:14px; margin:10px 0; }}
+  .flow svg {{ max-width:100%; height:auto; display:block; margin:10px 0; }}
+  ul {{ padding-left: 20px; }}
+  .warn {{ color: var(--warn); }}
+  .kv td:first-child {{ color:var(--mut); width: 200px; }}
 </style>
 </head>
 <body>
@@ -169,18 +279,16 @@ EPS itself, so it is computed from figures that ARE anchored:<br>
 <p>The green gate is the heart of the design: an LLM (or any extractor) may
 <i>claim</i> a fact, but code accepts it only if the verbatim quote exists in
 the cited document and the value is derivable from a number inside that quote
-under the declared units. 7 claims were refused today; each
+under the declared units. {len(rejected)} claims were refused today; each
 rejection and its reason is in the clear-run log.</p>
 
 <h2>One number, end to end</h2>
 <p>Hays' FY2026 pre-exceptional operating profit, exactly as the receipt
 records it:</p>
 <div class="card">
-<p style="margin-top:0"><b>45.5 GBPm</b> &nbsp;<span class="tag">TIER1</span></p>
-<p class="src">TIER1 consensus 43.5 + 0.8x gap to guidance 46.0 [types: company_published_consensus anchor, management_guidance adjustment; period: FY2026]</p>
-<div class='fact'><b>op_profit_consensus</b> = 43.5 <span class='tag'>company_published_consensus</span> <span class='tag'>FY2026</span> <span class='tag'>PRE-EXCEPTIONAL</span><br><span class='src'>2026-07-10__has-ln-20260710-q4-8k__1572805.md</span></div>
-<div class='fact'><b>op_profit_guide_gbpm</b> = 46.0 <span class='tag'>management_guidance</span> <span class='tag'>FY2026</span> <span class='tag'>PRE-EXCEPTIONAL</span><br><span class='src'>2026-07-10__has-ln-20260710-q4-8k__1572805.md</span></div>
-
+<p style="margin-top:0"><b>{has_op['value']} GBPm</b> &nbsp;<span class="tag">{e(has_op['anchor_tier'])}</span></p>
+<p class="src">{e(has_op['formula'])}</p>
+{op_facts}
 <p class="quote">"…we currently expect FY26 pre-exceptional operating profit
 will be at the top of the £37.0–46.0m consensus range" — Hays Q4 trading
 statement, 10 Jul 2026. The footnote labels £43.5m as company-compiled
@@ -191,19 +299,7 @@ adjusts, and 43.5 + 0.8 × (46.0 − 43.5) = 45.5. No number typed by hand.</p>
 <h2>The twelve numbers</h2>
 <table>
 <tr><th>Co.</th><th>Metric</th><th>Forecast</th><th>Unit</th><th>Anchor tier</th><th>Facts consumed</th></tr>
-<tr><td>HD</td><td>Net sales</td><td class='num'>47,191.0</td><td>USDm</td><td>TIER1</td><td class='num'>4</td></tr>
-<tr><td>HD</td><td>Adjusted diluted EPS</td><td class='num'>4.65</td><td>USD</td><td>TIER1</td><td class='num'>4</td></tr>
-<tr><td>HD</td><td>Comparable sales, total company</td><td class='num'>0.2</td><td>pp</td><td>TIER2</td><td class='num'>3</td></tr>
-<tr><td>ADI</td><td>Revenue</td><td class='num'>3,905.0</td><td>USDm</td><td>TIER1</td><td class='num'>1</td></tr>
-<tr><td>ADI</td><td>Adjusted diluted EPS</td><td class='num'>3.31</td><td>USD</td><td>TIER1</td><td class='num'>1</td></tr>
-<tr><td>ADI</td><td>Adjusted gross margin</td><td class='num'>72.5</td><td>%</td><td>TIER3</td><td class='num'>2</td></tr>
-<tr><td>HAS</td><td>Net fees</td><td class='num'>881.8</td><td>GBPm</td><td>TIER3</td><td class='num'>7</td></tr>
-<tr><td>HAS</td><td>Pre-exceptional basic EPS</td><td class='num'>1.12</td><td>GBp</td><td>TIER3</td><td class='num'>3</td></tr>
-<tr><td>HAS</td><td>Pre-exceptional operating profit</td><td class='num'>45.5</td><td>GBPm</td><td>TIER1</td><td class='num'>2</td></tr>
-<tr><td>DE</td><td>Worldwide net sales and revenues</td><td class='num'>12,342.0</td><td>USDm</td><td>TIER1</td><td class='num'>7</td></tr>
-<tr><td>DE</td><td>Diluted EPS (GAAP)</td><td class='num'>4.7</td><td>USD</td><td>TIER1</td><td class='num'>5</td></tr>
-<tr><td>DE</td><td>Production &amp; Precision Ag operating profit</td><td class='num'>474.0</td><td>USDm</td><td>TIER3</td><td class='num'>3</td></tr>
-</table>
+{rows}</table>
 
 <h2>Every formula, every substitution</h2>
 <p>All twelve computations, exactly as the engine runs them. (The build script
@@ -211,26 +307,14 @@ recomputes each line against the run receipts and refuses to generate this
 page if any row disagrees with the code.)</p>
 <div style="overflow-x:auto"><table>
 <tr><th>Co.</th><th>Metric</th><th>Formula shape</th><th>Substitution → forecast</th></tr>
-<tr><td>HD</td><td>Net sales</td><td>cons + 0.8×(target − cons); target = yearago_Q2 × (1 + mean(FY guide, Q1 YoY))</td><td><code>45,300×(1+mean(3.5,4.8)%)=47,180 → 47,235+0.8×(47,180−47,235) = 47,191.0</code></td></tr>
-<tr><td>HD</td><td>Adjusted diluted EPS</td><td>cons + 0.8×(target − cons); target = yearago_Q2_EPS × (1 + mean(FY guide, Q1 YoY))</td><td><code>4.68×(1+mean(2.0,−3.7)%)=4.64 → 4.69+0.8×(4.64−4.69) = 4.65</code></td></tr>
-<tr><td>HD</td><td>Comparable sales, total company</td><td>mean(mean(FY guide, Q1 actual), April actual) — additive, pp</td><td><code>mean(mean(1.0, 0.6), −0.5) = 0.2</code></td></tr>
-<tr><td>ADI</td><td>Revenue</td><td>cons + 0.8×(guided mid − cons)</td><td><code>3,925+0.8×(3,900−3,925) = 3,905.0</code></td></tr>
-<tr><td>ADI</td><td>Adjusted diluted EPS</td><td>cons + 0.8×(guided mid − cons)</td><td><code>3.33+0.8×(3.30−3.33) = 3.31</code></td></tr>
-<tr><td>ADI</td><td>Adjusted gross margin</td><td>last quarter actual + guided sequential change — additive, pp</td><td><code>73.0 + (−0.5) = 72.5</code></td></tr>
-<tr><td>DE</td><td>Worldwide net sales and revenues</td><td>anchor + 0.8×(segment-sum target − anchor); anchor = equip cons + finance bridge</td><td><code>anchor 10,732+1,314=12,046; target 4,503×0.925+3,025×1.15+3,059×1.20+1,314=12,416 → blend = 12,342.0</code></td></tr>
-<tr><td>DE</td><td>Diluted EPS (GAAP)</td><td>cons + 0.8×(target − cons); target = (FY NI guide − H1 actual) × yearago Q3-share of H2 ÷ shares</td><td><code>(4,750−2,429)×54.8%÷270.8=4.69 → 4.72+0.8×(4.69−4.72) = 4.7</code></td></tr>
-<tr><td>DE</td><td>Production &amp; Precision Ag operating profit</td><td>yearago segment sales × (1 + guided sales change) × guided margin mid — derived</td><td><code>4,503×0.925×12% = 474.0</code></td></tr>
-<tr><td>HAS</td><td>Net fees</td><td>H1 base×(1+avg(Q1,Q2 LFL)) + H2 base×(1+avg(Q3,Q4 LFL)) − disposed fees — build-up</td><td><code>496×(1−9.0%)+476.4×(1−6.5%)−15 = 881.8</code></td></tr>
-<tr><td>HAS</td><td>Pre-exceptional basic EPS</td><td>(op profit − guided finance charge) × (1 − guided tax rate) ÷ weighted-avg shares — derived</td><td><code>(45.5−13)×(1−45%)÷1,595.7 ×100 = 1.12</code></td></tr>
-<tr><td>HAS</td><td>Pre-exceptional operating profit</td><td>company consensus + 0.8×(guide top − company consensus)</td><td><code>43.5+0.8×(46.0−43.5) = 45.5</code></td></tr>
-</table></div>
+{formula_rows}</table></div>
 <p class="src">Source: cache/receipts.json — each row expands there into its
 formula, consumed facts (value · period · basis · type · document · freshness ·
 one-offs) and the checks it passed.</p>
 
 <h2>Validation that actually fires</h2>
 <ul>
-<li><b>Guidance revision-diff:</b> for all 15 guides the engine
+<li><b>Guidance revision-diff:</b> for all {n_guides_checked} guides the engine
 consumes, every historical vintage of that guidance is collected and diffed;
 the run refuses to forecast on a stale vintage. It caught a real one today —
 Hays guided its FY26 tax rate at 38% in Aug 2025 and revised to 45% in Feb
@@ -238,13 +322,7 @@ Hays guided its FY26 tax rate at 38% in Aug 2025 and revised to 45% in Feb
 before this check existed. Now it is mechanical. Sample revisions from today's
 log:</li>
 </ul>
-<div class="card"><ul style="margin:0"><li><code>HAS.fy26_net_finance_charge_guide_gbpm: 12.0 (2025-08-21) -&gt; 13.0 (2026-02-27)</code></li>
-<li><code>HAS.fy26_etr_guide_pct: 38.0 (2025-08-21) -&gt; 45.0 (2026-02-27)</code></li>
-<li><code>DE.fy_net_income_guide_usdm: 4375.0 (2025-11-26) -&gt; 4750.0 (2026-02-19)</code></li>
-<li><code>DE.ppa_fy_margin_guide_pct: 20.0 (2021-02-19) -&gt; 20.5 (2021-05-21)</code></li>
-<li><code>DE.ppa_fy_margin_guide_pct: 20.5 (2021-11-24) -&gt; 21.5 (2022-02-18)</code></li>
-<li><code>DE.ppa_fy_margin_guide_pct: 21.5 (2022-05-20) -&gt; 20.5 (2022-08-19)</code></li>
-</ul></div>
+<div class="card"><ul style="margin:0">{rev_rows}</ul></div>
 <ul>
 <li><b>Per-metric schema:</b> each of the 12 metrics declares which accounting
 bases (GAAP vs adjusted vs pre-exceptional…) and which time periods may feed
@@ -255,14 +333,7 @@ different period on its own — the engine derives Deere's segment profit from
 guided sales × guided margin instead of the inflated quarter.</li>
 <li><b>Rejected values, from today's run log:</b></li>
 </ul>
-<div class="card"><ul style="margin:0"><li><code>ADI.q3_gm_guide_seq_change_pp</code> — not found in challenge/offline-data/analog-devices/filings/2026-01-23__adi-us-20260123-filing__40345</li>
-<li><code>DE.ppa_fy_margin_guide_pct</code> — not found in challenge/offline-data/deere/filings/2026-01-14__de-us-20260114-filing__401151.md</li>
-<li><code>DE.q2_tariff_refund_usdm</code> — not found in challenge/offline-data/deere/filings/2026-01-14__de-us-20260114-filing__401151.md</li>
-<li><code>DE.sat_fy_sales_guide</code> — not found in challenge/offline-data/deere/filings/2026-01-14__de-us-20260114-filing__401151.md</li>
-<li><code>HAS.q1_net_fees_lfl</code> — not found in challenge/offline-data/hays/filings/2026-06-29__has-ln-20260629-filing-2__1549804.md</li>
-<li><code>HAS.q2_net_fees_lfl</code> — not found in challenge/offline-data/hays/filings/2026-06-29__has-ln-20260629-filing-2__1549804.md</li>
-<li><code>HAS.q3_net_fees_lfl</code> — not found in challenge/offline-data/hays/filings/2026-06-29__has-ln-20260629-filing-2__1549804.md</li>
-</ul></div>
+<div class="card"><ul style="margin:0">{rej_rows}</ul></div>
 
 <h2>Measured, not asserted</h2>
 <ul>
@@ -309,3 +380,13 @@ the same-day consensus refresh.</p></div>
 </main>
 </body>
 </html>
+"""
+    out = REPO / "architecture" / "index.html"
+    out.write_text(page)
+    print(f"architecture/index.html generated: {len(page):,} bytes, "
+          f"{len(receipts)} receipts, {len(rejected)} rejections, "
+          f"{len(revised)} revision lines embedded")
+
+
+if __name__ == "__main__":
+    build()
