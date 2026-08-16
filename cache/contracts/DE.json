@@ -79,6 +79,27 @@
       "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
       "quote": "Net sales were $10.357 billion for the quarter and $28.338 billion for nine months, compared with $11.387 billion and $35.484 billion last year, respectively.",
       "note": "agent+verified (Claude Code interactive; ok)"
+    },
+    "ppa_fy_margin_guide_pct": {
+      "value": 12.0,
+      "doc": "challenge/offline-data/deere/call-transcripts/2026-05-21__de-us-20260521-call-pres__1042774.md",
+      "quote": "Our full-year forecast for the segment's operating margin is also unchanged and remains between 11% and 13%.",
+      "period": "FY2026",
+      "note": "agent+verified (Claude Code interactive; ok (midpoint of quoted range))"
+    },
+    "q2_tariff_refund_usdm": {
+      "value": 272.0,
+      "doc": "challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k__1042167.md",
+      "quote": "The company recorded a recovery of $272 million for refund claims related to IEEPA tariffs which have been filed and accepted by the U.S. Customs and Border Protection.",
+      "period": "Q2-FY2026-one-off",
+      "note": "agent+verified (Claude Code interactive; ok)"
+    },
+    "sat_fy_sales_guide": {
+      "value": 15.0,
+      "doc": "challenge/offline-data/deere/call-transcripts/2026-05-21__de-us-20260521-call-pres__1042774.md",
+      "quote": "We continue to expect net sales to be up approximately 15% for the full year.",
+      "period": "FY2026",
+      "note": "agent+verified (Claude Code interactive; ok)"
     }
   },
   "notes": [

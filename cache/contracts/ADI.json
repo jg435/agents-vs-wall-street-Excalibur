@@ -40,9 +40,16 @@
     },
     "rev_guide_beat_median_pct": {
       "value": 3.17,
-      "doc": "research/adi_guides.json",
+      "doc": "cache/adi_guides.json",
       "quote": "4 guided-vs-actual pairs; last 8 beats: [0.3146, 0.0317, 0.0, 0.0267]",
       "note": "median % by which ADI actual revenue beats its own guide midpoint"
+    },
+    "q3_gm_guide_seq_change_pp": {
+      "value": -0.5,
+      "doc": "challenge/offline-data/analog-devices/call-transcripts/2026-05-20__adi-us-20260520-call-qna__1041159.md",
+      "quote": "For Q3, we are assuming about a 50 basis points decline in gross margin, largely driven by the absence of that one-time benefit we got from repricing the channel during the prior quarter",
+      "period": "Q3-FY2026-sequential",
+      "note": "agent+verified (Claude Code interactive; ok (sign from context))"
     }
   },
   "notes": [

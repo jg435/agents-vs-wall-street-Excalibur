@@ -9,8 +9,8 @@ then accepts the fact ONLY if:
   2. the claimed value is derivable from a number IN that quote under the
      declared unit conversion (billion->USDm etc.),
   3. cross-fact identities hold after merge (segment sums, EPS identity).
-Accepted -> research/facts.json (source tagged "agent+verified").
-Rejected -> research/rejected_facts.json (judge evidence: we reject values).
+Accepted -> cache/facts.json (committed) (source tagged "agent+verified").
+Rejected -> cache/rejected_facts.json (judge evidence: we reject values).
 
 Usage:
   python -m agent.extractor            # extract all missing required facts
@@ -26,45 +26,54 @@ import sys
 import urllib.request
 from pathlib import Path
 
-from .corpus import DATA, FOLDER, REPO, RESEARCH, docs, load_facts
+from .corpus import DATA, FOLDER, FACTS_DIR, REPO, docs, load_facts
 
 # ---------------------------------------------------------------- fact specs
 # Declarative: WHAT we need, not HOW to find it. Adding a fact = one line.
 REQUIRED = [
-    # name, company, description for the agent, target units
-    ("HD.q2_fy25_net_sales_usdm", "HD", "Home Depot total net sales for Q2 of fiscal 2025 (quarter ended ~Aug 2025), from the Q2 FY2025 earnings 8-K", "USDm"),
-    ("HD.q2_fy25_adj_eps", "HD", "Home Depot adjusted diluted EPS for Q2 fiscal 2025", "USD"),
-    ("HD.q2_fy25_comp_pct", "HD", "Home Depot total-company comparable sales % change in Q2 fiscal 2025", "pct"),
-    ("HD.fy_sales_growth_guide", "HD", "Home Depot fiscal 2026 guidance: total sales growth % range midpoint", "pct"),
-    ("HD.fy_comp_guide_mid", "HD", "Home Depot fiscal 2026 guidance: comparable sales growth range midpoint in percentage points", "pct"),
-    ("HD.fy_adj_eps_growth_mid", "HD", "Home Depot fiscal 2026 guidance: adjusted diluted EPS growth % range midpoint", "pct"),
-    ("ADI.rev_guide_mid_usdm", "ADI", "Analog Devices Q3 fiscal 2026 revenue guidance midpoint from the Q2 FY2026 8-K outlook", "USDm"),
-    ("ADI.eps_guide_mid", "ADI", "Analog Devices Q3 fiscal 2026 adjusted EPS guidance midpoint", "USD"),
-    ("ADI.adj_gross_margin_last", "ADI", "Analog Devices Q2 fiscal 2026 ACTUAL adjusted gross margin percentage", "pct"),
-    ("DE.q3_fy25_revenues_usdm", "DE", "Deere worldwide net sales AND revenues for Q3 fiscal 2025 (includes financial services)", "USDm"),
-    ("DE.q3_fy25_equip_net_sales_usdm", "DE", "Deere equipment-operations net sales (excluding financial services) for Q3 fiscal 2025", "USDm"),
-    ("DE.q3_fy25_ppa_net_sales_usdm", "DE", "Deere Production & Precision Agriculture segment net sales, Q3 fiscal 2025", "USDm"),
-    ("DE.q3_fy25_ppa_op_profit_usdm", "DE", "Deere Production & Precision Agriculture segment operating profit, Q3 fiscal 2025", "USDm"),
-    ("DE.q3_fy25_sat_net_sales_usdm", "DE", "Deere Small Agriculture & Turf segment net sales, Q3 fiscal 2025", "USDm"),
-    ("DE.q3_fy25_sat_op_profit_usdm", "DE", "Deere Small Agriculture & Turf segment operating profit, Q3 fiscal 2025", "USDm"),
-    ("DE.q3_fy25_cf_net_sales_usdm", "DE", "Deere Construction & Forestry segment net sales, Q3 fiscal 2025", "USDm"),
-    ("DE.q3_fy25_cf_op_profit_usdm", "DE", "Deere Construction & Forestry segment operating profit, Q3 fiscal 2025", "USDm"),
-    ("DE.fy_net_income_guide_usdm", "DE", "Deere fiscal 2026 guidance: net income range midpoint", "USDm"),
-    ("DE.ppa_fy_sales_guide", "DE", "Deere fiscal 2026 guidance: Production & Precision Ag net sales % change range midpoint", "pct"),
-    ("HAS.fy25_net_fees_gbpm", "HAS", "Hays plc full-year FY2025 (ended 30 June 2025) Group net fees in GBP millions", "GBPm"),
-    ("HAS.fy25_op_profit_gbpm", "HAS", "Hays plc FY2025 pre-exceptional operating profit in GBP millions", "GBPm"),
-    ("HAS.op_profit_consensus", "HAS", "Hays plc company-compiled consensus for FY2026 pre-exceptional operating profit in GBP millions", "GBPm"),
-    ("HAS.q4_net_fees_lfl", "HAS", "Hays plc Q4 FY2026 Group net fees like-for-like % change year-on-year (negative if down)", "pct"),
-    ("HAS.shares_issued", "HAS", "Hays plc issued ordinary shares excluding treasury shares (issued minus treasury), most recent notification", "count"),
-    ("HAS.fy25_net_finance_charge_gbpm", "HAS", "Hays plc FY2025 net finance charge in GBP millions", "GBPm"),
-    ("HAS.fy25_pre_exceptional_etr_pct", "HAS", "Hays plc FY2025 pre-exceptional effective tax rate percent", "pct"),
+    # name, company, description for the agent, target units, PERIOD label
+    # (Amendment 3 rule 2: every figure carries its exact time period)
+    ("HD.q2_fy25_net_sales_usdm", "HD", "Home Depot total net sales for Q2 of fiscal 2025 (quarter ended ~Aug 2025), from the Q2 FY2025 earnings 8-K", "USDm", "Q2-FY2025"),
+    ("HD.q2_fy25_adj_eps", "HD", "Home Depot adjusted diluted EPS for Q2 fiscal 2025", "USD", "Q2-FY2025"),
+    ("HD.q2_fy25_comp_pct", "HD", "Home Depot total-company comparable sales % change in Q2 fiscal 2025", "pct", "Q2-FY2025"),
+    ("HD.fy_sales_growth_guide", "HD", "Home Depot fiscal 2026 guidance: total sales growth % range midpoint", "pct", "FY2026"),
+    ("HD.fy_comp_guide_mid", "HD", "Home Depot fiscal 2026 guidance: comparable sales growth range midpoint in percentage points", "pct", "FY2026"),
+    ("HD.fy_adj_eps_growth_mid", "HD", "Home Depot fiscal 2026 guidance: adjusted diluted EPS growth % range midpoint", "pct", "FY2026"),
+    ("ADI.rev_guide_mid_usdm", "ADI", "Analog Devices Q3 fiscal 2026 revenue guidance midpoint from the Q2 FY2026 8-K outlook", "USDm", "Q3-FY2026"),
+    ("ADI.eps_guide_mid", "ADI", "Analog Devices Q3 fiscal 2026 adjusted EPS guidance midpoint", "USD", "Q3-FY2026"),
+    ("ADI.adj_gross_margin_last", "ADI", "Analog Devices Q2 fiscal 2026 ACTUAL adjusted gross margin percentage", "pct", "Q2-FY2026"),
+    ("DE.q3_fy25_revenues_usdm", "DE", "Deere worldwide net sales AND revenues for Q3 fiscal 2025 (includes financial services)", "USDm", "Q3-FY2025"),
+    ("DE.q3_fy25_equip_net_sales_usdm", "DE", "Deere equipment-operations net sales (excluding financial services) for Q3 fiscal 2025", "USDm", "Q3-FY2025"),
+    ("DE.q3_fy25_ppa_net_sales_usdm", "DE", "Deere Production & Precision Agriculture segment net sales, Q3 fiscal 2025", "USDm", "Q3-FY2025"),
+    ("DE.q3_fy25_ppa_op_profit_usdm", "DE", "Deere Production & Precision Agriculture segment operating profit, Q3 fiscal 2025", "USDm", "Q3-FY2025"),
+    ("DE.q3_fy25_sat_net_sales_usdm", "DE", "Deere Small Agriculture & Turf segment net sales, Q3 fiscal 2025", "USDm", "Q3-FY2025"),
+    ("DE.q3_fy25_sat_op_profit_usdm", "DE", "Deere Small Agriculture & Turf segment operating profit, Q3 fiscal 2025", "USDm", "Q3-FY2025"),
+    ("DE.q3_fy25_cf_net_sales_usdm", "DE", "Deere Construction & Forestry segment net sales, Q3 fiscal 2025", "USDm", "Q3-FY2025"),
+    ("DE.q3_fy25_cf_op_profit_usdm", "DE", "Deere Construction & Forestry segment operating profit, Q3 fiscal 2025", "USDm", "Q3-FY2025"),
+    ("DE.fy_net_income_guide_usdm", "DE", "Deere fiscal 2026 guidance: net income range midpoint", "USDm", "FY2026"),
+    ("DE.ppa_fy_sales_guide", "DE", "Deere fiscal 2026 guidance: Production & Precision Ag net sales % change range midpoint", "pct", "FY2026"),
+    ("HAS.fy25_net_fees_gbpm", "HAS", "Hays plc full-year FY2025 (ended 30 June 2025) Group net fees in GBP millions", "GBPm", "FY2025"),
+    ("HAS.fy25_op_profit_gbpm", "HAS", "Hays plc FY2025 pre-exceptional operating profit in GBP millions", "GBPm", "FY2025"),
+    ("HAS.op_profit_consensus", "HAS", "Hays plc company-compiled consensus for FY2026 pre-exceptional operating profit in GBP millions", "GBPm", "FY2026"),
+    ("HAS.q4_net_fees_lfl", "HAS", "Hays plc Q4 FY2026 Group net fees like-for-like % change year-on-year (negative if down)", "pct", "Q4-FY2026"),
+    ("HAS.shares_issued", "HAS", "Hays plc issued ordinary shares excluding treasury shares (issued minus treasury), most recent notification", "count", "2026-07-31"),
+    ("HAS.fy25_net_finance_charge_gbpm", "HAS", "Hays plc FY2025 net finance charge in GBP millions", "GBPm", "FY2025"),
+    ("HAS.fy25_pre_exceptional_etr_pct", "HAS", "Hays plc FY2025 pre-exceptional effective tax rate percent", "pct", "FY2025"),
+    # Amendment 3: period-specific guidance anchors (sequential guides beat trend)
+    ("ADI.q3_gm_guide_seq_change_pp", "ADI", "Analog Devices guided SEQUENTIAL change in adjusted gross margin for Q3 FY2026 vs Q2, in percentage points (CFO on the Q2 earnings call; negative if declining)", "pct", "Q3-FY2026-sequential"),
+    ("DE.ppa_fy_margin_guide_pct", "DE", "Deere fiscal 2026 guidance: Production & Precision Ag segment operating margin range midpoint percent", "pct", "FY2026"),
+    ("DE.q2_tariff_refund_usdm", "DE", "Deere Q2 FY2026 one-off IEEPA tariff refund recovery amount", "USDm", "Q2-FY2026-one-off"),
+    ("DE.sat_fy_sales_guide", "DE", "Deere fiscal 2026 guidance: Small Ag & Turf net sales % change", "pct", "FY2026"),
+    ("HAS.q1_net_fees_lfl", "HAS", "Hays plc Q1 FY2026 Group net fees like-for-like % change YoY (negative if down)", "pct", "Q1-FY2026"),
+    ("HAS.q2_net_fees_lfl", "HAS", "Hays plc Q2 FY2026 Group net fees like-for-like % change YoY (negative if down)", "pct", "Q2-FY2026"),
+    ("HAS.q3_net_fees_lfl", "HAS", "Hays plc Q3 FY2026 Group net fees like-for-like % change YoY (negative if down)", "pct", "Q3-FY2026"),
 ]
 
 UNIT_MULTIPLIERS = {  # quote-unit word -> multiplier into the target unit
     "USDm": {"billion": 1000.0, "million": 1.0, "millions": 1.0, "": 1.0},
     "GBPm": {"billion": 1000.0, "million": 1.0, "m": 1.0, "": 1.0},
     "USD": {"": 1.0},
-    "pct": {"": 1.0},
+    "pct": {"": 1.0, "basis points": 0.01, "basis point": 0.01, "bps": 0.01},
     "count": {"": 1.0, "million": 1e6, "billion": 1e9},
 }
 
@@ -72,24 +81,46 @@ EXTRACT_SYSTEM = """You extract ONE financial fact from supplied documents. \
 Reply with ONLY this JSON:
 {"value": float, "doc": "<repo-relative path of the source document>",
  "quote": "<the EXACT sentence or table row you read the number from, verbatim>",
- "unit_word": "billion" | "million" | "" }
+ "unit_word": "billion" | "million" | "basis points" | "",
+ "period": "<the exact time period the number applies to, e.g. Q3-FY2026, FY2025, Q3-FY2026-sequential>" }
 Rules: the quote must be copied verbatim from the document (the corpus \
 sometimes splits digits with spaces — copy it exactly as it appears). \
 "value" must be the number in the TARGET units requested. "unit_word" is the \
 unit word used in the quote itself. If the fact is not in the documents, \
-reply {"value": null}. Never infer or compute a number not stated."""
+reply {"value": null}. If the time period of a number is ambiguous or does \
+not match the requested period, reply {"value": null} rather than guessing — \
+a quarterly figure must never be used as an annual one. Never infer or \
+compute a number not stated."""
 
 
 # ------------------------------------------------------------------- tools
 def tool_search(company, query, limit=8):
-    """Rank corpus docs for a query; return snippets around term hits."""
-    terms = [t.lower() for t in re.findall(r"[a-z&%$£][a-z&%$£.\-]*|\d{4}", query.lower())]
+    """Rank corpus docs for a query; return snippets around term hits.
+
+    Ranking = term frequency x DATE FIT: a fact about FY2025 wants documents
+    filed in/after calendar 2025 (results report the just-ended year); a fact
+    about guidance/"most recent" wants the newest docs. Without this, long old
+    annual reports win on raw term counts (observed: a 2022 doc ranked first
+    for a 'most recent share count' fact)."""
+    q = query.lower()
+    terms = [t for t in re.findall(r"[a-z&%$£][a-z&%$£.\-]*|\d{4}", q)]
+    want_years = {int(y) for y in re.findall(r"20\d{2}", q)}
+    wants_latest = bool(re.search(r"most recent|guidance|consensus|latest|fy ?2026|fiscal 2026", q))
     scored = []
     for doc in docs(company):
         text = doc.read_text(errors="ignore").lower()
         score = sum(text.count(t) for t in terms if len(t) > 2)
-        if score:
-            scored.append((score, doc))
+        if not score:
+            continue
+        doc_year = int(doc.name[:4])
+        if want_years:
+            # results for FY N are filed in year N or N+1
+            fit = 4.0 if doc_year in {y for wy in want_years for y in (wy, wy + 1)} else 0.3
+        elif wants_latest:
+            fit = {2026: 4.0, 2025: 1.5}.get(doc_year, 0.2)
+        else:
+            fit = 1.0
+        scored.append((score * fit, doc))
     out = []
     for _, doc in sorted(scored, reverse=True, key=lambda x: x[0])[:limit]:
         text = doc.read_text(errors="ignore")
@@ -107,7 +138,7 @@ def tool_search(company, query, limit=8):
     return out
 
 
-def tool_read(rel_path, max_chars=25000):
+def tool_read(rel_path, max_chars=60000):
     p = REPO / rel_path
     if not p.exists() or DATA not in p.parents:
         return f"ERROR: {rel_path} not found or outside corpus"
@@ -180,8 +211,11 @@ def _normalize(s):
     return s.strip().lower()
 
 
-def verify(name, company, target_units, claim):
-    """Deterministic gate. Returns (ok, reason)."""
+def verify(name, company, target_units, claim, expect_period=None):
+    """Deterministic gate. Returns (ok, reason). Amendment 3 rule 2: when the
+    spec declares a period, the claim must carry a period label."""
+    if expect_period and not (claim.get("period") or "").strip():
+        return False, "no time-period label on the figure (Amendment 3 rule 2)"
     doc = REPO / claim.get("doc", "")
     if not doc.exists() or DATA / FOLDER[company] not in doc.parents:
         return False, f"doc not in {company} corpus: {claim.get('doc')}"
@@ -202,9 +236,19 @@ def verify(name, company, target_units, claim):
                 return True, "ok"
             if value == 0 and n == 0:
                 return True, "ok"
-    # signed pct ("down 5%") — compare magnitudes
-    if target_units == "pct" and any(abs(abs(value) - n) < 0.005 for n in nums):
-        return True, "ok (sign from context)"
+    # midpoint of a guided range: derivable from any two quoted endpoints
+    for i, a in enumerate(nums):
+        for b in nums[i + 1:]:
+            for mult in UNIT_MULTIPLIERS[target_units].values():
+                mid = (a + b) / 2 * mult
+                if mid and abs(value) > 0 and abs(abs(mid / value) - 1) < 0.005:
+                    return True, "ok (midpoint of quoted range)"
+    # signed pct ("down 5%", "50 basis points decline") — magnitudes x unit mult
+    if target_units == "pct":
+        for n in nums:
+            for mult in UNIT_MULTIPLIERS["pct"].values():
+                if abs(abs(value) - n * mult) < 0.005:
+                    return True, "ok (sign from context)"
     # derived counts (issued minus treasury)
     if target_units == "count" and len(nums) >= 2 and abs(nums[0] - nums[1] - value) < 2:
         return True, "ok (difference of quoted figures)"
@@ -232,49 +276,58 @@ def check_identities(F):
 # ------------------------------------------------------------------- driver
 def run(force_all=False):
     F = load_facts()
-    todo = [(n, c, d, u) for n, c, d, u in REQUIRED
-            if force_all or n not in F or (F[n] or {}).get("value") is None]
+    todo = [spec for spec in REQUIRED
+            if force_all or spec[0] not in F or (F[spec[0]] or {}).get("value") is None]
     if not todo:
         print("all required facts present; nothing to extract")
         return 0
-    rejected = []
-    for name, company, desc, units in todo:
+    def process(spec):
+        """One fact end-to-end: search -> llm (-> read -> llm) -> verify.
+        Returns (name, accepted_or_None, rejection_or_None). Thread-safe:
+        touches no shared state."""
+        name, company, desc, units, period = spec
         leads = tool_search(company, desc)
-        context = json.dumps(leads[:4], indent=1)[:6000]
-        body = None
-        for attempt in range(2):
-            user = (f"FACT: {name}\nTARGET UNITS: {units}\nDESCRIPTION: {desc}\n\n"
-                    f"SEARCH LEADS:\n{context}\n\n"
-                    + (f"FULL DOCUMENT ({body[0]}):\n{body[1]}" if body else
-                       "Reply with the doc you need read in "
-                       '{"read": "<path>"} OR answer directly if a snippet suffices.'))
+        if not leads:
+            return name, None, {"fact": name, "reason": "search found no candidate docs"}
+        last = None
+        # deterministic doc feeding: full text of the best-ranked doc, then #2
+        for lead in leads[:2]:
+            user = (f"FACT: {name}\nTARGET UNITS: {units}\nEXPECTED PERIOD: {period}\n"
+                    f"DESCRIPTION: {desc}\n\n"
+                    f"DOCUMENT ({lead['doc']}):\n{tool_read(lead['doc'])}")
             try:
                 reply = _extract_json(_llm(EXTRACT_SYSTEM, user))
             except Exception as e:
-                rejected.append({"fact": name, "reason": f"llm error: {e}"})
-                break
-            if "read" in reply and not body:
-                body = (reply["read"], tool_read(reply["read"]))
-                continue
+                return name, None, {"fact": name, "reason": f"llm error: {e}"}
             if reply.get("value") is None:
-                rejected.append({"fact": name, "reason": "agent found nothing", "claim": reply})
-                break
-            ok, why = verify(name, company, units, reply)
+                last = {"fact": name, "reason": f"not found in {lead['doc']}", "claim": reply}
+                continue
+            reply.setdefault("doc", lead["doc"])
+            ok, why = verify(name, company, units, reply, expect_period=period)
             if ok:
-                F[name] = {"value": reply["value"], "doc": reply["doc"],
-                           "quote": reply["quote"][:300],
-                           "note": f"agent+verified ({why})"}
-                print(f"ACCEPT {name} = {reply['value']}")
+                return name, {"value": reply["value"], "doc": reply["doc"],
+                              "quote": reply["quote"][:300],
+                              "period": reply.get("period", period),
+                              "note": f"agent+verified ({why})"}, None
+            return name, None, {"fact": name, "reason": why, "claim": reply}
+        return name, None, last or {"fact": name, "reason": "agent found nothing"}
+
+    from concurrent.futures import ThreadPoolExecutor
+    rejected = []
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        for name, accepted, rejection in pool.map(process, todo):
+            if accepted:
+                F[name] = accepted
+                print(f"ACCEPT {name} = {accepted['value']}")
             else:
-                rejected.append({"fact": name, "reason": why, "claim": reply})
-                print(f"REJECT {name}: {why}")
-            break
+                rejected.append(rejection)
+                print(f"REJECT {name}: {rejection['reason']}")
     issues = check_identities(F)
     for i in issues:
         print("IDENTITY FAIL:", i)
-    RESEARCH.mkdir(exist_ok=True)
-    (RESEARCH / "facts.json").write_text(json.dumps(F, indent=2))
-    (RESEARCH / "rejected_facts.json").write_text(json.dumps(rejected, indent=2))
+    FACTS_DIR.mkdir(exist_ok=True)
+    (FACTS_DIR / "facts.json").write_text(json.dumps(F, indent=2))
+    (FACTS_DIR / "rejected_facts.json").write_text(json.dumps(rejected, indent=2))
     missing = [n for n, *_ in REQUIRED if n not in F or (F[n] or {}).get("value") is None]
     print(f"\naccepted facts: {len(F)} | rejected: {len(rejected)} | still missing: {missing}")
     return 1 if (missing or issues) else 0

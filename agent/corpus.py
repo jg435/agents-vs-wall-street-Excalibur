@@ -1,7 +1,7 @@
 """Corpus reader — search + cited fact extraction from challenge/offline-data.
 
 Every extracted fact carries its receipt: {value, doc, quote}. Facts are
-cached to research/facts.json so the 17:15 final run is deterministic.
+cached to cache/facts.json (committed) so the 17:15 final run is deterministic.
 No LLM here (Jayesh lane) — targeted regex against known filings; anything
 regex can't reach is David's lane (LLM guidance specs) or manual+cited.
 """
@@ -11,7 +11,8 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 DATA = REPO / "challenge" / "offline-data"
-RESEARCH = REPO / "research"
+RESEARCH = REPO / "research"          # organiser scratch (gitignored)
+FACTS_DIR = REPO / "cache"            # committed: facts travel with the repo
 
 FOLDER = {"HD": "home-depot", "ADI": "analog-devices",
           "HAS": "hays", "DE": "deere"}
@@ -192,27 +193,32 @@ def extract_facts():
             pairs.append({"guided": a["guided_usdm"], "actual": b["actual_usdm"],
                           "beat_pct": round(b["actual_usdm"] / a["guided_usdm"] - 1, 4),
                           "guide_doc": a["doc"], "actual_doc": b["doc"]})
-    (RESEARCH).mkdir(exist_ok=True)
-    (RESEARCH / "adi_guides.json").write_text(json.dumps(pairs, indent=2))
+    FACTS_DIR.mkdir(exist_ok=True)
+    (FACTS_DIR / "adi_guides.json").write_text(json.dumps(pairs, indent=2))
     recent = [p["beat_pct"] for p in pairs[-8:]]
     F["ADI.rev_guide_beat_median_pct"] = fact(
         round(100 * sorted(recent)[len(recent) // 2], 2) if recent else None,
-        "research/adi_guides.json",
+        "cache/adi_guides.json",
         f"{len(pairs)} guided-vs-actual pairs; last 8 beats: {recent}",
         "median % by which ADI actual revenue beats its own guide midpoint")
 
-    RESEARCH.mkdir(exist_ok=True)
-    (RESEARCH / "facts.json").write_text(json.dumps(F, indent=2))
+    FACTS_DIR.mkdir(exist_ok=True)
+    (FACTS_DIR / "facts.json").write_text(json.dumps(F, indent=2))
     return F
 
 
 def load_facts():
-    f = RESEARCH / "facts.json"
-    return json.loads(f.read_text()) if f.exists() else extract_facts()
+    f = FACTS_DIR / "facts.json"
+    if f.exists():
+        return json.loads(f.read_text())
+    legacy = RESEARCH / "facts.json"          # pre-move location fallback
+    if legacy.exists():
+        return json.loads(legacy.read_text())
+    return extract_facts()
 
 
 if __name__ == "__main__":
     F = extract_facts()
     for k, v in F.items():
         print(f"{k:32s} = {v['value']}\n    {v['doc']}\n    \"{v['quote'][:110]}\"")
-    print(f"\n{len(F)} facts extracted with receipts -> research/facts.json")
+    print(f"\n{len(F)} facts extracted with receipts -> cache/facts.json")

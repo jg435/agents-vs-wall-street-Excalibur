@@ -1,0 +1,51 @@
+[
+  {
+    "fact": "ADI.q3_gm_guide_seq_change_pp",
+    "reason": "not found in challenge/offline-data/analog-devices/filings/2026-01-23__adi-us-20260123-filing__403452.md",
+    "claim": {
+      "value": null
+    }
+  },
+  {
+    "fact": "DE.ppa_fy_margin_guide_pct",
+    "reason": "not found in challenge/offline-data/deere/filings/2026-01-14__de-us-20260114-filing__401151.md",
+    "claim": {
+      "value": null
+    }
+  },
+  {
+    "fact": "DE.q2_tariff_refund_usdm",
+    "reason": "not found in challenge/offline-data/deere/filings/2026-01-14__de-us-20260114-filing__401151.md",
+    "claim": {
+      "value": null
+    }
+  },
+  {
+    "fact": "DE.sat_fy_sales_guide",
+    "reason": "not found in challenge/offline-data/deere/filings/2026-01-14__de-us-20260114-filing__401151.md",
+    "claim": {
+      "value": null
+    }
+  },
+  {
+    "fact": "HAS.q1_net_fees_lfl",
+    "reason": "not found in challenge/offline-data/hays/filings/2026-06-29__has-ln-20260629-filing-2__1549804.md",
+    "claim": {
+      "value": null
+    }
+  },
+  {
+    "fact": "HAS.q2_net_fees_lfl",
+    "reason": "not found in challenge/offline-data/hays/filings/2026-06-29__has-ln-20260629-filing-2__1549804.md",
+    "claim": {
+      "value": null
+    }
+  },
+  {
+    "fact": "HAS.q3_net_fees_lfl",
+    "reason": "not found in challenge/offline-data/hays/filings/2026-06-29__has-ln-20260629-filing-2__1549804.md",
+    "claim": {
+      "value": null
+    }
+  }
+]

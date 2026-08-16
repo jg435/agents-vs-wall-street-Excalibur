@@ -41,23 +41,41 @@ def provisional_engine(c):
                 "FY comp guide mid (flat to +2% -> +1.0pp), Q1-8K"),
         }
     if tk == "ADI":
+        # Amendment 3 rule 1: the SEQUENTIAL guide ("~50bps decline") beats the
+        # YoY trend; rule 3: Q2's 73.0% held a one-off channel-repricing benefit
+        gm = (v("adj_gross_margin_last", 73.0) + v("q3_gm_guide_seq_change_pp", -0.5))
         return {
             "Revenue": (cons.get("revenue_usdm"), "consensus (already above $3.9bn guide mid)"),
             "Adjusted diluted EPS": (cons.get("eps"), "consensus (above $3.30 guide mid)"),
-            "Adjusted gross margin": (v("adj_gross_margin_last"),
-                "Q2 FY26 actual adj GM (not guided; trailing anchor)"),
+            "Adjusted gross margin": (round(gm, 1),
+                "Q2 actual 73.0% + guided sequential -0.5pp (CFO, Q2 call) "
+                "[period: Q3-FY2026-sequential]"),
         }
     if tk == "DE":
+        # Amendment 3 rule 3: Q2 PPA margin 15.7% contains the $272m IEEPA
+        # tariff refund one-off — anchor on the FY margin GUIDE (11-13%), and
+        # DERIVE segment profit = guided sales x guided margin (profit family)
+        ppa_sales_fy26q3 = v("q3_fy25_ppa_net_sales_usdm", 4503.0) * (1 + v("ppa_fy_sales_guide", -7.5) / 100)
+        ppa_profit = ppa_sales_fy26q3 * v("ppa_fy_margin_guide_pct", 12.0) / 100
         return {
             "Worldwide net sales and revenues": (v("q3_fy25_revenues_usdm"),
                 "FY25 Q3 base $12,018m flat (consensus is equipment-ops basis — see note)"),
             "Diluted EPS (GAAP)": (cons.get("eps"), "consensus EPS (yfinance)"),
-            "Production & Precision Ag operating profit": (v("q3_fy25_ppa_op_profit_usdm"),
-                "FY25 Q3 PPA actual $580m flat (guide: sales down 5-10% FY)"),
+            "Production & Precision Ag operating profit": (round(ppa_profit, 0),
+                f"DERIVED: FY25 Q3 PPA sales $4,503m x (1{v('ppa_fy_sales_guide', -7.5):+.1f}% FY guide) "
+                f"x {v('ppa_fy_margin_guide_pct', 12.0):.0f}% FY margin guide mid "
+                "[NOT Q2's 15.7% margin — $272m tariff-refund one-off] [period: FY2026 guide]"),
         }
     if tk == "HAS":
         op = 46.0  # 'top of the £37.0-46.0m consensus range' (Jul-10 update)
-        fees = v("fy25_net_fees_gbpm", 972.4) * (1 - 0.05)
+        # Amendment 3 rule 2: -5% is Q4 ONLY. Build FY26 from the four
+        # quarterly LFL rates (equal-weight; disposal adj pending a receipt)
+        lfls = [v("q1_net_fees_lfl", -8.0), v("q2_net_fees_lfl", -10.0),
+                v("q3_net_fees_lfl", -8.0), v("q4_net_fees_lfl", -5.0)]
+        fy_growth = sum(lfls) / len(lfls) / 100
+        fees = v("fy25_net_fees_gbpm", 972.4) * (1 + fy_growth)
+        log(f"HAS note: quarterly LFL build-up {lfls} -> FY {fy_growth:+.2%}; "
+            "£15m disposal adj NOT applied (no corpus receipt found)")
         shares_m = v("shares_issued", 1_570_252_226) / 1e6
         finance = v("fy25_net_finance_charge_gbpm")
         etr = v("fy25_pre_exceptional_etr_pct")
@@ -66,7 +84,9 @@ def provisional_engine(c):
             finance, etr = 13.4, 35.1
         eps_pence = (op - finance) * (1 - etr / 100) / shares_m * 100
         return {
-            "Net fees": (round(fees, 1), "FY25 £972.4m x (1 - 5% LFL) [FX bridge pending]"),
+            "Net fees": (round(fees, 1),
+                "FY25 £972.4m x quarterly LFL build-up (-8/-10/-8/-5 -> ~-7.75% FY) "
+                "[periods: Q1..Q4-FY2026; FX + disposal bridge pending receipt]"),
             "Pre-exceptional basic EPS": (round(eps_pence, 2),
                 f"derived: (OP £{op}m - £{finance}m net finance charge, FY25 actual) "
                 f"x (1 - {etr}% pre-exceptional ETR, FY25 actual) / {shares_m:.0f}m shares"),

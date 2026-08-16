@@ -27,11 +27,11 @@ def check(name, cond, detail=""):
 # (normalized like the extractor's verify gate; research/-derived facts are
 # aggregates whose receipt is the derived file itself — existence checked)
 from agent.extractor import _normalize, check_identities  # noqa: E402
-facts = json.loads((REPO / "research" / "facts.json").read_text())
+facts = json.loads((REPO / "cache" / "facts.json").read_text())
 print(f"1. receipts ({len(facts)} facts)")
 for k, f in facts.items():
     doc = REPO / f["doc"]
-    if f["doc"].startswith("research/") or f["doc"] == "multiple":
+    if f["doc"].startswith(("research/", "cache/")) or f["doc"] == "multiple":
         check(f"receipt {k} (derived)", (REPO / f["doc"]).exists() or f["doc"] == "multiple")
         continue
     if not doc.exists():
@@ -57,10 +57,18 @@ REQUIRED = [
     "HAS.fy25_net_fees_gbpm", "HAS.fy25_op_profit_gbpm", "HAS.op_profit_consensus",
     "HAS.q4_net_fees_lfl", "HAS.shares_issued",
     "HAS.fy25_net_finance_charge_gbpm", "HAS.fy25_pre_exceptional_etr_pct",
+    # Amendment 3: period-specific guidance anchors
+    "ADI.q3_gm_guide_seq_change_pp", "DE.ppa_fy_margin_guide_pct",
+    "DE.q2_tariff_refund_usdm", "DE.sat_fy_sales_guide",
+    "HAS.q1_net_fees_lfl", "HAS.q2_net_fees_lfl", "HAS.q3_net_fees_lfl",
 ]
+PERIOD_LABELED = REQUIRED[-7:]  # Amendment-3 facts must carry a period label
 print("2. required-fact coverage")
 for k in REQUIRED:
     check(f"fact {k}", k in facts and facts[k]["value"] is not None)
+print("2b. period labels (Amendment 3 rule 2)")
+for k in PERIOD_LABELED:
+    check(f"period on {k}", bool((facts.get(k) or {}).get("period")))
 
 # 3. ENGINE: all 12 metrics, numeric, pass validate()
 print("3. engine coverage + validation")
@@ -102,7 +110,7 @@ workbook.SUBMISSION = REPO / "submission"
 
 # 6. STRICT JSON caches
 print("6. strict-JSON caches")
-for name in ["cache/consensus.json", "research/facts.json"]:
+for name in ["cache/consensus.json", "cache/facts.json"]:
     try:
         json.loads((REPO / name).read_text(),
                    parse_constant=lambda x: (_ for _ in ()).throw(ValueError(x)))

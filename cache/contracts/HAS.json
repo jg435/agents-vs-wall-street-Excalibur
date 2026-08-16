@@ -41,34 +41,55 @@
       "note": ""
     },
     "shares_issued": {
-      "value": 1570252226,
-      "doc": "challenge/offline-data/hays/filings/2026-08-03__has-ln-20260803-filing__1600192.md",
-      "quote": "On 31 July, the issued share capital of Hays plc was 1,600,433,092 Ordinary shares of 1p each, of which 30,180,866 Ordinary shares were held in treasury.",
-      "note": "issued minus treasury (Aug-3 RNS)"
+      "value": 1591800000.0,
+      "doc": "challenge/offline-data/hays/slides/2025-02-20__has-ln-20250220-slide__75012.md",
+      "quote": "18 February 2025 | 1,591.8m |  |  |  |",
+      "note": "agent+verified (ok)"
     },
     "fy25_net_fees_gbpm": {
       "value": 972.4,
-      "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k__143890.md",
-      "quote": "| Net fees (1)         | 972.4   | 1,113.6 | (13)%         | (11)%        |",
-      "note": ""
+      "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k-2__671218.md",
+      "quote": "| Group net fees (2) \u00a3972.4m FY24: \u00a31,113.6m    | Cash from operations (4) \u00a3128.3m FY24: \u00a3112.3m   |",
+      "note": "agent+verified (ok)"
     },
     "fy25_op_profit_gbpm": {
       "value": 45.6,
-      "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k__143890.md",
-      "quote": "| Operating profit (before exceptional items) (2)         | 45.6    | 105.1   | (57)%         | (56)%        |",
-      "note": "FY2025 full-year pre-exceptional operating profit"
+      "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k-2__671218.md",
+      "quote": "FY25 pre-exceptional (5)  Group operating profit of \u00a345.6 million represented a like-for-like decrease of 56% (down 57% reported) with a higher drop-through of lower net fees to profitability in the final quarter from broad-based weakness in Permanent markets globally.",
+      "note": "agent+verified (ok)"
     },
     "fy25_net_finance_charge_gbpm": {
       "value": 13.4,
-      "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k__143890.md",
-      "quote": "The net finance charge for FY25 was \u00a313.4 million (FY24: \u00a310.4 million). The increase YoY was primarily due to a \u00a33.3 million increase in net bank interest payable (including amortisation of arrangement fees) to \u00a37.3 million (FY24: \u00a34.0 million) due to higher average drawings on the Group's revolvin",
-      "note": ""
+      "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k-2__671218.md",
+      "quote": "The net finance charge for FY25 was \u00a313.4 million (FY24: \u00a310.4 million).",
+      "note": "agent+verified (ok)"
     },
     "fy25_pre_exceptional_etr_pct": {
       "value": 35.1,
-      "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k__143890.md",
-      "quote": "The tax charge for the year ended 30 June 2025 of \u00a311.3 million (FY24: \u00a330.7 million) represented a pre-exceptional effective tax rate ('ETR') of 35.1% (FY24: 32.4%). The higher ETR was driven by the geographic mix of profit together with the impact of tax losses in some country operations in H2 and",
-      "note": ""
+      "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k-2__671218.md",
+      "quote": "The tax charge for the year ended 30 June 2025 of \u00a311.3 million (FY24: \u00a330.7 million) represented a pre-exceptional effective tax rate ('ETR') of 35.1% (FY24: 32.4%).",
+      "note": "agent+verified (ok)"
+    },
+    "q1_net_fees_lfl": {
+      "value": -8.0,
+      "doc": "challenge/offline-data/hays/filings/2025-10-10__has-ln-20251010-q1-8k__148167.md",
+      "quote": "Group net fees down 8% YoY with Temp &amp; Contracting and Perm down 5% and 13% respectively",
+      "period": "Q1-FY2026",
+      "note": "agent+verified (Claude Code interactive; ok (sign from context))"
+    },
+    "q2_net_fees_lfl": {
+      "value": -10.0,
+      "doc": "challenge/offline-data/hays/filings/2026-01-14__has-ln-20260114-q2-8k__401006.md",
+      "quote": "Group net fees down 10 % YoY  with Temp &amp; Contracting and Perm down 8% and 14% respectively",
+      "period": "Q2-FY2026",
+      "note": "agent+verified (Claude Code interactive; ok (sign from context))"
+    },
+    "q3_net_fees_lfl": {
+      "value": -8.0,
+      "doc": "challenge/offline-data/hays/filings/2026-04-16__has-ln-20260416-q3-8k-2__955907.md",
+      "quote": "Group net fees down 8% YoY  with Temp &amp; Contracting and Perm down  6% and  12 % respectively",
+      "period": "Q3-FY2026",
+      "note": "agent+verified (Claude Code interactive; ok (sign from context))"
     }
   },
   "notes": []
