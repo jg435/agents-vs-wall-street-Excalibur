@@ -151,6 +151,12 @@ revision traces). With more time we would have regressed the optimal
 guidance weight per name and per metric over the historical corpus and
 shipped twelve calibrated constants; the single 0.8 is the honest, documented
 fallback where that per-cell optimization was beyond a one-day build.</p>
+<p><b>How load-bearing is it?</b> The 0.8 weight applies to 7 of our 12
+numbers, and on six of those the consensus-to-guide gap is so small that any
+weight between 0 and 1 would move the forecast by less than 2.5% — on Home
+Depot's net sales, by 0.09%. It is materially load-bearing on exactly one
+number, Hays operating profit, where it accounts for a 4.6% move off
+consensus.</p>
 <p><b>Post-hoc audit of our own constant:</b> late in the day we estimated the
 weight properly on 29 quarters of ADI history. It does not survive — the
 fitted weight is negative, 0.8 sits outside its confidence interval, and out
