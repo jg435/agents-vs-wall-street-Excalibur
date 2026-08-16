@@ -35,7 +35,7 @@ ALLOWED_ANCHOR_PERIODS = {
     "HD": {"Q2-FY2026", "FY2026", "Q2-FY2025", "Q1-FY2026", "Q1-FY2025"},
     "ADI": {"Q3-FY2026", "Q3-FY2026-sequential", "Q2-FY2026", "FY2026"},
     "DE": {"Q3-FY2026", "FY2026", "Q3-FY2025", "H1-FY2026", "Q4-FY2025", "Q2-FY2026"},
-    "HAS": {"FY2026", "FY2025", "H1-FY2025", "Q1-FY2026", "Q2-FY2026",
+    "HAS": {"FY2026", "FY2025", "H1-FY2025", "H1-FY2026", "Q1-FY2026", "Q2-FY2026",
             "Q3-FY2026", "Q4-FY2026", "2026-07-31"},
 }
 
@@ -184,16 +184,19 @@ def provisional_engine(c):
         g1 = (v("q1_net_fees_lfl") + v("q2_net_fees_lfl")) / 2 / 100
         g2 = (v("q3_net_fees_lfl") + v("q4_net_fees_lfl")) / 2 / 100
         fees = h1 * (1 + g1) + h2 * (1 + g2) - v("fy26_disposed_net_fees_gbpm")
-        shares_m = v("shares_issued") / 1e6
-        eps_pence = (op - v("fy25_net_finance_charge_gbpm")) \
-            * (1 - v("fy25_pre_exceptional_etr_pct") / 100) / shares_m * 100
+        shares_m = v("h1_fy26_weighted_avg_shares_m")  # weighted avg (basic EPS basis)
+        # LATEST FY26 guides (Feb-26 H1 update: £13m finance, 45% ETR
+        # 'consistent with the first half') — supersede the Aug-25 £12m/38% set
+        eps_pence = (op - v("fy26_net_finance_charge_guide_gbpm")) \
+            * (1 - v("fy26_etr_guide_pct") / 100) / shares_m * 100
         fc = {
             "Net fees": (round(fees, 1),
                 f"TIER3 derived: H1 £{h1:.0f}m x (1{g1:+.1%}) + H2 £{h2:.0f}m x (1{g2:+.1%}) "
                 "minus £15m disposed-country fees (cited) [periods: H1-FY2025 base, Q1..Q4-FY2026 LFL]"),
             "Pre-exceptional basic EPS": (round(eps_pence, 2),
-                "TIER3 derived: (OP £46m - £12m FY26 finance-charge GUIDE) x (1 - 38% FY26 ETR "
-                "GUIDE) / 1,570m shares (issued-treasury, receipted) [periods: FY2026 guides]"),
+                "TIER3 derived: (OP £46m - £13m FY26 finance-charge guide, Feb-26 UPDATE) "
+                "x (1 - 45% FY26 ETR guide, Feb-26 UPDATE 'consistent with H1') / 1,595.7m "
+                "weighted-avg shares [periods: latest FY2026 guides supersede Aug-25 set]"),
             "Pre-exceptional operating profit": (op,
                 "TIER1/2: management 'top of the £37.0-46.0m consensus range' (co. consensus £43.5m)"),
         }
@@ -203,7 +206,8 @@ def provisional_engine(c):
                          "q3_net_fees_lfl", "q4_net_fees_lfl",
                          "fy26_disposed_net_fees_gbpm"],
             "Pre-exceptional basic EPS": ["fy26_net_finance_charge_guide_gbpm",
-                                          "fy26_etr_guide_pct", "shares_issued"],
+                                          "fy26_etr_guide_pct",
+                                          "h1_fy26_weighted_avg_shares_m"],
         }
     validate_anchor_periods(tk, f, uses)
     return fc

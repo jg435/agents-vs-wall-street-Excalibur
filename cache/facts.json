@@ -265,18 +265,18 @@
     "note": "agent+verified (Claude Code interactive; ok)"
   },
   "HAS.fy26_net_finance_charge_guide_gbpm": {
-    "value": 12.0,
-    "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-filing__143845.md",
-    "quote": "We expect the net finance charge for FY26 to be c.\u00a312 million, slightly below FY25 due to the impact of the defined benefit pension buy-in and lower utilisation of our revolving credit facility, driven by improving working capital.",
+    "value": 13.0,
+    "doc": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
+    "quote": "We expect the net finance charge for FY26 to be c.\u00a313 million, slightly below FY25 due to the impact of the defined benefit pension buy-in and lower utilisation of our revolving credit facility in H2 26, driven by improving working capital.",
     "period": "FY2026",
-    "note": "agent+verified (Claude Code interactive; ok)"
+    "note": "agent+verified; SUPERSEDES the Aug-2025 guide (Feb-2026 H1 update is the latest period-specific guidance)"
   },
   "HAS.fy26_etr_guide_pct": {
-    "value": 38.0,
-    "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-filing__143845.md",
-    "quote": "We expect the Group's ETR in FY26 to be c.38%, consistent with H2 FY25, assuming no material change in geographic mix of profits, and to reduce as profits rebuild over time.",
+    "value": 45.0,
+    "doc": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
+    "quote": "We expect the Group's ETR in FY26 to be c.45%, consistent with the first half, assuming no material change in geographic mix of profits, and to reduce as profits rebuild over time.",
     "period": "FY2026",
-    "note": "agent+verified (Claude Code interactive; ok)"
+    "note": "agent+verified; SUPERSEDES the Aug-2025 guide (Feb-2026 H1 update is the latest period-specific guidance)"
   },
   "HD.q1_fy26_net_sales_usdm": {
     "value": 41765.0,
@@ -357,5 +357,12 @@
     "quote": "adjusted diluted earnings per share of $3.56 in the same period of fiscal 2025.",
     "period": "Q1-FY2025",
     "note": "agent+verified (Claude Code interactive; ok)"
+  },
+  "HAS.h1_fy26_weighted_avg_shares_m": {
+    "value": 1595.7,
+    "doc": "challenge/offline-data/hays/filings/2026-02-27__has-ln-20260227-h1-8k__642921.md",
+    "quote": "| Weighted average number of shares         | 1,595.7         | 1,588.5         | 1,590.2         |",
+    "period": "H1-FY2026",
+    "note": "agent+verified; SUPERSEDES the Aug-2025 guide (Feb-2026 H1 update is the latest period-specific guidance)"
   }
 }
