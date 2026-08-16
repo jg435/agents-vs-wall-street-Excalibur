@@ -24,37 +24,43 @@
       "value": 3.5,
       "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
       "quote": "\u2022 Total sales growth of approximately 2.5% to 4.5%",
-      "note": ""
+      "note": "",
+      "period": "FY2026"
     },
     "fy_comp_guide_mid": {
       "value": 1.0,
       "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
       "quote": "\u2022 Comparable sales growth of approximately flat to 2.0%",
-      "note": "flat to +2.0% -> mid +1.0pp"
+      "note": "flat to +2.0% -> mid +1.0pp",
+      "period": "FY2026"
     },
     "fy_adj_eps_growth_mid": {
       "value": 2.0,
       "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
       "quote": "\u2022 Diluted earnings-per-share to grow approximately flat to 4.0% from $14.23 in fiscal 2025",
-      "note": "flat to +4% -> mid +2%"
+      "note": "flat to +4% -> mid +2%",
+      "period": "FY2026"
     },
     "q2_fy25_net_sales_usdm": {
       "value": 45300.0,
       "doc": "challenge/offline-data/home-depot/filings/2025-08-20__hd-us-20250820-q2-8k__143688.md",
       "quote": "reported sales of $45.3 billion for the second quarter of fiscal 2025, an increase of $2.1 billion, or 4.9%",
-      "note": ""
+      "note": "",
+      "period": "Q2-FY2025"
     },
     "q2_fy25_adj_eps": {
       "value": 4.68,
       "doc": "challenge/offline-data/home-depot/filings/2025-08-20__hd-us-20250820-q2-8k__143688.md",
       "quote": "Adjusted diluted earnings per share for the second quarter of fiscal 2025 were $4.68, compared with",
-      "note": ""
+      "note": "",
+      "period": "Q2-FY2025"
     },
     "q2_fy25_comp_pct": {
       "value": 1.0,
       "doc": "challenge/offline-data/home-depot/filings/2025-08-25__hd-us-20250825-q2-10q__144029.md",
       "quote": "Total comparable sales for the second quarter of fiscal 2025 increased 1.0%, primarily reflecting a 1.4% increase in comparable average ticket and a 0.4% decrease in comparable customer transactions compared to the second quarter of fiscal 2024. Foreign exchange rates negatively impacted comparable ",
-      "note": "Q2 FY25 total-company comparable sales, base for the comp recipe"
+      "note": "Q2 FY25 total-company comparable sales, base for the comp recipe",
+      "period": "Q2-FY2025"
     }
   },
   "notes": []

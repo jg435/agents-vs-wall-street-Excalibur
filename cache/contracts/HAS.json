@@ -26,49 +26,57 @@
       "value": 46.0,
       "doc": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
       "quote": "- Our actions to deliver strong consultant net fee productivity growth and cost discipline continued to offset our lower net fees in H2 26 and we currently expect FY26 pre -exceptional operating profit will be at the top of the \u00a337.0 -46.0m consensus range (2)",
-      "note": "'top of the \u00a337.0\u201346.0m consensus range'"
+      "note": "'top of the \u00a337.0\u201346.0m consensus range'",
+      "period": "derived/history"
     },
     "op_profit_consensus": {
       "value": 43.5,
       "doc": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
       "quote": "- (2) As of  9  July  2026 , c ompany complied consensus for FY26 pre -exceptional operating profit is \u00a34 3.5 m, with a \u00a337 .0-46 .0m range, based on 1 0 analysts .",
-      "note": "company-compiled consensus, 10 analysts, as of 9 Jul 2026"
+      "note": "company-compiled consensus, 10 analysts, as of 9 Jul 2026",
+      "period": "FY2026"
     },
     "q4_net_fees_lfl": {
       "value": -5.0,
       "doc": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
       "quote": "- Group net fees  down 5% YoY (1) with Temp &amp; Contracting and Perm down 3% and  7% respectively",
-      "note": ""
+      "note": "",
+      "period": "Q4-FY2026"
     },
     "shares_issued": {
       "value": 1591800000.0,
       "doc": "challenge/offline-data/hays/slides/2025-02-20__has-ln-20250220-slide__75012.md",
       "quote": "18 February 2025 | 1,591.8m |  |  |  |",
-      "note": "agent+verified (ok)"
+      "note": "agent+verified (ok)",
+      "period": "2026-07-31"
     },
     "fy25_net_fees_gbpm": {
       "value": 972.4,
       "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k-2__671218.md",
       "quote": "| Group net fees (2) \u00a3972.4m FY24: \u00a31,113.6m    | Cash from operations (4) \u00a3128.3m FY24: \u00a3112.3m   |",
-      "note": "agent+verified (ok)"
+      "note": "agent+verified (ok)",
+      "period": "FY2025"
     },
     "fy25_op_profit_gbpm": {
       "value": 45.6,
       "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k-2__671218.md",
       "quote": "FY25 pre-exceptional (5)  Group operating profit of \u00a345.6 million represented a like-for-like decrease of 56% (down 57% reported) with a higher drop-through of lower net fees to profitability in the final quarter from broad-based weakness in Permanent markets globally.",
-      "note": "agent+verified (ok)"
+      "note": "agent+verified (ok)",
+      "period": "FY2025"
     },
     "fy25_net_finance_charge_gbpm": {
       "value": 13.4,
       "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k-2__671218.md",
       "quote": "The net finance charge for FY25 was \u00a313.4 million (FY24: \u00a310.4 million).",
-      "note": "agent+verified (ok)"
+      "note": "agent+verified (ok)",
+      "period": "FY2025"
     },
     "fy25_pre_exceptional_etr_pct": {
       "value": 35.1,
       "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k-2__671218.md",
       "quote": "The tax charge for the year ended 30 June 2025 of \u00a311.3 million (FY24: \u00a330.7 million) represented a pre-exceptional effective tax rate ('ETR') of 35.1% (FY24: 32.4%).",
-      "note": "agent+verified (ok)"
+      "note": "agent+verified (ok)",
+      "period": "FY2025"
     },
     "q1_net_fees_lfl": {
       "value": -8.0,
@@ -90,6 +98,13 @@
       "quote": "Group net fees down 8% YoY  with Temp &amp; Contracting and Perm down  6% and  12 % respectively",
       "period": "Q3-FY2026",
       "note": "agent+verified (Claude Code interactive; ok (sign from context))"
+    },
+    "h1_fy25_net_fees_gbpm": {
+      "value": 496.0,
+      "doc": "challenge/offline-data/hays/filings/2025-02-20__has-ln-20250220-q2-8k__119730.md",
+      "quote": "| Net fees (1)         | 496.0  | 583.3  | (15)%         | (13)%        |",
+      "period": "H1-FY2025",
+      "note": "agent+verified (Claude Code interactive; ok); H1 FY25 net fees for weighted build-up"
     }
   },
   "notes": []

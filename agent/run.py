@@ -28,71 +28,126 @@ def log(msg):
     print(line)
 
 
+ALLOWED_ANCHOR_PERIODS = {
+    # forecast period + anchor classes allowed to touch it (Amendment 3 rule 2,
+    # enforced as a real comparison): same-period guide (incl. -sequential),
+    # FY guide (phased), prior-year same-quarter base, dated share counts.
+    "HD": {"Q2-FY2026", "FY2026", "Q2-FY2025"},
+    "ADI": {"Q3-FY2026", "Q3-FY2026-sequential", "Q2-FY2026", "FY2026"},
+    "DE": {"Q3-FY2026", "FY2026", "Q3-FY2025"},
+    "HAS": {"FY2026", "FY2025", "H1-FY2025", "Q1-FY2026", "Q2-FY2026",
+            "Q3-FY2026", "Q4-FY2026", "2026-07-31"},
+}
+
+
+def validate_anchor_periods(tk, facts, uses):
+    """uses: {metric: [fact names consumed]}. Every used fact's period must be
+    an allowed anchor class for this forecast; a one-off-bearing actual may
+    only be used WITH a same/sequential-period guide companion (rule 3)."""
+    for metric, names in uses.items():
+        for n in names:
+            f = facts.get(n) or {}
+            per = f.get("period", "")
+            if per not in ALLOWED_ANCHOR_PERIODS[tk] and per != "derived/history":
+                raise ValueError(f"{tk}/{metric}: fact {n} period '{per}' not an "
+                                 f"allowed anchor class {ALLOWED_ANCHOR_PERIODS[tk]}")
+            if f.get("one_offs"):
+                companions = [facts.get(m, {}).get("period", "") for m in names if m != n]
+                if not any("sequential" in c or c.startswith(("Q", "FY2026")) for c in companions):
+                    raise ValueError(f"{tk}/{metric}: {n} carries one-offs "
+                                     f"{[o['name'] for o in f['one_offs']]} and may not "
+                                     "anchor alone (needs a period-specific guide companion)")
+
+
 def provisional_engine(c):
-    """{metric_label: (value, source_note)} — anchors only, all PROVISIONAL."""
+    """{metric: (value, note)}, plus a uses-map of fact names per metric.
+    NO silent defaults on guide/base inputs (Amendment 3 rule: a missing guide
+    must fail loudly, never become a guessed forecast)."""
     f, cons, tk = c["facts"], c.get("consensus", {}), c["ticker"]
-    v = lambda key, d=None: (f.get(key) or {}).get("value", d)
+
+    def v(key):
+        val = (f.get(key) or {}).get("value")
+        if val is None:
+            raise ValueError(f"{tk}: required fact '{key}' missing — refusing to "
+                             "guess (rerun extraction or use an explicit lower tier)")
+        return val
 
     if tk == "HD":
-        return {
-            "Net sales": (cons.get("revenue_usdm"), "consensus revenue (yfinance)"),
-            "Adjusted diluted EPS": (cons.get("eps"), "consensus EPS (yfinance)"),
+        fc = {
+            "Net sales": (cons.get("revenue_usdm"),
+                "TIER1 consensus revenue (yfinance)"),
+            "Adjusted diluted EPS": (cons.get("eps"), "TIER1 consensus EPS (yfinance)"),
             "Comparable sales, total company": (v("fy_comp_guide_mid"),
-                "FY comp guide mid (flat to +2% -> +1.0pp), Q1-8K"),
+                "TIER2 guidance mid (flat to +2% -> +1.0pp) [period: FY2026, phased]"),
         }
-    if tk == "ADI":
-        # Amendment 3 rule 1: the SEQUENTIAL guide ("~50bps decline") beats the
-        # YoY trend; rule 3: Q2's 73.0% held a one-off channel-repricing benefit
-        gm = (v("adj_gross_margin_last", 73.0) + v("q3_gm_guide_seq_change_pp", -0.5))
-        return {
-            "Revenue": (cons.get("revenue_usdm"), "consensus (already above $3.9bn guide mid)"),
-            "Adjusted diluted EPS": (cons.get("eps"), "consensus (above $3.30 guide mid)"),
+        uses = {"Comparable sales, total company": ["fy_comp_guide_mid"]}
+    elif tk == "ADI":
+        gm = v("adj_gross_margin_last") + v("q3_gm_guide_seq_change_pp")
+        fc = {
+            "Revenue": (cons.get("revenue_usdm"),
+                "TIER1 consensus (already above $3.9bn guide mid)"),
+            "Adjusted diluted EPS": (cons.get("eps"),
+                "TIER1 consensus (above $3.30 guide mid)"),
             "Adjusted gross margin": (round(gm, 1),
-                "Q2 actual 73.0% + guided sequential -0.5pp (CFO, Q2 call) "
-                "[period: Q3-FY2026-sequential]"),
+                "TIER3 derived: Q2 actual 73.0% (one-off flagged) + guided sequential "
+                "-0.5pp (CFO, Q2 call) [period: Q3-FY2026-sequential]"),
         }
-    if tk == "DE":
-        # Amendment 3 rule 3: Q2 PPA margin 15.7% contains the $272m IEEPA
-        # tariff refund one-off — anchor on the FY margin GUIDE (11-13%), and
-        # DERIVE segment profit = guided sales x guided margin (profit family)
-        ppa_sales_fy26q3 = v("q3_fy25_ppa_net_sales_usdm", 4503.0) * (1 + v("ppa_fy_sales_guide", -7.5) / 100)
-        ppa_profit = ppa_sales_fy26q3 * v("ppa_fy_margin_guide_pct", 12.0) / 100
-        return {
-            "Worldwide net sales and revenues": (v("q3_fy25_revenues_usdm"),
-                "FY25 Q3 base $12,018m flat (consensus is equipment-ops basis — see note)"),
-            "Diluted EPS (GAAP)": (cons.get("eps"), "consensus EPS (yfinance)"),
+        uses = {"Adjusted gross margin": ["adj_gross_margin_last",
+                                          "q3_gm_guide_seq_change_pp"]}
+    elif tk == "DE":
+        bridge = v("q3_fy25_revenues_usdm") - v("q3_fy25_equip_net_sales_usdm")
+        worldwide = cons.get("revenue_usdm") + bridge if cons.get("revenue_usdm") else None
+        ppa_profit = (v("q3_fy25_ppa_net_sales_usdm")
+                      * (1 + v("ppa_fy_sales_guide") / 100)
+                      * v("ppa_fy_margin_guide_pct") / 100)
+        fc = {
+            "Worldwide net sales and revenues": (round(worldwide, 0) if worldwide else None,
+                f"TIER1 consensus equipment net sales (yfinance) + fin-svcs bridge "
+                f"${bridge:.0f}m (FY25 Q3 worldwide minus equipment) [period: Q3-FY2026]"),
+            "Diluted EPS (GAAP)": (cons.get("eps"), "TIER1 consensus EPS (yfinance)"),
             "Production & Precision Ag operating profit": (round(ppa_profit, 0),
-                f"DERIVED: FY25 Q3 PPA sales $4,503m x (1{v('ppa_fy_sales_guide', -7.5):+.1f}% FY guide) "
-                f"x {v('ppa_fy_margin_guide_pct', 12.0):.0f}% FY margin guide mid "
-                "[NOT Q2's 15.7% margin — $272m tariff-refund one-off] [period: FY2026 guide]"),
+                f"TIER3 derived: FY25 Q3 PPA sales x (1{v('ppa_fy_sales_guide'):+.1f}% FY guide) "
+                f"x {v('ppa_fy_margin_guide_pct'):.0f}% FY margin guide mid "
+                "[NOT Q2's 15.7% — $272m tariff-refund one-off] [period: FY2026 guide, phased]"),
         }
-    if tk == "HAS":
-        op = 46.0  # 'top of the £37.0-46.0m consensus range' (Jul-10 update)
-        # Amendment 3 rule 2: -5% is Q4 ONLY. Build FY26 from the four
-        # quarterly LFL rates (equal-weight; disposal adj pending a receipt)
-        lfls = [v("q1_net_fees_lfl", -8.0), v("q2_net_fees_lfl", -10.0),
-                v("q3_net_fees_lfl", -8.0), v("q4_net_fees_lfl", -5.0)]
-        fy_growth = sum(lfls) / len(lfls) / 100
-        fees = v("fy25_net_fees_gbpm", 972.4) * (1 + fy_growth)
-        log(f"HAS note: quarterly LFL build-up {lfls} -> FY {fy_growth:+.2%}; "
-            "£15m disposal adj NOT applied (no corpus receipt found)")
-        shares_m = v("shares_issued", 1_570_252_226) / 1e6
-        finance = v("fy25_net_finance_charge_gbpm")
-        etr = v("fy25_pre_exceptional_etr_pct")
-        if finance is None or etr is None:
-            log("HAS WARNING: finance/tax facts missing — using FY25-guess fallback")
-            finance, etr = 13.4, 35.1
-        eps_pence = (op - finance) * (1 - etr / 100) / shares_m * 100
-        return {
+        uses = {
+            "Worldwide net sales and revenues": ["q3_fy25_revenues_usdm",
+                                                 "q3_fy25_equip_net_sales_usdm"],
+            "Production & Precision Ag operating profit": [
+                "q3_fy25_ppa_net_sales_usdm", "ppa_fy_sales_guide",
+                "ppa_fy_margin_guide_pct"],
+        }
+    elif tk == "HAS":
+        op = 46.0  # 'top of the £37.0-46.0m consensus range' — Viktor to ratify vs £43.5m
+        # WEIGHTED build-up (H1/H2 bases; quarterly bases not disclosed):
+        # FY26 = H1_25 x (1 + avg(Q1,Q2 LFL)) + H2_25 x (1 + avg(Q3,Q4 LFL)).
+        # Disposal (6 countries, 16 Jun 2026) NOT quantified in corpus -> no adj.
+        h1 = v("h1_fy25_net_fees_gbpm")
+        h2 = v("fy25_net_fees_gbpm") - h1
+        g1 = (v("q1_net_fees_lfl") + v("q2_net_fees_lfl")) / 2 / 100
+        g2 = (v("q3_net_fees_lfl") + v("q4_net_fees_lfl")) / 2 / 100
+        fees = h1 * (1 + g1) + h2 * (1 + g2)
+        shares_m = v("shares_issued") / 1e6
+        eps_pence = (op - v("fy25_net_finance_charge_gbpm")) \
+            * (1 - v("fy25_pre_exceptional_etr_pct") / 100) / shares_m * 100
+        fc = {
             "Net fees": (round(fees, 1),
-                "FY25 £972.4m x quarterly LFL build-up (-8/-10/-8/-5 -> ~-7.75% FY) "
-                "[periods: Q1..Q4-FY2026; FX + disposal bridge pending receipt]"),
+                f"TIER3 derived: H1 £{h1:.0f}m x (1{g1:+.1%}) + H2 £{h2:.0f}m x (1{g2:+.1%}) "
+                "[periods: H1-FY2025 base, Q1..Q4-FY2026 LFL; disposal unquantified in corpus -> no adj]"),
             "Pre-exceptional basic EPS": (round(eps_pence, 2),
-                f"derived: (OP £{op}m - £{finance}m net finance charge, FY25 actual) "
-                f"x (1 - {etr}% pre-exceptional ETR, FY25 actual) / {shares_m:.0f}m shares"),
+                "TIER3 derived: (OP - FY25 finance charge) x (1 - FY25 pre-exceptional ETR) / shares"),
             "Pre-exceptional operating profit": (op,
-                "'top of the £37.0-46.0m consensus range' — company's own words"),
+                "TIER1/2: management 'top of the £37.0-46.0m consensus range' (co. consensus £43.5m)"),
         }
+        uses = {
+            "Net fees": ["h1_fy25_net_fees_gbpm", "fy25_net_fees_gbpm",
+                         "q1_net_fees_lfl", "q2_net_fees_lfl",
+                         "q3_net_fees_lfl", "q4_net_fees_lfl"],
+            "Pre-exceptional basic EPS": ["fy25_net_finance_charge_gbpm",
+                                          "fy25_pre_exceptional_etr_pct", "shares_issued"],
+        }
+    validate_anchor_periods(tk, f, uses)
+    return fc
 
 
 def validate(tk, forecasts):

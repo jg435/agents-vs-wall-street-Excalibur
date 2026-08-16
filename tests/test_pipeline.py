@@ -62,7 +62,7 @@ REQUIRED = [
     "DE.q2_tariff_refund_usdm", "DE.sat_fy_sales_guide",
     "HAS.q1_net_fees_lfl", "HAS.q2_net_fees_lfl", "HAS.q3_net_fees_lfl",
 ]
-PERIOD_LABELED = REQUIRED[-7:]  # Amendment-3 facts must carry a period label
+PERIOD_LABELED = REQUIRED  # ALL facts carry a period label (Amendment 3 rule 2)
 print("2. required-fact coverage")
 for k in REQUIRED:
     check(f"fact {k}", k in facts and facts[k]["value"] is not None)
@@ -81,6 +81,18 @@ for tk in PERIOD:
         check(f"{tk} validate", True)
     except ValueError as e:
         check(f"{tk} validate", False, str(e))
+
+# 3b. ONE-OFF POLICY: a one-off-bearing actual may not anchor alone
+print("3b. one-off anchor rejection")
+from agent.run import validate_anchor_periods  # noqa: E402
+try:
+    validate_anchor_periods("ADI",
+        {"gm_actual": {"period": "Q2-FY2026",
+                       "one_offs": [{"name": "planted one-off", "impact_pp": 1.0}]}},
+        {"Adjusted gross margin": ["gm_actual"]})
+    check("one-off-alone anchor rejected", False, "was accepted")
+except ValueError:
+    check("one-off-alone anchor rejected", True)
 
 # 4. VALIDATOR REJECTS a planted bad value (loud gate proven live)
 print("4. validator rejection")

@@ -3,169 +3,203 @@
     "value": 3900.0,
     "doc": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
     "quote": "For the third quarter of fiscal 2026, we are forecasting revenue of $3.9 billion, +/- $100 million. At the midpoint of this revenue outlook, we expect reported operating margin of approximately 39.0%, +/-150 bps, and adjusted operating margin of approximately 49.0%, +/-100 bps. We are planning for r",
-    "note": ""
+    "note": "",
+    "period": "Q3-FY2026"
   },
   "ADI.eps_guide_mid": {
     "value": 3.3,
     "doc": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
     "quote": "For the third quarter of fiscal 2026, we are forecasting revenue of $3.9 billion, +/- $100 million. At the midpoint of this revenue outlook, we expect reported operating margin of approximately 39.0%, +/-150 bps, and adjusted operating margin of approximately 49.0%, +/-100 bps. We are planning for r",
-    "note": ""
+    "note": "",
+    "period": "Q3-FY2026"
   },
   "ADI.adj_gross_margin_last": {
     "value": 73.0,
     "doc": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
     "quote": "| Adjusted gross margin percentage | 73.0 | % | | 69.4 | % | | 360 bps |",
-    "note": "Q2 FY26 actual adjusted gross margin %"
+    "note": "Q2 FY26 actual adjusted gross margin %",
+    "period": "Q2-FY2026",
+    "one_offs": [
+      {
+        "name": "one-time channel repricing benefit (CFO, Q2 call)",
+        "impact_pp": 0.5
+      }
+    ]
   },
   "HAS.op_profit_guide_note": {
     "value": 46.0,
     "doc": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
     "quote": "- Our actions to deliver strong consultant net fee productivity growth and cost discipline continued to offset our lower net fees in H2 26 and we currently expect FY26 pre -exceptional operating profit will be at the top of the \u00a337.0 -46.0m consensus range (2)",
-    "note": "'top of the \u00a337.0\u201346.0m consensus range'"
+    "note": "'top of the \u00a337.0\u201346.0m consensus range'",
+    "period": "derived/history"
   },
   "HAS.op_profit_consensus": {
     "value": 43.5,
     "doc": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
     "quote": "- (2) As of  9  July  2026 , c ompany complied consensus for FY26 pre -exceptional operating profit is \u00a34 3.5 m, with a \u00a337 .0-46 .0m range, based on 1 0 analysts .",
-    "note": "company-compiled consensus, 10 analysts, as of 9 Jul 2026"
+    "note": "company-compiled consensus, 10 analysts, as of 9 Jul 2026",
+    "period": "FY2026"
   },
   "HAS.q4_net_fees_lfl": {
     "value": -5.0,
     "doc": "challenge/offline-data/hays/filings/2026-07-10__has-ln-20260710-q4-8k__1572805.md",
     "quote": "- Group net fees  down 5% YoY (1) with Temp &amp; Contracting and Perm down 3% and  7% respectively",
-    "note": ""
+    "note": "",
+    "period": "Q4-FY2026"
   },
   "HAS.shares_issued": {
     "value": 1591800000.0,
     "doc": "challenge/offline-data/hays/slides/2025-02-20__has-ln-20250220-slide__75012.md",
     "quote": "18 February 2025 | 1,591.8m |  |  |  |",
-    "note": "agent+verified (ok)"
+    "note": "agent+verified (ok)",
+    "period": "2026-07-31"
   },
   "DE.fy_net_income_guide_usdm": {
     "value": 4750.0,
     "doc": "challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k__1042167.md",
     "quote": "Net income attributable to Deere & Company for fiscal 2026 is forecasted to be in a range of $4.5 billion to $5.0 billion.",
-    "note": ""
+    "note": "",
+    "period": "FY2026"
   },
   "DE.ppa_fy_sales_guide": {
     "value": -7.5,
     "doc": "challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-8k__1042167.md",
     "quote": "| Production & Precision Ag | \u200b | Down 5 to 10% | \u200b | +3.0% | \u200b | ~ +1.0% | \u200b |",
-    "note": "FY sales down 5-10%, mid -7.5%"
+    "note": "FY sales down 5-10%, mid -7.5%",
+    "period": "FY2026"
   },
   "HD.fy_sales_growth_guide": {
     "value": 3.5,
     "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
     "quote": "\u2022 Total sales growth of approximately 2.5% to 4.5%",
-    "note": ""
+    "note": "",
+    "period": "FY2026"
   },
   "HD.fy_comp_guide_mid": {
     "value": 1.0,
     "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
     "quote": "\u2022 Comparable sales growth of approximately flat to 2.0%",
-    "note": "flat to +2.0% -> mid +1.0pp"
+    "note": "flat to +2.0% -> mid +1.0pp",
+    "period": "FY2026"
   },
   "HD.fy_adj_eps_growth_mid": {
     "value": 2.0,
     "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
     "quote": "\u2022 Diluted earnings-per-share to grow approximately flat to 4.0% from $14.23 in fiscal 2025",
-    "note": "flat to +4% -> mid +2%"
+    "note": "flat to +4% -> mid +2%",
+    "period": "FY2026"
   },
   "HD.q2_fy25_net_sales_usdm": {
     "value": 45300.0,
     "doc": "challenge/offline-data/home-depot/filings/2025-08-20__hd-us-20250820-q2-8k__143688.md",
     "quote": "reported sales of $45.3 billion for the second quarter of fiscal 2025, an increase of $2.1 billion, or 4.9%",
-    "note": ""
+    "note": "",
+    "period": "Q2-FY2025"
   },
   "HD.q2_fy25_adj_eps": {
     "value": 4.68,
     "doc": "challenge/offline-data/home-depot/filings/2025-08-20__hd-us-20250820-q2-8k__143688.md",
     "quote": "Adjusted diluted earnings per share for the second quarter of fiscal 2025 were $4.68, compared with",
-    "note": ""
+    "note": "",
+    "period": "Q2-FY2025"
   },
   "HD.q2_fy25_comp_pct": {
     "value": 1.0,
     "doc": "challenge/offline-data/home-depot/filings/2025-08-25__hd-us-20250825-q2-10q__144029.md",
     "quote": "Total comparable sales for the second quarter of fiscal 2025 increased 1.0%, primarily reflecting a 1.4% increase in comparable average ticket and a 0.4% decrease in comparable customer transactions compared to the second quarter of fiscal 2024. Foreign exchange rates negatively impacted comparable ",
-    "note": "Q2 FY25 total-company comparable sales, base for the comp recipe"
+    "note": "Q2 FY25 total-company comparable sales, base for the comp recipe",
+    "period": "Q2-FY2025"
   },
   "DE.q3_fy25_revenues_usdm": {
     "value": 12018.0,
     "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
     "quote": "Worldwide net sales and revenues decreased 9 percent, to $12.018 billion, for the third",
-    "note": ""
+    "note": "",
+    "period": "Q3-FY2025"
   },
   "DE.q3_fy25_ppa_net_sales_usdm": {
     "value": 4273.0,
     "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
     "quote": "| Net sales         | $ 4,273         | $ 5,099         | -16%         |",
-    "note": ""
+    "note": "",
+    "period": "Q3-FY2025"
   },
   "DE.q3_fy25_ppa_op_profit_usdm": {
     "value": 580.0,
     "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
     "quote": "| Operating profit         | $ 580         | $ 1,162         | -50%         |",
-    "note": ""
+    "note": "",
+    "period": "Q3-FY2025"
   },
   "DE.q3_fy25_sat_net_sales_usdm": {
     "value": 3025.0,
     "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
     "quote": "| Net sales         | $ 3,025         | $ 3,053         | -1%         |",
-    "note": ""
+    "note": "",
+    "period": "Q3-FY2025"
   },
   "DE.q3_fy25_sat_op_profit_usdm": {
     "value": 485.0,
     "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
     "quote": "| Operating profit         | $ 485         | $ 496         | -2%         |",
-    "note": ""
+    "note": "",
+    "period": "Q3-FY2025"
   },
   "DE.q3_fy25_cf_net_sales_usdm": {
     "value": 3059.0,
     "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
     "quote": "| Net sales         | $ 3,059         | $ 3,235         | -5%         |",
-    "note": ""
+    "note": "",
+    "period": "Q3-FY2025"
   },
   "DE.q3_fy25_cf_op_profit_usdm": {
     "value": 237.0,
     "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
     "quote": "| Operating profit         | $ 237         | $ 448         | -47%         |",
-    "note": ""
+    "note": "",
+    "period": "Q3-FY2025"
   },
   "HAS.fy25_net_fees_gbpm": {
     "value": 972.4,
     "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k-2__671218.md",
     "quote": "| Group net fees (2) \u00a3972.4m FY24: \u00a31,113.6m    | Cash from operations (4) \u00a3128.3m FY24: \u00a3112.3m   |",
-    "note": "agent+verified (ok)"
+    "note": "agent+verified (ok)",
+    "period": "FY2025"
   },
   "HAS.fy25_op_profit_gbpm": {
     "value": 45.6,
     "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k-2__671218.md",
     "quote": "FY25 pre-exceptional (5)  Group operating profit of \u00a345.6 million represented a like-for-like decrease of 56% (down 57% reported) with a higher drop-through of lower net fees to profitability in the final quarter from broad-based weakness in Permanent markets globally.",
-    "note": "agent+verified (ok)"
+    "note": "agent+verified (ok)",
+    "period": "FY2025"
   },
   "HAS.fy25_net_finance_charge_gbpm": {
     "value": 13.4,
     "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k-2__671218.md",
     "quote": "The net finance charge for FY25 was \u00a313.4 million (FY24: \u00a310.4 million).",
-    "note": "agent+verified (ok)"
+    "note": "agent+verified (ok)",
+    "period": "FY2025"
   },
   "HAS.fy25_pre_exceptional_etr_pct": {
     "value": 35.1,
     "doc": "challenge/offline-data/hays/filings/2025-08-21__has-ln-20250821-h2-8k-2__671218.md",
     "quote": "The tax charge for the year ended 30 June 2025 of \u00a311.3 million (FY24: \u00a330.7 million) represented a pre-exceptional effective tax rate ('ETR') of 35.1% (FY24: 32.4%).",
-    "note": "agent+verified (ok)"
+    "note": "agent+verified (ok)",
+    "period": "FY2025"
   },
   "ADI.rev_guide_beat_median_pct": {
     "value": 3.17,
     "doc": "cache/adi_guides.json",
     "quote": "4 guided-vs-actual pairs; last 8 beats: [0.3146, 0.0317, 0.0, 0.0267]",
-    "note": "median % by which ADI actual revenue beats its own guide midpoint"
+    "note": "median % by which ADI actual revenue beats its own guide midpoint",
+    "period": "derived/history"
   },
   "DE.q3_fy25_equip_net_sales_usdm": {
     "value": 10357.0,
     "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
     "quote": "Net sales were $10.357 billion for the quarter and $28.338 billion for nine months, compared with $11.387 billion and $35.484 billion last year, respectively.",
-    "note": "agent+verified (Claude Code interactive; ok)"
+    "note": "agent+verified (Claude Code interactive; ok)",
+    "period": "Q3-FY2025"
   },
   "ADI.q3_gm_guide_seq_change_pp": {
     "value": -0.5,
@@ -215,5 +249,12 @@
     "quote": "Group net fees down 8% YoY  with Temp &amp; Contracting and Perm down  6% and  12 % respectively",
     "period": "Q3-FY2026",
     "note": "agent+verified (Claude Code interactive; ok (sign from context))"
+  },
+  "HAS.h1_fy25_net_fees_gbpm": {
+    "value": 496.0,
+    "doc": "challenge/offline-data/hays/filings/2025-02-20__has-ln-20250220-q2-8k__119730.md",
+    "quote": "| Net fees (1)         | 496.0  | 583.3  | (15)%         | (13)%        |",
+    "period": "H1-FY2025",
+    "note": "agent+verified (Claude Code interactive; ok); H1 FY25 net fees for weighted build-up"
   }
 }

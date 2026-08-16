@@ -24,25 +24,35 @@
       "value": 3900.0,
       "doc": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
       "quote": "For the third quarter of fiscal 2026, we are forecasting revenue of $3.9 billion, +/- $100 million. At the midpoint of this revenue outlook, we expect reported operating margin of approximately 39.0%, +/-150 bps, and adjusted operating margin of approximately 49.0%, +/-100 bps. We are planning for r",
-      "note": ""
+      "note": "",
+      "period": "Q3-FY2026"
     },
     "eps_guide_mid": {
       "value": 3.3,
       "doc": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
       "quote": "For the third quarter of fiscal 2026, we are forecasting revenue of $3.9 billion, +/- $100 million. At the midpoint of this revenue outlook, we expect reported operating margin of approximately 39.0%, +/-150 bps, and adjusted operating margin of approximately 49.0%, +/-100 bps. We are planning for r",
-      "note": ""
+      "note": "",
+      "period": "Q3-FY2026"
     },
     "adj_gross_margin_last": {
       "value": 73.0,
       "doc": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
       "quote": "| Adjusted gross margin percentage | 73.0 | % | | 69.4 | % | | 360 bps |",
-      "note": "Q2 FY26 actual adjusted gross margin %"
+      "note": "Q2 FY26 actual adjusted gross margin %",
+      "period": "Q2-FY2026",
+      "one_offs": [
+        {
+          "name": "one-time channel repricing benefit (CFO, Q2 call)",
+          "impact_pp": 0.5
+        }
+      ]
     },
     "rev_guide_beat_median_pct": {
       "value": 3.17,
       "doc": "cache/adi_guides.json",
       "quote": "4 guided-vs-actual pairs; last 8 beats: [0.3146, 0.0317, 0.0, 0.0267]",
-      "note": "median % by which ADI actual revenue beats its own guide midpoint"
+      "note": "median % by which ADI actual revenue beats its own guide midpoint",
+      "period": "derived/history"
     },
     "q3_gm_guide_seq_change_pp": {
       "value": -0.5,
