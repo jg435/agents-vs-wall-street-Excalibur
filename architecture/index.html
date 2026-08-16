@@ -221,8 +221,8 @@ adjusts, and 43.5 + 0.8 × (46.0 − 43.5) = 45.5. No number typed by hand.</p>
 <tr><td>HD</td><td>Net sales</td><td class='num'>47,191.0</td><td>USDm</td><td>TIER1</td><td class='num'>4</td></tr>
 <tr><td>HD</td><td>Adjusted diluted EPS</td><td class='num'>4.65</td><td>USD</td><td>TIER1</td><td class='num'>4</td></tr>
 <tr><td>HD</td><td>Comparable sales, total company</td><td class='num'>0.2</td><td>pp</td><td>TIER2</td><td class='num'>3</td></tr>
-<tr><td>ADI</td><td>Revenue</td><td class='num'>4,000.0</td><td>USDm</td><td>TIER1</td><td class='num'>1</td></tr>
-<tr><td>ADI</td><td>Adjusted diluted EPS</td><td class='num'>3.52</td><td>USD</td><td>TIER1</td><td class='num'>1</td></tr>
+<tr><td>ADI</td><td>Revenue</td><td class='num'>3,905.0</td><td>USDm</td><td>TIER1</td><td class='num'>1</td></tr>
+<tr><td>ADI</td><td>Adjusted diluted EPS</td><td class='num'>3.31</td><td>USD</td><td>TIER1</td><td class='num'>1</td></tr>
 <tr><td>ADI</td><td>Adjusted gross margin</td><td class='num'>72.5</td><td>%</td><td>TIER3</td><td class='num'>2</td></tr>
 <tr><td>HAS</td><td>Net fees</td><td class='num'>881.8</td><td>GBPm</td><td>TIER3</td><td class='num'>7</td></tr>
 <tr><td>HAS</td><td>Pre-exceptional basic EPS</td><td class='num'>1.12</td><td>GBp</td><td>TIER3</td><td class='num'>3</td></tr>
@@ -241,8 +241,8 @@ page if any row disagrees with the code.)</p>
 <tr><td>HD</td><td>Net sales</td><td>cons + 0.8×(target − cons); target = yearago_Q2 × (1 + mean(FY guide, Q1 YoY))</td><td><code>45,300×(1+mean(3.5,4.8)%)=47,180 → 47,235+0.8×(47,180−47,235) = 47,191.0</code></td></tr>
 <tr><td>HD</td><td>Adjusted diluted EPS</td><td>cons + 0.8×(target − cons); target = yearago_Q2_EPS × (1 + mean(FY guide, Q1 YoY))</td><td><code>4.68×(1+mean(2.0,−3.7)%)=4.64 → 4.69+0.8×(4.64−4.69) = 4.65</code></td></tr>
 <tr><td>HD</td><td>Comparable sales, total company</td><td>mean(mean(FY guide, Q1 actual), April actual) — additive, pp</td><td><code>mean(mean(1.0, 0.6), −0.5) = 0.2</code></td></tr>
-<tr><td>ADI</td><td>Revenue</td><td>guide mid × (1 + measured beat-vs-guide) — weight study superseded the 0.8 rule for ADI</td><td><code>3,900×(1+3.5%) ≈ 4,037; band route 3,994 → 4,000 = 4,000.0</code></td></tr>
-<tr><td>ADI</td><td>Adjusted diluted EPS</td><td>cons × (1 + measured beat alpha) — 22/24 beats, OOS −65%</td><td><code>3.33×1.0560 = 3.52</code></td></tr>
+<tr><td>ADI</td><td>Revenue</td><td>cons + 0.8×(guided mid − cons)</td><td><code>3,925+0.8×(3,900−3,925) = 3,905.0</code></td></tr>
+<tr><td>ADI</td><td>Adjusted diluted EPS</td><td>cons + 0.8×(guided mid − cons)</td><td><code>3.33+0.8×(3.30−3.33) = 3.31</code></td></tr>
 <tr><td>ADI</td><td>Adjusted gross margin</td><td>last quarter actual + guided sequential change — additive, pp</td><td><code>73.0 + (−0.5) = 72.5</code></td></tr>
 <tr><td>DE</td><td>Worldwide net sales and revenues</td><td>anchor + 0.8×(segment-sum target − anchor); anchor = equip cons + finance bridge</td><td><code>anchor 10,732+1,314=12,046; target 4,273×0.925+3,025×1.15+3,059×1.20+1,314=12,416 → blend = 12,342.0</code></td></tr>
 <tr><td>DE</td><td>Diluted EPS (GAAP)</td><td>cons + 0.8×(target − cons); target = (FY NI guide − H1 actual) × yearago Q3-share of H2 ÷ shares</td><td><code>(4,750−2,429)×54.8%÷270.8=4.69 → 4.72+0.8×(4.69−4.72) = 4.7</code></td></tr>
