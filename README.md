@@ -72,49 +72,6 @@ Complete [ENTRY.md](ENTRY.md), then read [SUBMISSION.md](SUBMISSION.md) before t
 
 By submitting the private team entry, your team accepts the hackathon and prize rules in [RULES.md](RULES.md).
 
-## Expected final output
-
-Your final command can use any language or framework, and it can run the four companies one after another or at the same time. It must finish by creating these exact files:
-
-```text
-submission/
-├── ADI-FY2026Q3.xlsx
-├── DE-FY2026Q3.xlsx
-├── HAS-FY2026.xlsx
-└── HD-FY2026Q2.xlsx
-```
-
-Start from the supplied files in `challenge/templates/`. Do not rename the `Summary` sheet, metric labels, units or fiscal-period column.
-
-Run `npm install` and `npm run setup:entry` once. Complete the private `entry.json` and `architecture/index.html`, then use `npm run check:submission` before uploading. It checks the entry record, architecture file and four workbooks. It does not judge whether the forecasts are good.
-
-## Optional document-search helper
-
-[`starter/search.py`](starter/search.py) is a small, dependency-free example of searching the supplied Markdown corpus and producing a cited research note. It does not make forecasts or edit a workbook.
-
-```bash
-python3 starter/search.py --company HD
-less research/HD.md
-```
-
-Use `HD`, `ADI`, `HAS` or `DE` for the four challenge companies. The output contains search leads rather than verified financial history, so check each figure in its cited document. Read [starter/README.md](starter/README.md) for narrower searches and testing instructions.
-
-## Repository map
-
-```text
-challenge/                 Companies, metrics, workbooks and historical documents
-architecture/index.html    Template for the required architecture explanation
-entry.template.json        Template for private team and agent details
-submission/                Put the four completed workbooks here
-logs/                      Save the final clear-run log here
-scripts/                   Local entry and workbook checks
-starter/                   Optional historical-document search helper
-```
-
-## Licence
-
-The original code and documentation in this repository are available under the [MIT License](LICENSE). The historical company documents under `challenge/offline-data/` are excluded; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
-
 ## Methodology:
 
 An agent that forecasts three metrics for four companies:
@@ -195,3 +152,47 @@ In total, twelve numbers into four OpenStocks workbooks.
 | 3 | `architecture/index.html` | ⬜ not started (run logs + this summary are the material) |
 | 4 | Clear-run log | ✅ produced automatically by `run_final.sh` |
 | 5 | Repo committed with final-run commit hash | ⬜ |
+
+## Expected final output
+
+Your final command can use any language or framework, and it can run the four companies one after another or at the same time. It must finish by creating these exact files:
+
+```text
+submission/
+├── ADI-FY2026Q3.xlsx
+├── DE-FY2026Q3.xlsx
+├── HAS-FY2026.xlsx
+└── HD-FY2026Q2.xlsx
+```
+
+Start from the supplied files in `challenge/templates/`. Do not rename the `Summary` sheet, metric labels, units or fiscal-period column.
+
+Run `npm install` and `npm run setup:entry` once. Complete the private `entry.json` and `architecture/index.html`, then use `npm run check:submission` before uploading. It checks the entry record, architecture file and four workbooks. It does not judge whether the forecasts are good.
+
+## Optional document-search helper
+
+[`starter/search.py`](starter/search.py) is a small, dependency-free example of searching the supplied Markdown corpus and producing a cited research note. It does not make forecasts or edit a workbook.
+
+```bash
+python3 starter/search.py --company HD
+less research/HD.md
+```
+
+Use `HD`, `ADI`, `HAS` or `DE` for the four challenge companies. The output contains search leads rather than verified financial history, so check each figure in its cited document. Read [starter/README.md](starter/README.md) for narrower searches and testing instructions.
+
+## Repository map
+
+```text
+challenge/                 Companies, metrics, workbooks and historical documents
+architecture/index.html    Template for the required architecture explanation
+entry.template.json        Template for private team and agent details
+submission/                Put the four completed workbooks here
+logs/                      Save the final clear-run log here
+scripts/                   Local entry and workbook checks
+starter/                   Optional historical-document search helper
+```
+
+## Licence
+
+The original code and documentation in this repository are available under the [MIT License](LICENSE). The historical company documents under `challenge/offline-data/` are excluded; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
