@@ -82,7 +82,8 @@ Reply with ONLY this JSON:
 {"value": float, "doc": "<repo-relative path of the source document>",
  "quote": "<the EXACT sentence or table row you read the number from, verbatim>",
  "unit_word": "billion" | "million" | "basis points" | "",
- "period": "<the exact time period the number applies to, e.g. Q3-FY2026, FY2025, Q3-FY2026-sequential>" }
+ "period": "<the exact time period the number applies to, e.g. Q3-FY2026, FY2025, Q3-FY2026-sequential>",
+ "basis": "GAAP" | "ADJUSTED" | "PRE-EXCEPTIONAL" | "BASIC" | "DILUTED" | "NET-FEES" | "SEGMENT" | "GAAP-REPORTED" }
 Rules: the quote must be copied verbatim from the document (the corpus \
 sometimes splits digits with spaces — copy it exactly as it appears). \
 "value" must be the number in the TARGET units requested. "unit_word" is the \
@@ -216,6 +217,8 @@ def verify(name, company, target_units, claim, expect_period=None):
     spec declares a period, the claim must carry a period label."""
     if expect_period and not (claim.get("period") or "").strip():
         return False, "no time-period label on the figure (Amendment 3 rule 2)"
+    if expect_period and not (claim.get("basis") or "").strip():
+        return False, "no accounting-basis label on the figure (Amendment 6 schema)"
     doc = REPO / claim.get("doc", "")
     if not doc.exists() or DATA / FOLDER[company] not in doc.parents:
         return False, f"doc not in {company} corpus: {claim.get('doc')}"

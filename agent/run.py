@@ -32,7 +32,7 @@ ALLOWED_ANCHOR_PERIODS = {
     # forecast period + anchor classes allowed to touch it (Amendment 3 rule 2,
     # enforced as a real comparison): same-period guide (incl. -sequential),
     # FY guide (phased), prior-year same-quarter base, dated share counts.
-    "HD": {"Q2-FY2026", "FY2026", "Q2-FY2025", "Q1-FY2026", "Q1-FY2025"},
+    "HD": {"Q2-FY2026", "FY2026", "Q2-FY2025", "Q1-FY2026", "Q1-FY2025", "Apr-FY2026"},
     "ADI": {"Q3-FY2026", "Q3-FY2026-sequential", "Q2-FY2026", "FY2026"},
     "DE": {"Q3-FY2026", "FY2026", "Q3-FY2025", "H1-FY2026", "Q4-FY2025", "Q2-FY2026"},
     "HAS": {"FY2026", "FY2025", "H1-FY2025", "H1-FY2026", "Q1-FY2026", "Q2-FY2026",
@@ -89,7 +89,10 @@ def provisional_engine(c):
         eps_yoy_q1 = (v("q1_fy26_adj_eps") / v("q1_fy25_adj_eps") - 1) * 100
         g_eps = temper(v("fy_adj_eps_growth_mid"), eps_yoy_q1)
         eps_target = v("q2_fy25_adj_eps") * (1 + g_eps / 100)
-        comp = temper(v("fy_comp_guide_mid"), v("q1_fy26_comp_pct"))
+        # double-temper (amendment4-updated): FY guide -> Q1 actual -> April
+        # (latest monthly momentum, went negative). mean(mean(1.0, 0.6), -0.5)
+        comp = temper(temper(v("fy_comp_guide_mid"), v("q1_fy26_comp_pct")),
+                      v("apr_fy26_comp_pct"))
         sales = cons.get("revenue_usdm") + GAP_FRACTION * (sales_target - cons.get("revenue_usdm"))
         eps = cons.get("eps") + GAP_FRACTION * (eps_target - cons.get("eps"))
         fc = {
@@ -102,15 +105,17 @@ def provisional_engine(c):
                 f"target ${eps_target:.2f} (mean(FY +2%, Q1 {eps_yoy_q1:+.1f}%) = {g_eps:+.2f}% "
                 "on Q2-FY25 $4.68) [period: FY2026 guide phased+tempered]"),
             "Comparable sales, total company": (round(comp, 1),
-                f"TIER2 guidance mid +1.0pp tempered by Q1 actual +0.6pp -> {comp:+.1f}pp "
-                "[period: FY2026 guide + Q1-FY2026 momentum]"),
+                f"TIER2 double-temper: mean(mean(FY guide +1.0, Q1 +0.6), April -0.5) = "
+                f"{comp:+.2f}pp ~ flat (April flipped negative; storm compares) "
+                "[periods: FY2026 guide, Q1-FY2026, Apr-FY2026]"),
         }
         uses = {
             "Net sales": ["fy_sales_growth_guide", "q1_fy26_sales_yoy_pct",
                           "q2_fy25_net_sales_usdm", "q1_fy26_net_sales_usdm"],
             "Adjusted diluted EPS": ["fy_adj_eps_growth_mid", "q1_fy26_adj_eps",
                                      "q1_fy25_adj_eps", "q2_fy25_adj_eps"],
-            "Comparable sales, total company": ["fy_comp_guide_mid", "q1_fy26_comp_pct"],
+            "Comparable sales, total company": ["fy_comp_guide_mid", "q1_fy26_comp_pct",
+                                                "apr_fy26_comp_pct"],
         }
     elif tk == "ADI":
         gm = v("adj_gross_margin_last") + v("q3_gm_guide_seq_change_pp")
@@ -241,8 +246,14 @@ def check_consensus_freshness():
 
 
 def main():
-    log("EXCALIBUR run start (engine=PROVISIONAL anchors)")
+    log("EXCALIBUR run start")
     check_consensus_freshness()
+    # Amendment 6 §3: stale-guidance gate — the run refuses to proceed if any
+    # engine guide fact is not the latest corpus vintage
+    from . import revision_diff
+    if revision_diff.main() != 0:
+        raise ValueError("stale guidance detected — refusing to forecast")
+    log("revision-diff: all guide facts are latest vintage")
     contract_mod.build()
     for tk in PERIOD:
         c = json.loads((CACHE / "contracts" / f"{tk}.json").read_text())

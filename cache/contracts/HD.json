@@ -25,42 +25,56 @@
       "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
       "quote": "\u2022 Total sales growth of approximately 2.5% to 4.5%",
       "note": "",
-      "period": "FY2026"
+      "period": "FY2026",
+      "basis": "GAAP-REPORTED",
+      "is_latest": true,
+      "revised_since_prior": true,
+      "revision_trace": [
+        "4.5 @ 2015-05-21",
+        "3.5 @ 2026-02-24",
+        "3.5 @ 2026-05-19",
+        "3.5 @ 2026-05-19"
+      ]
     },
     "fy_comp_guide_mid": {
       "value": 1.0,
       "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
       "quote": "\u2022 Comparable sales growth of approximately flat to 2.0%",
       "note": "flat to +2.0% -> mid +1.0pp",
-      "period": "FY2026"
+      "period": "FY2026",
+      "basis": "COMPARABLE-SALES"
     },
     "fy_adj_eps_growth_mid": {
       "value": 2.0,
       "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
       "quote": "\u2022 Diluted earnings-per-share to grow approximately flat to 4.0% from $14.23 in fiscal 2025",
       "note": "flat to +4% -> mid +2%",
-      "period": "FY2026"
+      "period": "FY2026",
+      "basis": "ADJUSTED"
     },
     "q2_fy25_net_sales_usdm": {
       "value": 45300.0,
       "doc": "challenge/offline-data/home-depot/filings/2025-08-20__hd-us-20250820-q2-8k__143688.md",
       "quote": "reported sales of $45.3 billion for the second quarter of fiscal 2025, an increase of $2.1 billion, or 4.9%",
       "note": "",
-      "period": "Q2-FY2025"
+      "period": "Q2-FY2025",
+      "basis": "GAAP-REPORTED"
     },
     "q2_fy25_adj_eps": {
       "value": 4.68,
       "doc": "challenge/offline-data/home-depot/filings/2025-08-20__hd-us-20250820-q2-8k__143688.md",
       "quote": "Adjusted diluted earnings per share for the second quarter of fiscal 2025 were $4.68, compared with",
       "note": "",
-      "period": "Q2-FY2025"
+      "period": "Q2-FY2025",
+      "basis": "ADJUSTED"
     },
     "q2_fy25_comp_pct": {
       "value": 1.0,
       "doc": "challenge/offline-data/home-depot/filings/2025-08-25__hd-us-20250825-q2-10q__144029.md",
       "quote": "Total comparable sales for the second quarter of fiscal 2025 increased 1.0%, primarily reflecting a 1.4% increase in comparable average ticket and a 0.4% decrease in comparable customer transactions compared to the second quarter of fiscal 2024. Foreign exchange rates negatively impacted comparable ",
       "note": "Q2 FY25 total-company comparable sales, base for the comp recipe",
-      "period": "Q2-FY2025"
+      "period": "Q2-FY2025",
+      "basis": "COMPARABLE-SALES"
     },
     "q1_fy26_net_sales_usdm": {
       "value": 41765.0,
@@ -77,35 +91,48 @@
           "name": "FX tailwind",
           "impact": 220
         }
-      ]
+      ],
+      "basis": "GAAP-REPORTED"
     },
     "q1_fy26_sales_yoy_pct": {
       "value": 4.8,
       "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
       "quote": "| Net sales         | $ 41,765         | $ 39,856         | 4.8%    |",
       "period": "Q1-FY2026",
-      "note": "agent+verified (Claude Code interactive; ok)"
+      "note": "agent+verified (Claude Code interactive; ok)",
+      "basis": "GAAP-REPORTED"
     },
     "q1_fy26_comp_pct": {
       "value": 0.6,
       "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
       "quote": "Comparable sales for the first quarter of fiscal 2026 increased 0.6%, and comparable sales in the U.S. increased 0.4%.",
       "period": "Q1-FY2026",
-      "note": "agent+verified (Claude Code interactive; ok)"
+      "note": "agent+verified (Claude Code interactive; ok)",
+      "basis": "COMPARABLE-SALES"
     },
     "q1_fy26_adj_eps": {
       "value": 3.43,
       "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
       "quote": "Adjusted diluted earnings per share for the first quarter of fiscal 2026 were $3.43, compared with",
       "period": "Q1-FY2026",
-      "note": "agent+verified (Claude Code interactive; ok)"
+      "note": "agent+verified (Claude Code interactive; ok)",
+      "basis": "ADJUSTED"
     },
     "q1_fy25_adj_eps": {
       "value": 3.56,
       "doc": "challenge/offline-data/home-depot/filings/2026-05-19__hd-us-20260519-q1-8k__1038584.md",
       "quote": "adjusted diluted earnings per share of $3.56 in the same period of fiscal 2025.",
       "period": "Q1-FY2025",
-      "note": "agent+verified (Claude Code interactive; ok)"
+      "note": "agent+verified (Claude Code interactive; ok)",
+      "basis": "ADJUSTED"
+    },
+    "apr_fy26_comp_pct": {
+      "value": -0.5,
+      "doc": "challenge/offline-data/home-depot/call-transcripts/2026-05-19__hd-us-20260519-call-pres__1039117.md",
+      "quote": "our total company comps were positive 0.6%, with comps of positive 0.7% in February, positive 2% in March, and negative 0.5% in April",
+      "period": "Apr-FY2026",
+      "note": "agent+verified; latest monthly momentum (CFO comp cadence, Q1 call)",
+      "basis": "COMPARABLE-SALES"
     }
   },
   "notes": []

@@ -77,6 +77,16 @@ for k in REQUIRED:
 print("2b. period labels (Amendment 3 rule 2)")
 for k in PERIOD_LABELED:
     check(f"period on {k}", bool((facts.get(k) or {}).get("period")))
+print("2c. basis labels (Amendment 6 schema) — ALL facts")
+for k, f in facts.items():
+    check(f"basis on {k}", bool(f.get("basis")))
+print("2d. revision-diff regression: the ETR 38->45 revision is detected")
+from agent.revision_diff import GUIDE_PATTERNS, vintage_series  # noqa: E402
+co, pat, tr = GUIDE_PATTERNS["HAS.fy26_etr_guide_pct"]
+series = vintage_series(co, pat, tr)
+vals = [v for _, v, _ in series]
+check("ETR vintages include 38 and 45", 38.0 in vals and 45.0 in vals, str(vals))
+check("ETR latest vintage is 45", series and series[-1][1] == 45.0)
 
 # 3. ENGINE: all 12 metrics, numeric, pass validate()
 print("3. engine coverage + validation")

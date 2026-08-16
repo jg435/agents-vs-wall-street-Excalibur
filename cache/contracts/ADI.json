@@ -25,14 +25,51 @@
       "doc": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
       "quote": "For the third quarter of fiscal 2026, we are forecasting revenue of $3.9 billion, +/- $100 million. At the midpoint of this revenue outlook, we expect reported operating margin of approximately 39.0%, +/-150 bps, and adjusted operating margin of approximately 49.0%, +/-100 bps. We are planning for r",
       "note": "",
-      "period": "Q3-FY2026"
+      "period": "Q3-FY2026",
+      "basis": "GAAP-REPORTED",
+      "is_latest": true,
+      "revised_since_prior": true,
+      "revision_trace": [
+        "1500.0 @ 2019-02-20",
+        "1450.0 @ 2019-05-22",
+        "1450.0 @ 2019-08-21",
+        "1300.0 @ 2019-11-26",
+        "1350.0 @ 2020-02-19",
+        "1320.0 @ 2020-05-20",
+        "1440.0 @ 2020-08-19",
+        "1500.0 @ 2020-10-24",
+        "1500.0 @ 2020-11-24",
+        "1600.0 @ 2021-02-17",
+        "1700.0 @ 2021-05-19",
+        "1780.0 @ 2021-08-18",
+        "2800.0 @ 2022-02-16",
+        "3050.0 @ 2022-05-18",
+        "3150.0 @ 2022-08-17",
+        "3150.0 @ 2022-11-22",
+        "3200.0 @ 2023-02-15",
+        "3100.0 @ 2023-05-24",
+        "2700.0 @ 2023-08-23",
+        "2500.0 @ 2023-11-21",
+        "2100.0 @ 2024-02-21",
+        "2270.0 @ 2024-05-22",
+        "2400.0 @ 2024-08-21",
+        "2350.0 @ 2024-11-26",
+        "2500.0 @ 2025-02-19",
+        "2750.0 @ 2025-05-22",
+        "3000.0 @ 2025-08-20",
+        "3100.0 @ 2025-11-25",
+        "3500.0 @ 2026-02-18",
+        "3900.0 @ 2026-05-20",
+        "3900.0 @ 2026-05-20"
+      ]
     },
     "eps_guide_mid": {
       "value": 3.3,
       "doc": "challenge/offline-data/analog-devices/filings/2026-05-20__adi-us-20260520-q2-8k__1040581.md",
       "quote": "For the third quarter of fiscal 2026, we are forecasting revenue of $3.9 billion, +/- $100 million. At the midpoint of this revenue outlook, we expect reported operating margin of approximately 39.0%, +/-150 bps, and adjusted operating margin of approximately 49.0%, +/-100 bps. We are planning for r",
       "note": "",
-      "period": "Q3-FY2026"
+      "period": "Q3-FY2026",
+      "basis": "ADJUSTED"
     },
     "adj_gross_margin_last": {
       "value": 73.0,
@@ -45,21 +82,24 @@
           "name": "one-time channel repricing benefit (CFO, Q2 call)",
           "impact_pp": 0.5
         }
-      ]
+      ],
+      "basis": "ADJUSTED"
     },
     "rev_guide_beat_median_pct": {
       "value": 3.17,
       "doc": "cache/adi_guides.json",
       "quote": "4 guided-vs-actual pairs; last 8 beats: [0.3146, 0.0317, 0.0, 0.0267]",
       "note": "median % by which ADI actual revenue beats its own guide midpoint",
-      "period": "derived/history"
+      "period": "derived/history",
+      "basis": "GAAP-REPORTED"
     },
     "q3_gm_guide_seq_change_pp": {
       "value": -0.5,
       "doc": "challenge/offline-data/analog-devices/call-transcripts/2026-05-20__adi-us-20260520-call-qna__1041159.md",
       "quote": "For Q3, we are assuming about a 50 basis points decline in gross margin, largely driven by the absence of that one-time benefit we got from repricing the channel during the prior quarter",
       "period": "Q3-FY2026-sequential",
-      "note": "agent+verified (Claude Code interactive; ok (sign from context))"
+      "note": "agent+verified (Claude Code interactive; ok (sign from context))",
+      "basis": "ADJUSTED"
     }
   },
   "notes": [
