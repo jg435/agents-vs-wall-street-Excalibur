@@ -3,10 +3,14 @@
 Pipeline: corpus facts -> consensus -> contracts -> engine -> validate ->
 4 workbooks in submission/ + timestamped log in logs/.
 
-Engine status: PROVISIONAL anchor passthrough (consensus / guidance mid /
-prior-year base). Viktor's 12 recipes replace provisional_engine() only —
-the plumbing on either side stays fixed. Design rule: any failure falls back
-to the anchor (expected accuracy score ~1.0), NEVER a blank (scores 5.0).
+Engine: the 12 recipes per Hackathon.md + amendments 2/3/4-updated/6 and
+Viktor's rulings — consensus-anchored (Tier 1) with guidance as the signed
+adjustment at 0.8, phase+temper for FY-only guides, derived profits, and the
+tier1_anchor rule. Gates before any workbook is written: consensus freshness,
+guidance revision-diff (latest vintage), per-metric period+basis schema,
+one-off companion rule, sanity ranges, all-12 seam check. Structured receipts
+per forecast -> cache/receipts.json. A missing required fact fails the run
+loudly — never a guessed number, never a blank cell.
 """
 import json
 from datetime import datetime, timezone
@@ -154,7 +158,11 @@ def provisional_engine(c):
                 "Adjusted gross margin": ["adj_gross_margin_last",
                                           "q3_gm_guide_seq_change_pp"]}
     elif tk == "DE":
-        bridge = v("q3_fy25_revenues_usdm") - v("q3_fy25_equip_net_sales_usdm")
+        # Viktor ruling: yfinance consensus is EQUIPMENT-ONLY. Anchor = equipment
+        # consensus (Tier 1) + finance-revenue bridge from Deere's OWN most
+        # recent actual quarter (OUR ESTIMATE — label must say so). Note: this
+        # per ruling excludes ~$277m Q2 'other revenues'.
+        bridge = v("q2_fy26_finance_rev_usdm")
         cons_worldwide = cons.get("revenue_usdm") + bridge
         seg_target = (v("q3_fy25_ppa_net_sales_usdm") * (1 + v("ppa_fy_sales_guide") / 100)
                       + v("q3_fy25_sat_net_sales_usdm") * (1 + v("sat_fy_sales_guide") / 100)
@@ -171,9 +179,11 @@ def provisional_engine(c):
                       * v("ppa_fy_margin_guide_pct") / 100)
         fc = {
             "Worldwide net sales and revenues": (round(worldwide, 0),
-                f"TIER1 consensus equip+bridge ${cons_worldwide:,.0f}m + {GAP_FRACTION}x gap to "
-                f"segment-sum target ${seg_target:,.0f}m (PPA -7.5%, SAT +15%, CF +20% on FY25 Q3 "
-                f"bases + ${bridge:.0f}m fin-svcs) [period: FY2026 guides phased]"),
+                f"equipment consensus (TIER1, yfinance ${cons.get('revenue_usdm'):,.0f}m) + "
+                f"finance bridge ${bridge:,.0f}m (OUR ESTIMATE from Q2-FY26 actual; excludes "
+                f"~$277m other revenues per ruling) = anchor ${cons_worldwide:,.0f}m, + "
+                f"{GAP_FRACTION}x gap to segment-sum target ${seg_target:,.0f}m "
+                "(PPA -7.5%, SAT +15%, CF +20%) [period: FY2026 guides phased]"),
             "Diluted EPS (GAAP)": (round(eps, 2),
                 f"TIER1 consensus ${cons.get('eps')} + {GAP_FRACTION}x gap to phased-guide target "
                 f"${eps_target:.2f} ((FY NI mid $4,750m - H1 $2,429m) x Q3-share {q3_share_h2:.1%} "
@@ -185,7 +195,7 @@ def provisional_engine(c):
         }
         uses = {
             "Worldwide net sales and revenues": [
-                "q3_fy25_revenues_usdm", "q3_fy25_equip_net_sales_usdm",
+                "q2_fy26_finance_rev_usdm",
                 "q3_fy25_ppa_net_sales_usdm", "ppa_fy_sales_guide",
                 "q3_fy25_sat_net_sales_usdm", "sat_fy_sales_guide",
                 "q3_fy25_cf_net_sales_usdm", "cf_fy_sales_guide"],

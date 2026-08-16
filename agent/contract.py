@@ -40,7 +40,10 @@ METRIC_SCHEMA = {
     "ADI:Adjusted gross margin": {"bases": {"ADJUSTED"},
                                   "periods": {"Q2-FY2026", "Q3-FY2026-sequential"}},
     "DE:Worldwide net sales and revenues": {"bases": {"GAAP-REPORTED", "SEGMENT"},
-                                            "periods": {"Q3-FY2025", "FY2026"}},
+                                            # Q2-FY2026 admitted deliberately: the finance
+                                            # bridge uses the most recent ACTUAL quarter
+                                            # (Viktor ruling, 16 Aug)
+                                            "periods": {"Q3-FY2025", "FY2026", "Q2-FY2026"}},
     "DE:Diluted EPS (GAAP)": {"bases": {"GAAP", "SHARE-COUNT"},
                               "periods": {"FY2026", "H1-FY2026", "Q3-FY2025", "Q4-FY2025", "Q2-FY2026"}},
     "DE:Production & Precision Ag operating profit": {"bases": {"SEGMENT"},

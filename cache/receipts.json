@@ -540,26 +540,16 @@
       "company": "DE",
       "metric": "Worldwide net sales and revenues",
       "period": "FY2026Q3",
-      "value": 12689.0,
+      "value": 12342.0,
       "anchor_tier": "TIER1",
-      "formula": "TIER1 consensus equip+bridge $12,393m + 0.8x gap to segment-sum target $12,763m (PPA -7.5%, SAT +15%, CF +20% on FY25 Q3 bases + $1661m fin-svcs) [period: FY2026 guides phased]",
+      "formula": "equipment consensus (TIER1, yfinance $10,732m) + finance bridge $1,314m (OUR ESTIMATE from Q2-FY26 actual; excludes ~$277m other revenues per ruling) = anchor $12,046m, + 0.8x gap to segment-sum target $12,416m (PPA -7.5%, SAT +15%, CF +20%) [period: FY2026 guides phased]",
       "consumed_facts": {
-        "q3_fy25_revenues_usdm": {
-          "value": 12018.0,
-          "period": "Q3-FY2025",
+        "q2_fy26_finance_rev_usdm": {
+          "value": 1314.0,
+          "period": "Q2-FY2026",
           "basis": "GAAP-REPORTED",
           "type": "reported_actual",
-          "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
-          "is_latest": null,
-          "revised_since_prior": false,
-          "one_offs": []
-        },
-        "q3_fy25_equip_net_sales_usdm": {
-          "value": 10357.0,
-          "period": "Q3-FY2025",
-          "basis": "GAAP-REPORTED",
-          "type": "reported_actual",
-          "doc": "challenge/offline-data/deere/filings/2025-08-15__de-us-20250815-q3-8k__143410.md",
+          "doc": "challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-10q__1055929.md",
           "is_latest": null,
           "revised_since_prior": false,
           "one_offs": []
@@ -625,7 +615,10 @@
           "one_offs": []
         }
       },
-      "consensus_inputs": {},
+      "consensus_inputs": {
+        "eps": 4.72,
+        "revenue_usdm": 10731.54221
+      },
       "checks_passed": [
         "anchor_period_and_basis_vs_metric_schema",
         "sanity_range",
@@ -640,6 +633,7 @@
         ],
         "periods": [
           "FY2026",
+          "Q2-FY2026",
           "Q3-FY2025"
         ]
       }

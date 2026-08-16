@@ -33,16 +33,17 @@ Updated: Sun 16 Aug, late afternoon. Status: all 12 numbers computed per
 amendments 2/3/4-updated/6 + Viktor's rulings; tests ALL PASS; workbooks PASS.
 
 ## VIKTOR — final sign-off needed (§5: you own the final 12)
-Current 12 (each with tier/period/basis/receipt in logs/run-*.log):
+Current 12 (structured receipts in cache/receipts.json):
   HD 47,191 / 4.65 / +0.2 · ADI 3,905 / 3.31 / 72.5
-  HAS 881.8 / 1.14p / 46.0 · DE 12,689 / 4.70 / 474
-TWO OPEN CALLS (everything else is implemented per your amendments):
-1. HAS op profit: your "top of range" 46.0 vs company consensus 43.5 —
-   ratify 46.0 or pick 44.5–45.5.
-2. DE EPS: deterministic phasing of YOUR FY guide gives target 4.69 (FY25's
-   actual Q3-share of H2 = 54.8%, receipted) -> forecast 4.70. Your prose
-   estimate was ~4.5 -> ~4.54. Say which; I will not silently override the
-   receipted calculation.
+  HAS 881.8 / 1.12p / 45.5 · DE 12,342 / 4.70 / 474
+RESOLVED: HAS op profit = 45.5 via your tier1_anchor rule (consensus 43.5 +
+0.8 x gap to guide 46.0 — derived, not typed). DE worldwide = equipment
+consensus + finance bridge (labeled OUR ESTIMATE), per your ruling.
+ONE OPEN CALL:
+- DE EPS: deterministic phasing of your FY guide gives target 4.69 (FY25's
+  actual Q3-share of H2 = 54.8%, receipted) -> forecast 4.70. Your prose
+  estimate was ~4.5 -> ~4.54. Absent your ruling we SHIP 4.70 (the receipted
+  calculation).
 Also: amendment4_updated Rulings §3 still says £12m/38% while its own anchors
 section says £13m/45% — fix the file so the record is consistent.
 Precision option: swap HD Q2-FY25 base 45,300 (prose-rounded) for David's

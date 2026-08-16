@@ -284,6 +284,45 @@
       "one_offs": [],
       "extracted_at": "2026-08-16T12:47:53.759577+00:00",
       "type": "reported_actual"
+    },
+    "q2_fy26_finance_rev_usdm": {
+      "value": 1314.0,
+      "doc": "challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-10q__1055929.md",
+      "quote": "| Finance and interest income         | 1,314         | 1,354         | 2,658         | 2,807         |",
+      "period": "Q2-FY2026",
+      "basis": "GAAP-REPORTED",
+      "type": "reported_actual",
+      "note": "agent+verified; finance-and-interest revenue, most recent actual quarter (bridge input)",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T13:08:07.363805+00:00"
+    },
+    "q2_fy26_worldwide_rev_usdm": {
+      "value": 13369.0,
+      "doc": "challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-10q__1055929.md",
+      "quote": "| Total         | 13,369         | 12,763         | 22,981         | 21,272         |",
+      "period": "Q2-FY2026",
+      "basis": "GAAP-REPORTED",
+      "type": "reported_actual",
+      "note": "agent+verified; worldwide net sales and revenues, Q2 FY26",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T13:08:07.363808+00:00"
+    },
+    "q2_fy26_equip_net_sales_usdm": {
+      "value": 11778.0,
+      "doc": "challenge/offline-data/deere/filings/2026-05-21__de-us-20260521-q2-10q__1055929.md",
+      "quote": "| Net sales         | $ 11,778         | $ 11,171         | $ 19,779         | $ 17,980         |",
+      "period": "Q2-FY2026",
+      "basis": "GAAP-REPORTED",
+      "type": "reported_actual",
+      "note": "agent+verified; equipment net sales, Q2 FY26",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T13:08:07.363810+00:00"
     }
   },
   "notes": [
