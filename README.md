@@ -172,10 +172,19 @@ In total, twelve numbers into four OpenStocks workbooks.
 
 | Company | Post-merge expectation | Basis |
 |---|---|---|
-| HD | $47,456M · $4.56 · +0.8% | Model (unchanged) |
-| ADI | $3,900M · $3.30 · 71.5% | Guidance ×2, model |
-| HAS | ~£877M · 0.65p · £46.0M | Model ×2, guidance |
-| DE | ~$12.1B · ~$4.36 · ~$335M | Model |
+| HD (FY2026Q2) | $47,456M · $4.56 · +0.8% | Model (unchanged) |
+| ADI (FY2026Q3) | $3,900M · $3.30 · 71.5% | Guidance ×2, model |
+| HAS (FY2026) | ~£877M · 0.65p · £46.0M | Model ×2, guidance |
+| DE (FY2026Q3) | ~$12.1B · ~$4.36 · ~$335M | Model |
+
+* Home Depot (FY2026Q2)
+	* Net sales (USDm) · Adjusted diluted EPS (USD/share) · Comparable sales, total company (%)
+* Analog Devices (FY2026Q3)
+	* Revenue (USDm) · Adjusted diluted EPS (USD/share) · Adjusted gross margin (%)
+* Hays (FY2026)
+	* Net fees (GBPm) · Pre-exceptional basic EPS (GBp — pence) · Pre-exceptional operating profit (GBPm)
+* Deere (FY2026Q3)
+	* Worldwide net sales and revenues (USDm) · Diluted EPS (GAAP) (USD/share) · Production & Precision Ag operating profit (USDm)
 
 ## Status of deliverables
 
