@@ -114,3 +114,75 @@ starter/                   Optional historical-document search helper
 ## Licence
 
 The original code and documentation in this repository are available under the [MIT License](LICENSE). The historical company documents under `challenge/offline-data/` are excluded; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+## Methodology:
+
+An agent that forecasts three metrics for four companies:
+* HD (FY2026Q2)
+	* Net sales (USDm) · Adjusted diluted EPS (USD/share) · Comparable sales, total company (%)
+* ADI (FY2026Q3)
+	* Revenue (USDm) · Adjusted diluted EPS (USD/share) · Adjusted gross margin (%)
+* DE (FY2026Q3)
+	* Worldwide net sales and revenues (USDm) · Diluted EPS (GAAP) (USD/share) · Production & Precision Ag operating profit (USDm)
+* HAS (FY2026)
+	* Net fees (GBPm) · Pre-exceptional basic EPS (GBp — pence) · Pre-exceptional operating profit (GBPm)
+
+The common shape is top line + earnings per share + one company-specific third metric (a health indicator for retail comps, chip margins, Deere's biggest segment, and Hays' profitability). Those exact label strings and units are what the validator checks against rows 7–9 of each workbook, which is why `history.json` and the Tier 2 extractor use them verbatim.
+
+In total, twelve numbers into four OpenStocks workbooks.
+
+## Tier 1 — model pipeline (`tier1/`):
+- **`forecast.py`** — the forecaster. Methods: `growth` (same-period-last-year × blended YoY:
+  0.7 recent + 0.3 seasonal; H1 interim pairs drive annual targets) and `pct_blend`
+  (0.6 latest + 0.4 prior-year, for mean-reverting % metrics). Supports **`override`** —
+  verified company guidance beats the model. Validates labels/units before writing, fails
+  loudly on gaps, warns on extreme growth, logs full reasoning to `logs/` (doubles as the
+  required clear-run log).
+- **`history.json`** — verified figures, every value citing a source document.
+- **`find_history.py`** — citation-producing grep helper (superseded by Tier 2 but kept).
+- Built via an iterative loop: Claude proposed greps, we ran them, values were transcribed
+  with citations. Notable finds: ADI's Q3'25 revenue in a trailing-quarters table, Deere's
+  numbers in a transcript with $ garbled to DKK/€, and explicit guidance in ADI's Q2 8-K and
+  Hays' July trading update.
+- All four workbooks pass the real validator (verified in a sandbox against the actual
+  templates and `check-forecasts.mjs`, including a tamper test).
+
+## Tier 2 — LLM extraction (`tier2/`, `run_final.sh`):
+- **`extract.py`** — per company: selects documents (anchors-first priority order), prompts
+  OpenAI (default `gpt-5`, stdlib only, key from `.env`) to emit history.json-schema JSON
+  with verbatim citations and guidance-only overrides; strictly validates output (bad
+  extractions save the raw response and never reach the merge); `--diff` compares against the
+  hand-built history.json as ground truth; `--merge` backs up then writes.
+- **`run_final.sh`** (repo root) — one command: extract → merge → forecast → validate, all
+  logged with commit hash. `--no-llm` flag = fallback to the last good history.json if the
+  API dies at 17:15.
+- **Three debugging rounds, each caught by the diff/validator working as designed**:
+  1. Model echoed units into JSON keys → prompt fix + defensive key normalization.
+  2. Document selection missed the prior-year anchors and Hays' results decks → event
+     dedupe + target-aware anchor selection + slides included.
+  3. Anchors were appended last and got truncated at the 220k-char budget → anchors-first
+     ordering + stale-slide filter.
+- **Final diff: clean.** The extractor reproduces every hand-verified value, found all three
+  overrides (ADI $3,900M / $3.30, HAS £46.0M), and extracted numbers never transcribed
+  manually (DE FY2024Q3: 13,152 / 6.29 / 1,162; HAS FY2024; ADI FY2024Q3). One value it
+  likely got *more* right than the manual pass: HAS H1'25 net fees 496.0 (reported) vs 498.3
+  (derived).
+
+## Current forecasts (will shift slightly after merge — richer seasonal pairs)
+
+| Company | Post-merge expectation | Basis |
+|---|---|---|
+| HD | $47,456M · $4.56 · +0.8% | Model (unchanged) |
+| ADI | $3,900M · $3.30 · 71.5% | Guidance ×2, model |
+| HAS | ~£877M · 0.65p · £46.0M | Model ×2, guidance |
+| DE | ~$12.1B · ~$4.36 · ~$335M | Model |
+
+## Status of deliverables
+
+| # | Deliverable | Status |
+|---|---|---|
+| 1 | Four valid workbooks | ✅ (Tier 1 basis; regenerate post-merge) |
+| 2 | `entry.json` | ⬜ created via `setup:entry`, needs team details |
+| 3 | `architecture/index.html` | ⬜ not started (run logs + this summary are the material) |
+| 4 | Clear-run log | ✅ produced automatically by `run_final.sh` |
+| 5 | Repo committed with final-run commit hash | ⬜ |
