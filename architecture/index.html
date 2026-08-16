@@ -135,35 +135,43 @@ EPS itself, so it is computed from figures that ARE anchored:<br>
 
 <h2>The pipeline</h2>
 <div class="flow">
-<svg viewBox="0 0 840 300" role="img" aria-label="Pipeline: corpus and public data feed an LLM extractor whose claims pass a deterministic verify gate into a typed fact store; the engine combines facts and consensus through six gates into twelve receipts and four workbooks; rejected claims are logged.">
-<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="#1a2330"/></marker></defs>
+<svg viewBox="0 0 880 335" role="img" aria-label="Pipeline: the corpus feeds an LLM extractor whose claims pass a deterministic verify gate; accepted facts enter the typed fact store which the engine reads; consensus anchors flow directly to the engine, never through the LLM; the engine emits twelve receipts into four workbooks; rejected claims are logged with reasons.">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="#1a2330"/></marker>
+<marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="#a33c2e"/></marker></defs>
 <g fill="none" stroke="#1a2330" stroke-width="1.3">
-<rect x="8" y="24" width="150" height="58" rx="6"/>
-<rect x="8" y="120" width="150" height="58" rx="6"/>
-<rect x="220" y="72" width="150" height="58" rx="6"/>
-<rect x="430" y="72" width="130" height="58" rx="6" stroke="#0e6e5c" stroke-width="2.2"/>
-<rect x="430" y="180" width="130" height="50" rx="6" stroke="#a33c2e"/>
-<rect x="620" y="24" width="150" height="58" rx="6"/>
-<rect x="620" y="120" width="150" height="58" rx="6"/>
-<rect x="620" y="216" width="150" height="58" rx="6"/>
-<line x1="158" y1="53" x2="218" y2="90" marker-end="url(#a)"/>
-<line x1="158" y1="149" x2="218" y2="112" marker-end="url(#a)"/>
-<line x1="370" y1="101" x2="428" y2="101" marker-end="url(#a)"/>
-<line x1="495" y1="130" x2="495" y2="178" stroke="#a33c2e" marker-end="url(#a)"/>
-<line x1="560" y1="90" x2="618" y2="60" marker-end="url(#a)"/>
-<line x1="560" y1="101" x2="618" y2="140" marker-end="url(#a)"/>
-<line x1="620" y1="178" x2="620" y2="216"/>
-<line x1="695" y1="178" x2="695" y2="214" marker-end="url(#a)"/>
+<rect x="8"   y="30" width="150" height="58" rx="6"/>
+<rect x="192" y="30" width="152" height="58" rx="6"/>
+<rect x="376" y="22" width="218" height="76" rx="6" stroke="#0e6e5c" stroke-width="2.2"/>
+<rect x="648" y="30" width="170" height="58" rx="6"/>
+<rect x="395" y="142" width="180" height="50" rx="6" stroke="#a33c2e"/>
+<rect x="8"   y="244" width="170" height="58" rx="6"/>
+<rect x="352" y="244" width="216" height="58" rx="6"/>
+<rect x="648" y="244" width="170" height="58" rx="6"/>
+<line x1="158" y1="59" x2="190" y2="59" marker-end="url(#a)"/>
+<line x1="344" y1="59" x2="374" y2="59" marker-end="url(#a)"/>
+<line x1="594" y1="59" x2="646" y2="59" marker-end="url(#a)"/>
+<line x1="485" y1="98" x2="485" y2="140" stroke="#a33c2e" marker-end="url(#r)"/>
+<polyline points="733,88 733,212 585,212"/>
+<line x1="585" y1="212" x2="512" y2="242" marker-end="url(#a)"/>
+<line x1="178" y1="273" x2="350" y2="273" marker-end="url(#a)"/>
+<line x1="568" y1="273" x2="646" y2="273" marker-end="url(#a)"/>
 </g>
 <g font-family="ui-monospace, Menlo, monospace" font-size="12.5" fill="#1a2330" text-anchor="middle">
-<text x="83" y="48">1,139-doc frozen</text><text x="83" y="64">corpus (organisers)</text>
-<text x="83" y="144">yfinance consensus</text><text x="83" y="160">(fetched in-event)</text>
-<text x="295" y="96">LLM extractor</text><text x="295" y="112">locates + quotes</text>
-<text x="495" y="96" fill="#0e6e5c" font-weight="bold">VERIFY GATE</text><text x="495" y="112" font-size="11">quote∈doc · units · period · basis</text>
-<text x="495" y="201" fill="#a33c2e">rejected claims</text><text x="495" y="217" fill="#a33c2e" font-size="11">logged with reasons</text>
-<text x="695" y="48">typed fact store</text><text x="695" y="64" font-size="11">52 facts + metadata</text>
-<text x="695" y="144">ENGINE + 6 gates</text><text x="695" y="160" font-size="11">anchor × adjust, pure code</text>
-<text x="695" y="240">12 receipts</text><text x="695" y="256" font-size="11">→ 4 xlsx workbooks</text>
+<text x="83" y="54">1,139-doc frozen</text><text x="83" y="70">corpus (organisers)</text>
+<text x="268" y="54">LLM extractor</text><text x="268" y="70">locates + quotes</text>
+<text x="485" y="46" fill="#0e6e5c" font-weight="bold">VERIFY GATE</text>
+<text x="485" y="64" font-size="10">quote must exist in cited doc</text>
+<text x="485" y="80" font-size="10">units &#183; period &#183; basis &#183; vintage</text>
+<text x="733" y="54">typed fact store</text><text x="733" y="70" font-size="11">52 facts + metadata</text>
+<text x="485" y="163" fill="#a33c2e">rejected claims</text><text x="485" y="180" fill="#a33c2e" font-size="11">logged with reasons</text>
+<text x="93" y="268">yfinance consensus</text><text x="93" y="285" font-size="11">(fetched in-event)</text>
+<text x="460" y="268">ENGINE + 6 gates</text><text x="460" y="285" font-size="10.5">anchor + 0.8&#215;gap &#183; pure code</text>
+<text x="733" y="268">12 receipts</text><text x="733" y="285" font-size="11">-&gt; 4 xlsx workbooks</text>
+</g>
+<g font-family="ui-monospace, Menlo, monospace" font-size="10.5" fill="#5c6a7a" text-anchor="middle">
+<text x="264" y="234">Tier-1 anchors (never via the LLM)</text>
+<text x="659" y="205">facts feed the engine</text>
+<text x="607" y="264">forecasts</text>
 </g></svg>
 </div>
 <p>The green gate is the heart of the design: an LLM (or any extractor) may
@@ -298,6 +306,43 @@ ledgers) before the event as general design work; all code, prompts,
 extraction, forecasts and this page were built today in this repository —
 declared in entry.json, verifiable in the commit history.</li>
 </ul>
+
+<h2>The research basis — where the idea came from, and what we threw away</h2>
+<p>We surveyed the published literature on LLM earnings forecasting before
+writing a line of code. The ledger of what we used and rejected:</p>
+<div style="overflow-x:auto"><table>
+<tr><th>Paper</th><th>What we took</th><th>Status</th></tr>
+<tr><td>FinRobot <span class="src">arXiv:2411.08804</span></td>
+<td>the 3-layer pipeline shape (evidence → forecast → quality). Explicitly did
+NOT take its forecasting — hardcoded heuristics; borrow the pattern, not the
+brain</td><td>used</td></tr>
+<tr><td>SAE-FiRE <span class="src">arXiv:2505.14420</span></td>
+<td>the SUE framing — surprise = (actual − consensus) ÷ volatility. Did not
+build its classifier (needs training data, fragile, redundant)</td><td>used</td></tr>
+<tr><td>FinReport <span class="src">arXiv:2403.02647 · WWW'24</span></td>
+<td>the evidence-to-report pipeline shape</td><td>used</td></tr>
+<tr><td>DatedGPT <span class="src">arXiv:2603.11838</span></td>
+<td>the no-lookahead discipline — never let a model "predict" a quarter it has
+already seen reported</td><td>used</td></tr>
+<tr><td>Kim / Muhn / Nikolaev <span class="src">arXiv:2407.17866</span></td>
+<td>structured LLM reasoning over bare statements beats analysts on direction.
+The arXiv version was withdrawn for data inconsistencies; we cite the SSRN
+revision for method only, never its numbers</td><td>method only</td></tr>
+<tr><td>"Man vs Machine" LLM-beats-analysts <span class="src">RFS 2023</span></td>
+<td><b>Rejected.</b> Under an Expression of Concern after
+Zhang–Zhu–Linnainmaa (RFS 2025) showed unannounced earnings had leaked into
+its features. Leak removed: linear ≈ ML ≈ analysts</td><td class="warn">rejected</td></tr>
+</table></div>
+<p>The rejected paper is the load-bearing one. The leakage-free literature
+says "ask an LLM for a number" loses to a simple linear model — <b>so we
+don't ask</b>. We anchor on consensus and make small, auditable,
+evidence-cited adjustments instead. That finding is the scientific argument
+for the entire design: a simple interpretable model is as good as a black box
+here, and only the simple one is auditable.</p>
+<p>The underlying edges the design rests on: the walk-down /
+post-earnings-announcement drift (the ~75% beat rate — consensus is
+systematically low) and SUE, the persistence of a firm's beat/miss habit
+quarter to quarter.</p>
 
 <h2>Reproduce it</h2>
 <div class="card"><p style="margin:0"><code>npm install</code> ·
