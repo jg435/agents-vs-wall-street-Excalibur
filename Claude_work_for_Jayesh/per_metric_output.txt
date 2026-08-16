@@ -1,0 +1,105 @@
+﻿PER-METRIC BEAT STUDY  —  forecast = consensus x (1 + alpha)
+consensus + actual: yfinance earnings_dates, street basis both legs.
+
+==============================================================================
+HD  —  Adjusted diluted EPS
+  basis: MATCH - yfinance EPS is the street/adjusted number
+==============================================================================
+  n=99 quarters, 2001-11-13 .. 2026-05-19
+  beats consensus 82/99 (83%)
+
+  alpha by window (mean / median):
+    last   8q    +0.73% /  +0.03%
+    last  12q    +1.19% /  +0.57%
+    last  20q    +2.49% /  +1.02%
+    last  99q    +5.38% /  +3.73%  <- full
+  bootstrap 90% CI on full-sample mean alpha: [+4.22%, +6.69%]
+
+  OUT OF SAMPLE — train 2001-11-13..2016-05-17 (n=59), test 2016-08-16..2026-05-19 (n=40)
+    rule                                test MAE  vs consensus
+    consensus untouched                   0.1202          0.0%
+    alpha mean  (train +6.64%)            0.1610         33.9%
+    alpha median(train +4.88%)            0.1297          7.9%
+    -> FAILS — alpha does not help  (best: consensus untouched)
+
+  IMPLIED FOR THIS QUARTER (consensus 4.69):
+    submitted            4.65
+    median alpha, train-fit  4.92   (alpha +4.88%)
+    median alpha, full       4.86   (alpha +3.73%)
+    mean alpha, full         4.94   (alpha +5.38%)
+
+==============================================================================
+ADI  —  Adjusted diluted EPS
+  basis: MATCH - verified 3.09 vs corpus adjusted EPS 3.09
+==============================================================================
+  n=99 quarters, 2001-11-20 .. 2026-05-20
+  beats consensus 77/99 (78%)
+
+  alpha by window (mean / median):
+    last   8q    +5.04% /  +5.49%
+    last  12q    +4.17% /  +4.88%
+    last  20q    +4.91% /  +5.27%
+    last  99q    +6.59% /  +4.64%  <- full
+  bootstrap 90% CI on full-sample mean alpha: [+4.55%, +9.20%]
+
+  OUT OF SAMPLE — train 2001-11-20..2016-05-18 (n=59), test 2016-08-17..2026-05-20 (n=40)
+    rule                                test MAE  vs consensus
+    consensus untouched                   0.0945          0.0%
+    alpha mean  (train +6.69%)            0.0571        -39.6%
+    alpha median(train +3.28%)            0.0600        -36.5%
+    -> HOLDS  (best: alpha mean  (train +6.69%))
+
+  IMPLIED FOR THIS QUARTER (consensus 3.33):
+    submitted            3.31
+    median alpha, train-fit  3.44   (alpha +3.28%)
+    median alpha, full       3.48   (alpha +4.64%)
+    mean alpha, full         3.55   (alpha +6.59%)
+
+==============================================================================
+DE  —  Diluted EPS (GAAP)
+  basis: *** BASIS RISK - metric says GAAP, yfinance is street. Check the gap before applying alpha ***
+==============================================================================
+  n=99 quarters, 2001-11-20 .. 2026-05-21
+  beats consensus 82/99 (83%)
+
+  alpha by window (mean / median):
+    last   8q    +9.43% / +11.77%
+    last  12q   +11.51% / +13.22%
+    last  20q   +11.57% / +13.22%
+    last  99q    -7.88% / +12.15%  <- full
+  bootstrap 90% CI on full-sample mean alpha: [-64.00%, +23.62%]
+
+  OUT OF SAMPLE — train 2001-11-20..2016-05-20 (n=59), test 2016-08-19..2026-05-21 (n=40)
+    rule                                test MAE  vs consensus
+    consensus untouched                   0.5725          0.0%
+    alpha mean  (train -27.39%)           1.5273        166.8%
+    alpha median(train +12.15%)           0.4276        -25.3%
+    -> HOLDS  (best: alpha median(train +12.15%))
+
+  IMPLIED FOR THIS QUARTER (consensus 4.72):
+    submitted            4.70
+    median alpha, train-fit  5.29   (alpha +12.15%)
+    median alpha, full       5.29   (alpha +12.15%)
+    mean alpha, full         4.35   (alpha -7.88%)
+
+==============================================================================
+HAS  —  Pre-exceptional basic EPS (pence)
+  basis: NO yfinance coverage - UK name
+==============================================================================
+  n=0 — NOT ESTIMABLE from yfinance. Skipped.
+
+==============================================================================
+NOT ESTIMABLE — no historical consensus series exists
+==============================================================================
+  HD  Net sales            (no historical revenue consensus)
+  ADI Revenue              (no historical revenue consensus)
+  DE  Worldwide net sales  (no historical revenue consensus; also a
+                            different measure from the yfinance feed)
+  HD  Comparable sales %   (no consensus feed at all)
+  ADI Adjusted gross margin(not guided, no consensus feed)
+  DE  PPA operating profit (segment level, no feed)
+  HAS Net fees / EPS / op profit (UK, no yfinance; Hays publishes
+                            its own consensus - build by hand)
+
+  For these, the shipped rule stands. There is no data to replace it with
+  in the time available, and inventing one would be worse than keeping it.

@@ -1,0 +1,67 @@
+﻿RECENT-WINDOW BEAT STUDY   forecast = consensus x (1 + alpha)
+last 24 quarters | fit on first 16, score on last 8 | median | |consensus| >= $0.20
+consensus + actual: yfinance earnings_dates, same basis both legs.
+
+============================================================================
+HD  —  Adjusted diluted EPS
+  basis: yfinance EPS is the street/adjusted number — same measure
+============================================================================
+  n=24  2020-08-18 .. 2026-05-19   beats consensus 20/24
+  median alpha: full window +1.57%   train-only +2.67%
+  last 4 beats: ['-0.2%', '-2.3%', '+7.9%', '+0.6%']
+
+  OUT OF SAMPLE (last 8 quarters, alpha fitted on the first 16):
+    consensus untouched      MAE 0.0538
+    consensus x (1+alpha)    MAE 0.1148   +113.6%
+    -> alpha HURTS
+
+  IMPLIED THIS QUARTER (engine consensus 4.69):
+    submitted                4.65
+    consensus x (1+alpha)    4.76   (alpha +1.57%)
+
+============================================================================
+ADI  —  Adjusted diluted EPS
+  basis: verified: yfinance actual 3.09 == corpus adjusted EPS 3.09
+============================================================================
+  n=24  2020-08-19 .. 2026-05-20   beats consensus 22/24
+  median alpha: full window +5.60%   train-only +5.60%
+  last 4 beats: ['+5.1%', '+1.3%', '+6.5%', '+6.2%']
+
+  OUT OF SAMPLE (last 8 quarters, alpha fitted on the first 16):
+    consensus untouched      MAE 0.1000
+    consensus x (1+alpha)    MAE 0.0346   -65.4%
+    -> alpha HELPS
+
+  IMPLIED THIS QUARTER (engine consensus 3.33):
+    submitted                3.31
+    consensus x (1+alpha)    3.52   (alpha +5.60%)
+
+============================================================================
+DE  —  Diluted EPS (GAAP)
+  basis: verified: Q2 8-K says '$6.55 per share', yfinance reports 6.55 — yfinance IS the GAAP figure for Deere, no basis risk
+============================================================================
+  n=24  2020-08-21 .. 2026-05-21   beats consensus 22/24
+  median alpha: full window +15.51%   train-only +18.96%
+  last 4 beats: ['+1.9%', '+2.6%', '+15.2%', '+14.9%']
+
+  OUT OF SAMPLE (last 8 quarters, alpha fitted on the first 16):
+    consensus untouched      MAE 0.4450
+    consensus x (1+alpha)    MAE 0.3965   -10.9%
+    -> alpha HELPS
+
+  IMPLIED THIS QUARTER (engine consensus 4.72):
+    submitted                4.70
+    consensus x (1+alpha)    5.45   (alpha +15.51%)
+
+============================================================================
+SUMMARY
+============================================================================
+        submitted  alpha-implied      OOS   action
+  HD         4.65           4.76     114%   KEEP submitted (alpha fails OOS)
+  ADI        3.31           3.52     -65%   CHANGE -> 3.52
+  DE         4.70           5.45     -11%   CHANGE -> 5.45
+
+  Non-EPS metrics are NOT here: no historical consensus series exists for
+  net sales, comp sales, gross margin, segment profit, or any Hays line.
+  The only non-EPS number with evidence is ADI revenue, which is
+  guide-relative (see README_FOR_JAYESH.md).

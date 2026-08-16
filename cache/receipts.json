@@ -210,9 +210,9 @@
       "company": "ADI",
       "metric": "Revenue",
       "period": "FY2026Q3",
-      "value": 3905.0,
+      "value": 4000.0,
       "anchor_tier": "TIER1",
-      "formula": "TIER1 consensus $3,925m + 0.8x gap to $3,900m guide mid [period: Q3-FY2026]",
+      "formula": "guide-relative beat prior: $3,900m guide mid x (1 + 3.5% median beat-vs-guide, 9/10 quarters above mid; routes 3,994/4,037 -> 4,000) [period: Q3-FY2026; measured in Claude_work_for_Jayesh/alpha_recent.py]",
       "consumed_facts": {
         "rev_guide_mid_usdm": {
           "value": 3900.0,
@@ -246,9 +246,9 @@
       "company": "ADI",
       "metric": "Adjusted diluted EPS",
       "period": "FY2026Q3",
-      "value": 3.31,
+      "value": 3.52,
       "anchor_tier": "TIER1",
-      "formula": "TIER1 consensus $3.33 + 0.8x gap to $3.30 guide mid [period: Q3-FY2026]",
+      "formula": "TIER1 consensus $3.33 x (1 + 5.60% measured beat prior, 22/24 quarters beat, out-of-sample MAE -65% vs consensus-alone) [period: Q3-FY2026; the 0.8 gap rule failed OOS on ADI \u2014 see weight study]",
       "consumed_facts": {
         "eps_guide_mid": {
           "value": 3.3,

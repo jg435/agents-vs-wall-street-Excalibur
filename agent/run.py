@@ -140,15 +140,25 @@ def provisional_engine(c):
         }
     elif tk == "ADI":
         gm = v("adj_gross_margin_last") + v("q3_gm_guide_seq_change_pp")
-        rev = cons.get("revenue_usdm") + GAP_FRACTION * (v("rev_guide_mid_usdm") - cons.get("revenue_usdm"))
-        eps = cons.get("eps") + GAP_FRACTION * (v("eps_guide_mid") - cons.get("eps"))
+        # Viktor's weight study (Claude_work_for_Jayesh/): on 29 ADI quarters
+        # the 0.8 gap rule fails out-of-sample; what predicts ADI is a
+        # persistent measured beat ALPHA over consensus (22/24 quarters,
+        # median +5.60%, OOS MAE -65%). Applied to ADI ONLY — HD's alpha
+        # decayed to noise, DE's is 92% a one-off tariff refund.
+        ADI_EPS_ALPHA = 0.0560
+        eps = cons.get("eps") * (1 + ADI_EPS_ALPHA)
+        # Revenue: guide-relative beat (median +3.5% over guide mid, 9/10
+        # above; band-position route gives 3,994, median route 4,037 -> 4,000)
+        rev = 4000.0
         fc = {
             "Revenue": (round(rev, 0),
-                f"TIER1 consensus ${cons.get('revenue_usdm'):,.0f}m + {GAP_FRACTION}x gap to "
-                "$3,900m guide mid [period: Q3-FY2026]"),
+                "guide-relative beat prior: $3,900m guide mid x (1 + 3.5% median "
+                "beat-vs-guide, 9/10 quarters above mid; routes 3,994/4,037 -> 4,000) "
+                "[period: Q3-FY2026; measured in Claude_work_for_Jayesh/alpha_recent.py]"),
             "Adjusted diluted EPS": (round(eps, 2),
-                f"TIER1 consensus ${cons.get('eps')} + {GAP_FRACTION}x gap to $3.30 guide mid "
-                "[period: Q3-FY2026]"),
+                f"TIER1 consensus ${cons.get('eps')} x (1 + 5.60% measured beat prior, "
+                "22/24 quarters beat, out-of-sample MAE -65% vs consensus-alone) "
+                "[period: Q3-FY2026; the 0.8 gap rule failed OOS on ADI — see weight study]"),
             "Adjusted gross margin": (round(gm, 1),
                 "TIER3 derived: Q2 actual 73.0% (one-off flagged) + guided sequential "
                 "-0.5pp (CFO, Q2 call) [period: Q3-FY2026-sequential]"),
