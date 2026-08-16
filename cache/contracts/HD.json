@@ -34,7 +34,9 @@
         "3.5 @ 2026-02-24",
         "3.5 @ 2026-05-19",
         "3.5 @ 2026-05-19"
-      ]
+      ],
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759315+00:00"
     },
     "fy_comp_guide_mid": {
       "value": 1.0,
@@ -42,7 +44,11 @@
       "quote": "\u2022 Comparable sales growth of approximately flat to 2.0%",
       "note": "flat to +2.0% -> mid +1.0pp",
       "period": "FY2026",
-      "basis": "COMPARABLE-SALES"
+      "basis": "COMPARABLE-SALES",
+      "is_latest": true,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759320+00:00"
     },
     "fy_adj_eps_growth_mid": {
       "value": 2.0,
@@ -50,7 +56,11 @@
       "quote": "\u2022 Diluted earnings-per-share to grow approximately flat to 4.0% from $14.23 in fiscal 2025",
       "note": "flat to +4% -> mid +2%",
       "period": "FY2026",
-      "basis": "ADJUSTED"
+      "basis": "ADJUSTED",
+      "is_latest": true,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759323+00:00"
     },
     "q2_fy25_net_sales_usdm": {
       "value": 45300.0,
@@ -58,7 +68,11 @@
       "quote": "reported sales of $45.3 billion for the second quarter of fiscal 2025, an increase of $2.1 billion, or 4.9%",
       "note": "",
       "period": "Q2-FY2025",
-      "basis": "GAAP-REPORTED"
+      "basis": "GAAP-REPORTED",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759325+00:00"
     },
     "q2_fy25_adj_eps": {
       "value": 4.68,
@@ -66,7 +80,11 @@
       "quote": "Adjusted diluted earnings per share for the second quarter of fiscal 2025 were $4.68, compared with",
       "note": "",
       "period": "Q2-FY2025",
-      "basis": "ADJUSTED"
+      "basis": "ADJUSTED",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759327+00:00"
     },
     "q2_fy25_comp_pct": {
       "value": 1.0,
@@ -74,7 +92,11 @@
       "quote": "Total comparable sales for the second quarter of fiscal 2025 increased 1.0%, primarily reflecting a 1.4% increase in comparable average ticket and a 0.4% decrease in comparable customer transactions compared to the second quarter of fiscal 2024. Foreign exchange rates negatively impacted comparable ",
       "note": "Q2 FY25 total-company comparable sales, base for the comp recipe",
       "period": "Q2-FY2025",
-      "basis": "COMPARABLE-SALES"
+      "basis": "COMPARABLE-SALES",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759329+00:00"
     },
     "q1_fy26_net_sales_usdm": {
       "value": 41765.0,
@@ -92,7 +114,10 @@
           "impact": 220
         }
       ],
-      "basis": "GAAP-REPORTED"
+      "basis": "GAAP-REPORTED",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "extracted_at": "2026-08-16T12:47:53.759565+00:00"
     },
     "q1_fy26_sales_yoy_pct": {
       "value": 4.8,
@@ -100,7 +125,11 @@
       "quote": "| Net sales         | $ 41,765         | $ 39,856         | 4.8%    |",
       "period": "Q1-FY2026",
       "note": "agent+verified (Claude Code interactive; ok)",
-      "basis": "GAAP-REPORTED"
+      "basis": "GAAP-REPORTED",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759566+00:00"
     },
     "q1_fy26_comp_pct": {
       "value": 0.6,
@@ -108,7 +137,11 @@
       "quote": "Comparable sales for the first quarter of fiscal 2026 increased 0.6%, and comparable sales in the U.S. increased 0.4%.",
       "period": "Q1-FY2026",
       "note": "agent+verified (Claude Code interactive; ok)",
-      "basis": "COMPARABLE-SALES"
+      "basis": "COMPARABLE-SALES",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759568+00:00"
     },
     "q1_fy26_adj_eps": {
       "value": 3.43,
@@ -116,7 +149,11 @@
       "quote": "Adjusted diluted earnings per share for the first quarter of fiscal 2026 were $3.43, compared with",
       "period": "Q1-FY2026",
       "note": "agent+verified (Claude Code interactive; ok)",
-      "basis": "ADJUSTED"
+      "basis": "ADJUSTED",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759578+00:00"
     },
     "q1_fy25_adj_eps": {
       "value": 3.56,
@@ -124,7 +161,11 @@
       "quote": "adjusted diluted earnings per share of $3.56 in the same period of fiscal 2025.",
       "period": "Q1-FY2025",
       "note": "agent+verified (Claude Code interactive; ok)",
-      "basis": "ADJUSTED"
+      "basis": "ADJUSTED",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759580+00:00"
     },
     "apr_fy26_comp_pct": {
       "value": -0.5,
@@ -132,7 +173,11 @@
       "quote": "our total company comps were positive 0.6%, with comps of positive 0.7% in February, positive 2% in March, and negative 0.5% in April",
       "period": "Apr-FY2026",
       "note": "agent+verified; latest monthly momentum (CFO comp cadence, Q1 call)",
-      "basis": "COMPARABLE-SALES"
+      "basis": "COMPARABLE-SALES",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759584+00:00"
     }
   },
   "notes": []

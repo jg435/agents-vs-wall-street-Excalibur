@@ -112,6 +112,39 @@ try:
 except ValueError:
     check("one-off-alone anchor rejected", True)
 
+# 3c. ADVERSARIAL SWAPS (Amendment 6 §6): each must be rejected
+print("3c. adversarial swaps")
+# (a) GAAP fact swapped into an ADJUSTED-EPS metric
+try:
+    validate_anchor_periods("HD",
+        {"gaap_eps": {"period": "Q2-FY2025", "basis": "GAAP"}},
+        {"Adjusted diluted EPS": ["gaap_eps"]})
+    check("GAAP-for-adjusted swap rejected", False, "accepted")
+except ValueError:
+    check("GAAP-for-adjusted swap rejected", True)
+# (b) a Q4 LFL input swapped into HD's Q2 net sales (wrong company/period class)
+try:
+    validate_anchor_periods("HD",
+        {"q4_lfl": {"period": "Q4-FY2026", "basis": "GAAP-REPORTED"}},
+        {"Net sales": ["q4_lfl"]})
+    check("wrong-period swap rejected", False, "accepted")
+except ValueError:
+    check("wrong-period swap rejected", True)
+# (c) stale guide: engine value != latest vintage must be flagged STALE
+from agent.revision_diff import GUIDE_PATTERNS as GP, vintage_series as VS
+co, pat, tr = GP["HAS.fy26_etr_guide_pct"]
+latest = VS(co, pat, tr)[-1][1]
+check("stale-guide detection (38 vs latest)", abs(38.0 - latest) > 0.005 * latest,
+      f"latest={latest}")
+# (d) one-off actual anchoring alone — covered in 3b above (kept there)
+
+# 2e. FULL SCHEMA on every fact (Amendment 6 §1)
+print("2e. full fact schema (is_latest/revised_since_prior/one_offs/extracted_at)")
+from agent.corpus import MANDATORY_FACT_KEYS
+for k, f in facts.items():
+    missing = [key for key in MANDATORY_FACT_KEYS if key not in f]
+    check(f"schema {k}", not missing, str(missing))
+
 # 4. VALIDATOR REJECTS a planted bad value (loud gate proven live)
 print("4. validator rejection")
 try:

@@ -207,10 +207,35 @@ def extract_facts():
     return F
 
 
+MANDATORY_FACT_KEYS = ["value", "period", "basis", "doc", "quote",
+                       "is_latest", "revised_since_prior", "one_offs",
+                       "extracted_at"]
+
+
+def normalize_facts(F):
+    """Amendment 6 §1: every fact carries the FULL schema explicitly —
+    absent is not the same as false. Returns (facts, schema_violations)."""
+    from datetime import datetime, timezone
+    violations = []
+    for k, f in F.items():
+        f.setdefault("is_latest", None)          # None = not yet diff-checked
+        f.setdefault("revised_since_prior", False)
+        f.setdefault("one_offs", [])             # explicit empty, not absent
+        f.setdefault("extracted_at", datetime.now(timezone.utc).isoformat())
+        missing = [key for key in MANDATORY_FACT_KEYS if key not in f]
+        if missing or not f.get("period") or not f.get("basis") or not f.get("quote"):
+            violations.append(f"{k}: missing/empty {missing or 'period/basis/quote'}")
+    return F, violations
+
+
 def load_facts():
     f = FACTS_DIR / "facts.json"
     if f.exists():
-        return json.loads(f.read_text())
+        F, violations = normalize_facts(json.loads(f.read_text()))
+        if violations:
+            raise ValueError("fact schema violations (Amendment 6): " + "; ".join(violations))
+        f.write_text(json.dumps(F, indent=2))    # persist normalized form
+        return F
     legacy = RESEARCH / "facts.json"          # pre-move location fallback
     if legacy.exists():
         return json.loads(legacy.read_text())

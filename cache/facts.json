@@ -40,7 +40,9 @@
       "3500.0 @ 2026-02-18",
       "3900.0 @ 2026-05-20",
       "3900.0 @ 2026-05-20"
-    ]
+    ],
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.758801+00:00"
   },
   "ADI.eps_guide_mid": {
     "value": 3.3,
@@ -48,7 +50,45 @@
     "quote": "For the third quarter of fiscal 2026, we are forecasting revenue of $3.9 billion, +/- $100 million. At the midpoint of this revenue outlook, we expect reported operating margin of approximately 39.0%, +/-150 bps, and adjusted operating margin of approximately 49.0%, +/-100 bps. We are planning for r",
     "note": "",
     "period": "Q3-FY2026",
-    "basis": "ADJUSTED"
+    "basis": "ADJUSTED",
+    "is_latest": true,
+    "revised_since_prior": true,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759294+00:00",
+    "revision_trace": [
+      "1.3 @ 2019-02-20",
+      "1.22 @ 2019-05-22",
+      "1.22 @ 2019-08-21",
+      "1.0 @ 2019-11-26",
+      "1.1 @ 2020-02-19",
+      "1.08 @ 2020-05-20",
+      "1.32 @ 2020-08-19",
+      "1.3 @ 2020-10-24",
+      "1.3 @ 2020-11-24",
+      "1.44 @ 2021-02-17",
+      "1.61 @ 2021-05-19",
+      "1.72 @ 2021-08-18",
+      "1.78 @ 2021-11-23",
+      "2.07 @ 2022-02-16",
+      "2.42 @ 2022-05-18",
+      "2.57 @ 2022-08-17",
+      "2.6 @ 2022-11-22",
+      "2.75 @ 2023-02-15",
+      "2.52 @ 2023-05-24",
+      "2.0 @ 2023-08-23",
+      "1.7 @ 2023-11-21",
+      "1.26 @ 2024-02-21",
+      "1.5 @ 2024-05-22",
+      "1.63 @ 2024-08-21",
+      "1.53 @ 2024-11-26",
+      "1.68 @ 2025-02-19",
+      "1.92 @ 2025-05-22",
+      "2.22 @ 2025-08-20",
+      "2.29 @ 2025-11-25",
+      "2.88 @ 2026-02-18",
+      "3.3 @ 2026-05-20",
+      "3.3 @ 2026-05-20"
+    ]
   },
   "ADI.adj_gross_margin_last": {
     "value": 73.0,
@@ -62,7 +102,10 @@
         "impact_pp": 0.5
       }
     ],
-    "basis": "ADJUSTED"
+    "basis": "ADJUSTED",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "extracted_at": "2026-08-16T12:47:53.759298+00:00"
   },
   "HAS.op_profit_guide_note": {
     "value": 46.0,
@@ -70,7 +113,11 @@
     "quote": "- Our actions to deliver strong consultant net fee productivity growth and cost discipline continued to offset our lower net fees in H2 26 and we currently expect FY26 pre -exceptional operating profit will be at the top of the \u00a337.0 -46.0m consensus range (2)",
     "note": "'top of the \u00a337.0\u201346.0m consensus range'",
     "period": "derived/history",
-    "basis": "PRE-EXCEPTIONAL"
+    "basis": "PRE-EXCEPTIONAL",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759301+00:00"
   },
   "HAS.op_profit_consensus": {
     "value": 43.5,
@@ -78,7 +125,17 @@
     "quote": "- (2) As of  9  July  2026 , c ompany complied consensus for FY26 pre -exceptional operating profit is \u00a34 3.5 m, with a \u00a337 .0-46 .0m range, based on 1 0 analysts .",
     "note": "company-compiled consensus, 10 analysts, as of 9 Jul 2026",
     "period": "FY2026",
-    "basis": "PRE-EXCEPTIONAL"
+    "basis": "PRE-EXCEPTIONAL",
+    "is_latest": true,
+    "revised_since_prior": true,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759303+00:00",
+    "revision_trace": [
+      "45.2 @ 2026-04-16",
+      "45.2 @ 2026-04-16",
+      "43.5 @ 2026-07-10",
+      "43.5 @ 2026-07-10"
+    ]
   },
   "HAS.q4_net_fees_lfl": {
     "value": -5.0,
@@ -86,7 +143,11 @@
     "quote": "- Group net fees  down 5% YoY (1) with Temp &amp; Contracting and Perm down 3% and  7% respectively",
     "note": "",
     "period": "Q4-FY2026",
-    "basis": "NET-FEES"
+    "basis": "NET-FEES",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759305+00:00"
   },
   "HAS.shares_issued": {
     "value": 1591800000.0,
@@ -94,7 +155,11 @@
     "quote": "18 February 2025 | 1,591.8m |  |  |  |",
     "note": "agent+verified (ok)",
     "period": "2026-07-31",
-    "basis": "SHARE-COUNT"
+    "basis": "SHARE-COUNT",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759309+00:00"
   },
   "DE.fy_net_income_guide_usdm": {
     "value": 4750.0,
@@ -110,7 +175,9 @@
       "4750.0 @ 2026-02-19",
       "4750.0 @ 2026-05-21",
       "4750.0 @ 2026-05-21"
-    ]
+    ],
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759311+00:00"
   },
   "DE.ppa_fy_sales_guide": {
     "value": -7.5,
@@ -118,7 +185,15 @@
     "quote": "| Production & Precision Ag | \u200b | Down 5 to 10% | \u200b | +3.0% | \u200b | ~ +1.0% | \u200b |",
     "note": "FY sales down 5-10%, mid -7.5%",
     "period": "FY2026",
-    "basis": "SEGMENT"
+    "basis": "SEGMENT",
+    "is_latest": true,
+    "revised_since_prior": true,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759313+00:00",
+    "revision_trace": [
+      "-17.5 @ 2023-11-22",
+      "-7.5 @ 2026-05-21"
+    ]
   },
   "HD.fy_sales_growth_guide": {
     "value": 3.5,
@@ -134,7 +209,9 @@
       "3.5 @ 2026-02-24",
       "3.5 @ 2026-05-19",
       "3.5 @ 2026-05-19"
-    ]
+    ],
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759315+00:00"
   },
   "HD.fy_comp_guide_mid": {
     "value": 1.0,
@@ -142,7 +219,11 @@
     "quote": "\u2022 Comparable sales growth of approximately flat to 2.0%",
     "note": "flat to +2.0% -> mid +1.0pp",
     "period": "FY2026",
-    "basis": "COMPARABLE-SALES"
+    "basis": "COMPARABLE-SALES",
+    "is_latest": true,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759320+00:00"
   },
   "HD.fy_adj_eps_growth_mid": {
     "value": 2.0,
@@ -150,7 +231,11 @@
     "quote": "\u2022 Diluted earnings-per-share to grow approximately flat to 4.0% from $14.23 in fiscal 2025",
     "note": "flat to +4% -> mid +2%",
     "period": "FY2026",
-    "basis": "ADJUSTED"
+    "basis": "ADJUSTED",
+    "is_latest": true,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759323+00:00"
   },
   "HD.q2_fy25_net_sales_usdm": {
     "value": 45300.0,
@@ -158,7 +243,11 @@
     "quote": "reported sales of $45.3 billion for the second quarter of fiscal 2025, an increase of $2.1 billion, or 4.9%",
     "note": "",
     "period": "Q2-FY2025",
-    "basis": "GAAP-REPORTED"
+    "basis": "GAAP-REPORTED",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759325+00:00"
   },
   "HD.q2_fy25_adj_eps": {
     "value": 4.68,
@@ -166,7 +255,11 @@
     "quote": "Adjusted diluted earnings per share for the second quarter of fiscal 2025 were $4.68, compared with",
     "note": "",
     "period": "Q2-FY2025",
-    "basis": "ADJUSTED"
+    "basis": "ADJUSTED",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759327+00:00"
   },
   "HD.q2_fy25_comp_pct": {
     "value": 1.0,
@@ -174,7 +267,11 @@
     "quote": "Total comparable sales for the second quarter of fiscal 2025 increased 1.0%, primarily reflecting a 1.4% increase in comparable average ticket and a 0.4% decrease in comparable customer transactions compared to the second quarter of fiscal 2024. Foreign exchange rates negatively impacted comparable ",
     "note": "Q2 FY25 total-company comparable sales, base for the comp recipe",
     "period": "Q2-FY2025",
-    "basis": "COMPARABLE-SALES"
+    "basis": "COMPARABLE-SALES",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759329+00:00"
   },
   "DE.q3_fy25_revenues_usdm": {
     "value": 12018.0,
@@ -182,7 +279,11 @@
     "quote": "Worldwide net sales and revenues decreased 9 percent, to $12.018 billion, for the third",
     "note": "",
     "period": "Q3-FY2025",
-    "basis": "GAAP-REPORTED"
+    "basis": "GAAP-REPORTED",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759331+00:00"
   },
   "DE.q3_fy25_ppa_net_sales_usdm": {
     "value": 4273.0,
@@ -190,7 +291,11 @@
     "quote": "| Net sales         | $ 4,273         | $ 5,099         | -16%         |",
     "note": "",
     "period": "Q3-FY2025",
-    "basis": "SEGMENT"
+    "basis": "SEGMENT",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759333+00:00"
   },
   "DE.q3_fy25_ppa_op_profit_usdm": {
     "value": 580.0,
@@ -198,7 +303,11 @@
     "quote": "| Operating profit         | $ 580         | $ 1,162         | -50%         |",
     "note": "",
     "period": "Q3-FY2025",
-    "basis": "SEGMENT"
+    "basis": "SEGMENT",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759337+00:00"
   },
   "DE.q3_fy25_sat_net_sales_usdm": {
     "value": 3025.0,
@@ -206,7 +315,11 @@
     "quote": "| Net sales         | $ 3,025         | $ 3,053         | -1%         |",
     "note": "",
     "period": "Q3-FY2025",
-    "basis": "SEGMENT"
+    "basis": "SEGMENT",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759339+00:00"
   },
   "DE.q3_fy25_sat_op_profit_usdm": {
     "value": 485.0,
@@ -214,7 +327,11 @@
     "quote": "| Operating profit         | $ 485         | $ 496         | -2%         |",
     "note": "",
     "period": "Q3-FY2025",
-    "basis": "SEGMENT"
+    "basis": "SEGMENT",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759340+00:00"
   },
   "DE.q3_fy25_cf_net_sales_usdm": {
     "value": 3059.0,
@@ -222,7 +339,11 @@
     "quote": "| Net sales         | $ 3,059         | $ 3,235         | -5%         |",
     "note": "",
     "period": "Q3-FY2025",
-    "basis": "SEGMENT"
+    "basis": "SEGMENT",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759530+00:00"
   },
   "DE.q3_fy25_cf_op_profit_usdm": {
     "value": 237.0,
@@ -230,7 +351,11 @@
     "quote": "| Operating profit         | $ 237         | $ 448         | -47%         |",
     "note": "",
     "period": "Q3-FY2025",
-    "basis": "SEGMENT"
+    "basis": "SEGMENT",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759532+00:00"
   },
   "HAS.fy25_net_fees_gbpm": {
     "value": 972.4,
@@ -238,7 +363,11 @@
     "quote": "| Group net fees (2) \u00a3972.4m FY24: \u00a31,113.6m    | Cash from operations (4) \u00a3128.3m FY24: \u00a3112.3m   |",
     "note": "agent+verified (ok)",
     "period": "FY2025",
-    "basis": "NET-FEES"
+    "basis": "NET-FEES",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759534+00:00"
   },
   "HAS.fy25_op_profit_gbpm": {
     "value": 45.6,
@@ -246,7 +375,11 @@
     "quote": "FY25 pre-exceptional (5)  Group operating profit of \u00a345.6 million represented a like-for-like decrease of 56% (down 57% reported) with a higher drop-through of lower net fees to profitability in the final quarter from broad-based weakness in Permanent markets globally.",
     "note": "agent+verified (ok)",
     "period": "FY2025",
-    "basis": "PRE-EXCEPTIONAL"
+    "basis": "PRE-EXCEPTIONAL",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759536+00:00"
   },
   "HAS.fy25_net_finance_charge_gbpm": {
     "value": 13.4,
@@ -254,7 +387,11 @@
     "quote": "The net finance charge for FY25 was \u00a313.4 million (FY24: \u00a310.4 million).",
     "note": "agent+verified (ok)",
     "period": "FY2025",
-    "basis": "PRE-EXCEPTIONAL"
+    "basis": "PRE-EXCEPTIONAL",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759538+00:00"
   },
   "HAS.fy25_pre_exceptional_etr_pct": {
     "value": 35.1,
@@ -262,7 +399,11 @@
     "quote": "The tax charge for the year ended 30 June 2025 of \u00a311.3 million (FY24: \u00a330.7 million) represented a pre-exceptional effective tax rate ('ETR') of 35.1% (FY24: 32.4%).",
     "note": "agent+verified (ok)",
     "period": "FY2025",
-    "basis": "PRE-EXCEPTIONAL"
+    "basis": "PRE-EXCEPTIONAL",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759540+00:00"
   },
   "ADI.rev_guide_beat_median_pct": {
     "value": 3.17,
@@ -270,7 +411,11 @@
     "quote": "4 guided-vs-actual pairs; last 8 beats: [0.3146, 0.0317, 0.0, 0.0267]",
     "note": "median % by which ADI actual revenue beats its own guide midpoint",
     "period": "derived/history",
-    "basis": "GAAP-REPORTED"
+    "basis": "GAAP-REPORTED",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759541+00:00"
   },
   "DE.q3_fy25_equip_net_sales_usdm": {
     "value": 10357.0,
@@ -278,7 +423,11 @@
     "quote": "Net sales were $10.357 billion for the quarter and $28.338 billion for nine months, compared with $11.387 billion and $35.484 billion last year, respectively.",
     "note": "agent+verified (Claude Code interactive; ok)",
     "period": "Q3-FY2025",
-    "basis": "GAAP-REPORTED"
+    "basis": "GAAP-REPORTED",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759543+00:00"
   },
   "ADI.q3_gm_guide_seq_change_pp": {
     "value": -0.5,
@@ -286,7 +435,11 @@
     "quote": "For Q3, we are assuming about a 50 basis points decline in gross margin, largely driven by the absence of that one-time benefit we got from repricing the channel during the prior quarter",
     "period": "Q3-FY2026-sequential",
     "note": "agent+verified (Claude Code interactive; ok (sign from context))",
-    "basis": "ADJUSTED"
+    "basis": "ADJUSTED",
+    "is_latest": true,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759545+00:00"
   },
   "DE.ppa_fy_margin_guide_pct": {
     "value": 12.0,
@@ -317,7 +470,9 @@
       "13.25 @ 2025-11-26",
       "12.0 @ 2026-02-19",
       "12.0 @ 2026-05-21"
-    ]
+    ],
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759547+00:00"
   },
   "DE.q2_tariff_refund_usdm": {
     "value": 272.0,
@@ -325,7 +480,11 @@
     "quote": "The company recorded a recovery of $272 million for refund claims related to IEEPA tariffs which have been filed and accepted by the U.S. Customs and Border Protection.",
     "period": "Q2-FY2026-one-off",
     "note": "agent+verified (Claude Code interactive; ok)",
-    "basis": "GAAP-REPORTED"
+    "basis": "GAAP-REPORTED",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759549+00:00"
   },
   "DE.sat_fy_sales_guide": {
     "value": 15.0,
@@ -333,7 +492,11 @@
     "quote": "We continue to expect net sales to be up approximately 15% for the full year.",
     "period": "FY2026",
     "note": "agent+verified (Claude Code interactive; ok)",
-    "basis": "SEGMENT"
+    "basis": "SEGMENT",
+    "is_latest": true,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759550+00:00"
   },
   "HAS.q1_net_fees_lfl": {
     "value": -8.0,
@@ -341,7 +504,11 @@
     "quote": "Group net fees down 8% YoY with Temp &amp; Contracting and Perm down 5% and 13% respectively",
     "period": "Q1-FY2026",
     "note": "agent+verified (Claude Code interactive; ok (sign from context))",
-    "basis": "NET-FEES"
+    "basis": "NET-FEES",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759552+00:00"
   },
   "HAS.q2_net_fees_lfl": {
     "value": -10.0,
@@ -349,7 +516,11 @@
     "quote": "Group net fees down 10 % YoY  with Temp &amp; Contracting and Perm down 8% and 14% respectively",
     "period": "Q2-FY2026",
     "note": "agent+verified (Claude Code interactive; ok (sign from context))",
-    "basis": "NET-FEES"
+    "basis": "NET-FEES",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759554+00:00"
   },
   "HAS.q3_net_fees_lfl": {
     "value": -8.0,
@@ -357,7 +528,11 @@
     "quote": "Group net fees down 8% YoY  with Temp &amp; Contracting and Perm down  6% and  12 % respectively",
     "period": "Q3-FY2026",
     "note": "agent+verified (Claude Code interactive; ok (sign from context))",
-    "basis": "NET-FEES"
+    "basis": "NET-FEES",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759556+00:00"
   },
   "HAS.h1_fy25_net_fees_gbpm": {
     "value": 496.0,
@@ -365,7 +540,11 @@
     "quote": "| Net fees (1)         | 496.0  | 583.3  | (15)%         | (13)%        |",
     "period": "H1-FY2025",
     "note": "agent+verified (Claude Code interactive; ok); H1 FY25 net fees for weighted build-up",
-    "basis": "NET-FEES"
+    "basis": "NET-FEES",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759557+00:00"
   },
   "HAS.fy26_disposed_net_fees_gbpm": {
     "value": 15.0,
@@ -373,7 +552,11 @@
     "quote": "Czech Republic, Denmark, Hungary, Luxembourg, Romania, and Sweden contributed c.\u00a315m to reported group net fees in FY26.",
     "period": "FY2026",
     "note": "agent+verified (Claude Code interactive; ok)",
-    "basis": "NET-FEES"
+    "basis": "NET-FEES",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759559+00:00"
   },
   "HAS.fy26_net_finance_charge_guide_gbpm": {
     "value": 13.0,
@@ -390,7 +573,9 @@
       "12.0 @ 2025-08-21",
       "13.0 @ 2026-02-27",
       "13.0 @ 2026-02-27"
-    ]
+    ],
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759561+00:00"
   },
   "HAS.fy26_etr_guide_pct": {
     "value": 45.0,
@@ -408,7 +593,9 @@
       "38.0 @ 2025-08-21",
       "45.0 @ 2026-02-27",
       "45.0 @ 2026-02-27"
-    ]
+    ],
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759563+00:00"
   },
   "HD.q1_fy26_net_sales_usdm": {
     "value": 41765.0,
@@ -426,7 +613,10 @@
         "impact": 220
       }
     ],
-    "basis": "GAAP-REPORTED"
+    "basis": "GAAP-REPORTED",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "extracted_at": "2026-08-16T12:47:53.759565+00:00"
   },
   "HD.q1_fy26_sales_yoy_pct": {
     "value": 4.8,
@@ -434,7 +624,11 @@
     "quote": "| Net sales         | $ 41,765         | $ 39,856         | 4.8%    |",
     "period": "Q1-FY2026",
     "note": "agent+verified (Claude Code interactive; ok)",
-    "basis": "GAAP-REPORTED"
+    "basis": "GAAP-REPORTED",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759566+00:00"
   },
   "HD.q1_fy26_comp_pct": {
     "value": 0.6,
@@ -442,7 +636,11 @@
     "quote": "Comparable sales for the first quarter of fiscal 2026 increased 0.6%, and comparable sales in the U.S. increased 0.4%.",
     "period": "Q1-FY2026",
     "note": "agent+verified (Claude Code interactive; ok)",
-    "basis": "COMPARABLE-SALES"
+    "basis": "COMPARABLE-SALES",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759568+00:00"
   },
   "DE.h1_fy26_net_income_usdm": {
     "value": 2429.0,
@@ -450,7 +648,11 @@
     "quote": "| Net income attributable to Deere & Company | \u200b | $ | 1,773 | \u200b | $ | 1,804 | | -2 | \u200b | $ | 2,429 | \u200b | $ | 2,673 | | -9 | \u200b |",
     "period": "H1-FY2026",
     "note": "agent+verified (Claude Code interactive; ok)",
-    "basis": "GAAP"
+    "basis": "GAAP",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759570+00:00"
   },
   "DE.q3_fy25_net_income_usdm": {
     "value": 1289.0,
@@ -458,7 +660,11 @@
     "quote": "Deere Reports Third Quarter Net Income of $1.289 Billion",
     "period": "Q3-FY2025",
     "note": "agent+verified (Claude Code interactive; ok)",
-    "basis": "GAAP"
+    "basis": "GAAP",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759571+00:00"
   },
   "DE.q4_fy25_net_income_usdm": {
     "value": 1065.0,
@@ -466,7 +672,11 @@
     "quote": "Deere Reports Net Income of $1.065 Billion for Fourth Quarter, $5.027 Billion for",
     "period": "Q4-FY2025",
     "note": "agent+verified (Claude Code interactive; ok)",
-    "basis": "GAAP"
+    "basis": "GAAP",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759573+00:00"
   },
   "DE.cf_fy_sales_guide": {
     "value": 20.0,
@@ -474,7 +684,11 @@
     "quote": "| Construction & Forestry | \u200b | Up ~20% | \u200b | +2.0% | \u200b | ~ +2.5% | \u200b |",
     "period": "FY2026",
     "note": "agent+verified (Claude Code interactive; ok)",
-    "basis": "SEGMENT"
+    "basis": "SEGMENT",
+    "is_latest": true,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759575+00:00"
   },
   "DE.q2_fy26_diluted_shares_m": {
     "value": 270.8,
@@ -482,7 +696,11 @@
     "quote": "| Diluted         | 270.8         | 271.8         | 270.9         | 272.1         |",
     "period": "Q2-FY2026",
     "note": "agent+verified (Claude Code interactive; ok)",
-    "basis": "SHARE-COUNT"
+    "basis": "SHARE-COUNT",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759577+00:00"
   },
   "HD.q1_fy26_adj_eps": {
     "value": 3.43,
@@ -490,7 +708,11 @@
     "quote": "Adjusted diluted earnings per share for the first quarter of fiscal 2026 were $3.43, compared with",
     "period": "Q1-FY2026",
     "note": "agent+verified (Claude Code interactive; ok)",
-    "basis": "ADJUSTED"
+    "basis": "ADJUSTED",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759578+00:00"
   },
   "HD.q1_fy25_adj_eps": {
     "value": 3.56,
@@ -498,7 +720,11 @@
     "quote": "adjusted diluted earnings per share of $3.56 in the same period of fiscal 2025.",
     "period": "Q1-FY2025",
     "note": "agent+verified (Claude Code interactive; ok)",
-    "basis": "ADJUSTED"
+    "basis": "ADJUSTED",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759580+00:00"
   },
   "HAS.h1_fy26_weighted_avg_shares_m": {
     "value": 1595.7,
@@ -506,7 +732,11 @@
     "quote": "| Weighted average number of shares         | 1,595.7         | 1,588.5         | 1,590.2         |",
     "period": "H1-FY2026",
     "note": "agent+verified; SUPERSEDES the Aug-2025 guide (Feb-2026 H1 update is the latest period-specific guidance)",
-    "basis": "SHARE-COUNT"
+    "basis": "SHARE-COUNT",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759582+00:00"
   },
   "HD.apr_fy26_comp_pct": {
     "value": -0.5,
@@ -514,6 +744,10 @@
     "quote": "our total company comps were positive 0.6%, with comps of positive 0.7% in February, positive 2% in March, and negative 0.5% in April",
     "period": "Apr-FY2026",
     "note": "agent+verified; latest monthly momentum (CFO comp cadence, Q1 call)",
-    "basis": "COMPARABLE-SALES"
+    "basis": "COMPARABLE-SALES",
+    "is_latest": null,
+    "revised_since_prior": false,
+    "one_offs": [],
+    "extracted_at": "2026-08-16T12:47:53.759584+00:00"
   }
 }

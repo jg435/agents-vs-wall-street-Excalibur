@@ -26,6 +26,35 @@ METRICS = {
 }
 
 
+# Amendment 6 §2 metric schema: which fact BASES and PERIODS may feed each
+# forecast metric. validate_anchor_periods() enforces this mechanically.
+METRIC_SCHEMA = {
+    "HD:Net sales": {"bases": {"GAAP-REPORTED"},
+                     "periods": {"Q2-FY2026", "FY2026", "Q2-FY2025", "Q1-FY2026"}},
+    "HD:Adjusted diluted EPS": {"bases": {"ADJUSTED"},
+                                "periods": {"Q2-FY2026", "FY2026", "Q2-FY2025", "Q1-FY2026", "Q1-FY2025"}},
+    "HD:Comparable sales, total company": {"bases": {"COMPARABLE-SALES"},
+                                           "periods": {"FY2026", "Q1-FY2026", "Apr-FY2026"}},
+    "ADI:Revenue": {"bases": {"GAAP-REPORTED"}, "periods": {"Q3-FY2026"}},
+    "ADI:Adjusted diluted EPS": {"bases": {"ADJUSTED"}, "periods": {"Q3-FY2026"}},
+    "ADI:Adjusted gross margin": {"bases": {"ADJUSTED"},
+                                  "periods": {"Q2-FY2026", "Q3-FY2026-sequential"}},
+    "DE:Worldwide net sales and revenues": {"bases": {"GAAP-REPORTED", "SEGMENT"},
+                                            "periods": {"Q3-FY2025", "FY2026"}},
+    "DE:Diluted EPS (GAAP)": {"bases": {"GAAP", "SHARE-COUNT"},
+                              "periods": {"FY2026", "H1-FY2026", "Q3-FY2025", "Q4-FY2025", "Q2-FY2026"}},
+    "DE:Production & Precision Ag operating profit": {"bases": {"SEGMENT"},
+                                                      "periods": {"Q3-FY2025", "FY2026"}},
+    "HAS:Net fees": {"bases": {"NET-FEES"},
+                     "periods": {"FY2025", "H1-FY2025", "Q1-FY2026", "Q2-FY2026",
+                                 "Q3-FY2026", "Q4-FY2026", "FY2026"}},
+    "HAS:Pre-exceptional basic EPS": {"bases": {"PRE-EXCEPTIONAL", "SHARE-COUNT"},
+                                      "periods": {"FY2026", "H1-FY2026"}},
+    "HAS:Pre-exceptional operating profit": {"bases": {"PRE-EXCEPTIONAL"},
+                                             "periods": {"FY2026"}},
+}
+
+
 def _clean(x):
     if isinstance(x, float) and (math.isnan(x) or math.isinf(x)):
         return None

@@ -14,7 +14,7 @@ from pathlib import Path
 
 from . import contract as contract_mod
 from . import workbook
-from .contract import METRICS, OUTPUT, PERIOD
+from .contract import METRICS, METRIC_SCHEMA, OUTPUT, PERIOD
 
 REPO = Path(__file__).resolve().parent.parent
 CACHE = REPO / "cache"
@@ -45,12 +45,18 @@ def validate_anchor_periods(tk, facts, uses):
     an allowed anchor class for this forecast; a one-off-bearing actual may
     only be used WITH a same/sequential-period guide companion (rule 3)."""
     for metric, names in uses.items():
+        schema = METRIC_SCHEMA.get(f"{tk}:{metric}")
         for n in names:
             f = facts.get(n) or {}
             per = f.get("period", "")
-            if per not in ALLOWED_ANCHOR_PERIODS[tk] and per != "derived/history":
-                raise ValueError(f"{tk}/{metric}: fact {n} period '{per}' not an "
-                                 f"allowed anchor class {ALLOWED_ANCHOR_PERIODS[tk]}")
+            allowed_p = schema["periods"] if schema else ALLOWED_ANCHOR_PERIODS[tk]
+            if per not in allowed_p and per != "derived/history":
+                raise ValueError(f"{tk}/{metric}: fact {n} period '{per}' not in "
+                                 f"allowed periods {sorted(allowed_p)}")
+            if schema and f.get("basis") and f["basis"] not in schema["bases"]:
+                raise ValueError(f"{tk}/{metric}: fact {n} basis '{f['basis']}' does "
+                                 f"not satisfy required bases {sorted(schema['bases'])} "
+                                 "(Amendment 6 basis-mismatch check)")
             if f.get("one_offs"):
                 companions = [facts.get(m, {}).get("period", "") for m in names if m != n]
                 if not any("sequential" in c or c.startswith(("Q", "FY2026")) for c in companions):

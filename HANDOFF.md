@@ -1,28 +1,52 @@
 # HANDOFF — state of Jayesh's lane (systems/data), for Viktor, David, Larissa
 
-Updated: Sun 16 Aug, afternoon. Pipeline: `python -m agent.run` (from repo root,
-venv: `./.venv/bin/python`). Tests: `./.venv/bin/python -m tests.test_pipeline`.
+## FINAL RUN PROCEDURE (17:15–18:00) — READ THIS FIRST
 
-## VIKTOR — engine recipes (your slot: `provisional_engine()` in agent/run.py)
-Everything you need is in `cache/contracts/<T>.json` (facts with receipts +
-consensus + notes). Current numbers are ANCHOR PASSTHROUGH. Decisions waiting:
-1. **ADI double-count warning**: consensus ($3.33 / $3,925m) already sits ABOVE
-   guide mid ($3.30 / $3,900m) — the Street has priced the beat. Measured
-   guide-beat median is in `ADI.rev_guide_beat_median_pct` (from ~30 paired
-   quarters, receipts in research/adi_guides.json). Tilt from consensus.
-2. **DE basis trap**: yfinance revenue consensus (~$10.7bn) is EQUIPMENT-OPS
-   net sales; the metric is WORLDWIDE net sales AND revenues (FY25 Q3 =
-   $12,018m; equipment $10,357m; bridge = $1,661m fin-svcs+other). All three
-   segment Q3-FY25 bases extracted (PPA/SAT/CF sales + op profit).
-3. **HAS op profit call**: company consensus £43.5m (10 analysts) vs management
-   "top of £37–46m range". Current number 46.0 — consider 44.5–46.
-4. **HAS net fees**: FY25 £972.4m × (1−5%) applies Q4's LFL to the whole year —
-   the roughest anchor in the set. Quarterly LFL path + FX bridge is your call.
-5. **HD phasing**: FY guides only (sales +2.5–4.5%, comp flat–+2%, adj EPS
-   flat–+4% from $14.69). Q1 ran +4.8% sales / +0.6% comp. Q2 FY25 bases
-   extracted ($45,300m / $4.68 / +1.0comp).
-6. HAS EPS now derived with FY25 ACTUAL finance charge (£13.4m) and
-   pre-exceptional ETR (35.1%) → ~1.35p (was 1.9p on my guessed inputs).
+THE final command (declared in entry.json; judges verify the log against it):
+
+    ./run_final.sh
+
+What it does: tier1 seasonal-naive baseline -> baseline/ (comparison only),
+then the agent pipeline -> submission/ (the four workbooks that get uploaded),
+then `npm run check:forecasts`, all teed into logs/final-run-<ts>.log with the
+commit hash (this IS the required clear-run log).
+
+Modes:
+    ./run_final.sh --fallback     BREAK-GLASS ONLY: tier1 straight into
+                                  submission/ if the agent pipeline is down
+    ./run_final.sh --with-tier2   also run David's tier2 extraction diff first
+
+Sequence at 17:15:
+ 1. Refetch consensus (python -m agent.consensus) — the freshness gate
+    requires a same-day fetch.
+ 2. Commit everything; put the commit hash + repo URL in entry.json.
+ 3. ./run_final.sh   -> confirm "All four forecast workbooks are ready".
+ 4. From 17:30: upload each submission/*.xlsx manually to its company
+    Forecast Model on openstocks.com (Larissa owns uploads).
+ 5. Submit entry.json + architecture/index.html via the private form at
+    openstocks.com/hackathon. ALL before 18:00.
+DO NOT run `python -m agent.run` bare for the final run (works, but skips the
+baseline + commit-stamped clear-run log), and never run --fallback after the
+real run (it would overwrite submission/ with baseline numbers).
+
+Updated: Sun 16 Aug, late afternoon. Status: all 12 numbers computed per
+amendments 2/3/4-updated/6 + Viktor's rulings; tests ALL PASS; workbooks PASS.
+
+## VIKTOR — final sign-off needed (§5: you own the final 12)
+Current 12 (each with tier/period/basis/receipt in logs/run-*.log):
+  HD 47,191 / 4.65 / +0.2 · ADI 3,905 / 3.31 / 72.5
+  HAS 881.8 / 1.14p / 46.0 · DE 12,689 / 4.70 / 474
+TWO OPEN CALLS (everything else is implemented per your amendments):
+1. HAS op profit: your "top of range" 46.0 vs company consensus 43.5 —
+   ratify 46.0 or pick 44.5–45.5.
+2. DE EPS: deterministic phasing of YOUR FY guide gives target 4.69 (FY25's
+   actual Q3-share of H2 = 54.8%, receipted) -> forecast 4.70. Your prose
+   estimate was ~4.5 -> ~4.54. Say which; I will not silently override the
+   receipted calculation.
+Also: amendment4_updated Rulings §3 still says £12m/38% while its own anchors
+section says £13m/45% — fix the file so the record is consistent.
+Precision option: swap HD Q2-FY25 base 45,300 (prose-rounded) for David's
+table-exact 45,277 — moves HD sales ~-8.
 
 ## DAVID — LLM lane
 - **Corpus numbers are MANGLED by PDF→md conversion**: "£4 3.5 m" (spaces

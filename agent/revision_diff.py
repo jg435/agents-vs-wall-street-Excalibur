@@ -35,7 +35,39 @@ GUIDE_PATTERNS = {
     "ADI.rev_guide_mid_usdm": (
         "ADI", r"forecasting revenue of \$([\d.]+) billion",
         lambda m: float(m.group(1)) * 1000),
+    "ADI.eps_guide_mid": (
+        "ADI", r"adjusted EPS to be \$([\d.]+)",
+        lambda m: float(m.group(1))),
+    "ADI.q3_gm_guide_seq_change_pp": (
+        "ADI", r"([\d]+) basis points decline in gross margin",
+        lambda m: -float(m.group(1)) / 100),
+    "HD.fy_comp_guide_mid": (
+        "HD", r"[Cc]omparable sales growth of approximately flat to ([\d.]+)",
+        lambda m: float(m.group(1)) / 2),
+    "HD.fy_adj_eps_growth_mid": (
+        "HD", r"[Aa]djusted[^.]{0,40}earnings-per-share to grow approximately flat to ([\d.]+)",
+        lambda m: float(m.group(1)) / 2),
+    "DE.ppa_fy_sales_guide": (
+        "DE", r"(?:Production and [Pp]recision [Aa]g|Production & Precision Ag)[\s\S]{0,120}?down (?:between )?([\d.]+)%?\s*(?:-|to|%-)\s*([\d.]+)%",
+        lambda m: -(float(m.group(1)) + float(m.group(2))) / 2),
+    "DE.sat_fy_sales_guide": (
+        "DE", r"(?:[Ss]mall [Aa]g[\s\S]{0,120}?net sales to be up|net sales to be up) approximately ([\d.]+)% for the full year",
+        lambda m: float(m.group(1))),
+    "DE.cf_fy_sales_guide": (
+        "DE", r"Construction & Forestry[^|\n]{0,40}\|[^|\n]{0,10}\| Up ~([\d.]+)%",
+        lambda m: float(m.group(1))),
+    "HAS.op_profit_consensus": (
+        "HAS", r"consensus for FY26 pre ?-exceptional operating profit is £([\d\s.]+)m",
+        lambda m: float(m.group(1).replace(" ", ""))),
 }
+
+# Amendment 6 §4: EVERY guide-class fact must be registered here. A guide fact
+# without a diff pattern is a hard failure, not a skip.
+def unregistered_guides(F):
+    return [k for k, f in F.items()
+            if "guide" in k.lower() and not k.endswith("_note")
+            and not f.get("doc", "").startswith(("cache/", "research/"))  # derived stats aren't guidance
+            and k not in GUIDE_PATTERNS]
 
 
 def vintage_series(company, pattern, transform):
@@ -52,11 +84,16 @@ def vintage_series(company, pattern, transform):
 
 def main():
     F = json.loads((FACTS_DIR / "facts.json").read_text())
+    missing = unregistered_guides(F)
+    if missing:
+        print(f"FAIL: guide facts with NO revision-diff pattern: {missing}")
+        return 1
     stale = []
     for fact_name, (company, pattern, transform) in GUIDE_PATTERNS.items():
         series = vintage_series(company, pattern, transform)
         if not series:
-            print(f"{fact_name}: no vintages found (pattern miss) — SKIP")
+            print(f"FAIL {fact_name}: pattern found NO vintages — cannot verify freshness")
+            stale.append(fact_name)
             continue
         revisions = [(a, b) for a, b in zip(series, series[1:]) if a[1] != b[1]]
         latest = series[-1]

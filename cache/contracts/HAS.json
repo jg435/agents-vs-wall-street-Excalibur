@@ -28,7 +28,11 @@
       "quote": "- Our actions to deliver strong consultant net fee productivity growth and cost discipline continued to offset our lower net fees in H2 26 and we currently expect FY26 pre -exceptional operating profit will be at the top of the \u00a337.0 -46.0m consensus range (2)",
       "note": "'top of the \u00a337.0\u201346.0m consensus range'",
       "period": "derived/history",
-      "basis": "PRE-EXCEPTIONAL"
+      "basis": "PRE-EXCEPTIONAL",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759301+00:00"
     },
     "op_profit_consensus": {
       "value": 43.5,
@@ -36,7 +40,17 @@
       "quote": "- (2) As of  9  July  2026 , c ompany complied consensus for FY26 pre -exceptional operating profit is \u00a34 3.5 m, with a \u00a337 .0-46 .0m range, based on 1 0 analysts .",
       "note": "company-compiled consensus, 10 analysts, as of 9 Jul 2026",
       "period": "FY2026",
-      "basis": "PRE-EXCEPTIONAL"
+      "basis": "PRE-EXCEPTIONAL",
+      "is_latest": true,
+      "revised_since_prior": true,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759303+00:00",
+      "revision_trace": [
+        "45.2 @ 2026-04-16",
+        "45.2 @ 2026-04-16",
+        "43.5 @ 2026-07-10",
+        "43.5 @ 2026-07-10"
+      ]
     },
     "q4_net_fees_lfl": {
       "value": -5.0,
@@ -44,7 +58,11 @@
       "quote": "- Group net fees  down 5% YoY (1) with Temp &amp; Contracting and Perm down 3% and  7% respectively",
       "note": "",
       "period": "Q4-FY2026",
-      "basis": "NET-FEES"
+      "basis": "NET-FEES",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759305+00:00"
     },
     "shares_issued": {
       "value": 1591800000.0,
@@ -52,7 +70,11 @@
       "quote": "18 February 2025 | 1,591.8m |  |  |  |",
       "note": "agent+verified (ok)",
       "period": "2026-07-31",
-      "basis": "SHARE-COUNT"
+      "basis": "SHARE-COUNT",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759309+00:00"
     },
     "fy25_net_fees_gbpm": {
       "value": 972.4,
@@ -60,7 +82,11 @@
       "quote": "| Group net fees (2) \u00a3972.4m FY24: \u00a31,113.6m    | Cash from operations (4) \u00a3128.3m FY24: \u00a3112.3m   |",
       "note": "agent+verified (ok)",
       "period": "FY2025",
-      "basis": "NET-FEES"
+      "basis": "NET-FEES",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759534+00:00"
     },
     "fy25_op_profit_gbpm": {
       "value": 45.6,
@@ -68,7 +94,11 @@
       "quote": "FY25 pre-exceptional (5)  Group operating profit of \u00a345.6 million represented a like-for-like decrease of 56% (down 57% reported) with a higher drop-through of lower net fees to profitability in the final quarter from broad-based weakness in Permanent markets globally.",
       "note": "agent+verified (ok)",
       "period": "FY2025",
-      "basis": "PRE-EXCEPTIONAL"
+      "basis": "PRE-EXCEPTIONAL",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759536+00:00"
     },
     "fy25_net_finance_charge_gbpm": {
       "value": 13.4,
@@ -76,7 +106,11 @@
       "quote": "The net finance charge for FY25 was \u00a313.4 million (FY24: \u00a310.4 million).",
       "note": "agent+verified (ok)",
       "period": "FY2025",
-      "basis": "PRE-EXCEPTIONAL"
+      "basis": "PRE-EXCEPTIONAL",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759538+00:00"
     },
     "fy25_pre_exceptional_etr_pct": {
       "value": 35.1,
@@ -84,7 +118,11 @@
       "quote": "The tax charge for the year ended 30 June 2025 of \u00a311.3 million (FY24: \u00a330.7 million) represented a pre-exceptional effective tax rate ('ETR') of 35.1% (FY24: 32.4%).",
       "note": "agent+verified (ok)",
       "period": "FY2025",
-      "basis": "PRE-EXCEPTIONAL"
+      "basis": "PRE-EXCEPTIONAL",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759540+00:00"
     },
     "q1_net_fees_lfl": {
       "value": -8.0,
@@ -92,7 +130,11 @@
       "quote": "Group net fees down 8% YoY with Temp &amp; Contracting and Perm down 5% and 13% respectively",
       "period": "Q1-FY2026",
       "note": "agent+verified (Claude Code interactive; ok (sign from context))",
-      "basis": "NET-FEES"
+      "basis": "NET-FEES",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759552+00:00"
     },
     "q2_net_fees_lfl": {
       "value": -10.0,
@@ -100,7 +142,11 @@
       "quote": "Group net fees down 10 % YoY  with Temp &amp; Contracting and Perm down 8% and 14% respectively",
       "period": "Q2-FY2026",
       "note": "agent+verified (Claude Code interactive; ok (sign from context))",
-      "basis": "NET-FEES"
+      "basis": "NET-FEES",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759554+00:00"
     },
     "q3_net_fees_lfl": {
       "value": -8.0,
@@ -108,7 +154,11 @@
       "quote": "Group net fees down 8% YoY  with Temp &amp; Contracting and Perm down  6% and  12 % respectively",
       "period": "Q3-FY2026",
       "note": "agent+verified (Claude Code interactive; ok (sign from context))",
-      "basis": "NET-FEES"
+      "basis": "NET-FEES",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759556+00:00"
     },
     "h1_fy25_net_fees_gbpm": {
       "value": 496.0,
@@ -116,7 +166,11 @@
       "quote": "| Net fees (1)         | 496.0  | 583.3  | (15)%         | (13)%        |",
       "period": "H1-FY2025",
       "note": "agent+verified (Claude Code interactive; ok); H1 FY25 net fees for weighted build-up",
-      "basis": "NET-FEES"
+      "basis": "NET-FEES",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759557+00:00"
     },
     "fy26_disposed_net_fees_gbpm": {
       "value": 15.0,
@@ -124,7 +178,11 @@
       "quote": "Czech Republic, Denmark, Hungary, Luxembourg, Romania, and Sweden contributed c.\u00a315m to reported group net fees in FY26.",
       "period": "FY2026",
       "note": "agent+verified (Claude Code interactive; ok)",
-      "basis": "NET-FEES"
+      "basis": "NET-FEES",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759559+00:00"
     },
     "fy26_net_finance_charge_guide_gbpm": {
       "value": 13.0,
@@ -141,7 +199,9 @@
         "12.0 @ 2025-08-21",
         "13.0 @ 2026-02-27",
         "13.0 @ 2026-02-27"
-      ]
+      ],
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759561+00:00"
     },
     "fy26_etr_guide_pct": {
       "value": 45.0,
@@ -159,7 +219,9 @@
         "38.0 @ 2025-08-21",
         "45.0 @ 2026-02-27",
         "45.0 @ 2026-02-27"
-      ]
+      ],
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759563+00:00"
     },
     "h1_fy26_weighted_avg_shares_m": {
       "value": 1595.7,
@@ -167,7 +229,11 @@
       "quote": "| Weighted average number of shares         | 1,595.7         | 1,588.5         | 1,590.2         |",
       "period": "H1-FY2026",
       "note": "agent+verified; SUPERSEDES the Aug-2025 guide (Feb-2026 H1 update is the latest period-specific guidance)",
-      "basis": "SHARE-COUNT"
+      "basis": "SHARE-COUNT",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759582+00:00"
     }
   },
   "notes": []

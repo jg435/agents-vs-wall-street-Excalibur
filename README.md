@@ -1,5 +1,36 @@
 # Agents vs Wall Street
 
+> ## Team EXCALIBUR — how to run this repo
+>
+> One-time setup (Python 3.10+, Node):
+>
+> ```bash
+> npm install
+> python3 -m venv .venv && ./.venv/bin/pip install -r requirements.txt
+> ```
+>
+> Produce the four forecast workbooks (the final command):
+>
+> ```bash
+> ./run_final.sh          # baseline -> baseline/, agent forecasts -> submission/, validation, clear-run log
+> ```
+>
+> Useful individual stages:
+>
+> ```bash
+> ./.venv/bin/python -m agent.consensus      # refetch consensus anchors (required same-day)
+> ./.venv/bin/python -m agent.extractor      # agent fact extraction (needs .env with OPENAI_API_KEY; see NO-KEY message)
+> ./.venv/bin/python -m agent.revision_diff  # stale-guidance check (runs inside agent.run too)
+> ./.venv/bin/python -m agent.run            # forecasts only (no baseline/clear-run wrapper)
+> ./.venv/bin/python -m agent.backtest       # historical replay + variance
+> ./.venv/bin/python -m tests.test_pipeline  # full invariant suite (receipts, periods, basis, workbooks)
+> ```
+>
+> Where things live: facts + receipts in `cache/facts.json`, contracts in
+> `cache/contracts/`, run logs in `logs/`, David's baseline in `tier1/`+`tier2/`,
+> final workbooks in `submission/`. See `HANDOFF.md` for the 17:15 procedure
+> and `Hackathon.md` + amendments for the methodology.
+
 Agents vs Wall Street is a one-day hackathon presented by Primer, OpenStocks, AI Tinkerers and OpenAI. Around 50 people will build 20–25 forecasting agents, working alone or in teams of up to four.
 
 The challenge covers four companies: Home Depot, Analog Devices, Hays plc and Deere & Company. Your agent forecasts three reported figures for each.

@@ -34,7 +34,9 @@
         "4750.0 @ 2026-02-19",
         "4750.0 @ 2026-05-21",
         "4750.0 @ 2026-05-21"
-      ]
+      ],
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759311+00:00"
     },
     "ppa_fy_sales_guide": {
       "value": -7.5,
@@ -42,7 +44,15 @@
       "quote": "| Production & Precision Ag | \u200b | Down 5 to 10% | \u200b | +3.0% | \u200b | ~ +1.0% | \u200b |",
       "note": "FY sales down 5-10%, mid -7.5%",
       "period": "FY2026",
-      "basis": "SEGMENT"
+      "basis": "SEGMENT",
+      "is_latest": true,
+      "revised_since_prior": true,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759313+00:00",
+      "revision_trace": [
+        "-17.5 @ 2023-11-22",
+        "-7.5 @ 2026-05-21"
+      ]
     },
     "q3_fy25_revenues_usdm": {
       "value": 12018.0,
@@ -50,7 +60,11 @@
       "quote": "Worldwide net sales and revenues decreased 9 percent, to $12.018 billion, for the third",
       "note": "",
       "period": "Q3-FY2025",
-      "basis": "GAAP-REPORTED"
+      "basis": "GAAP-REPORTED",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759331+00:00"
     },
     "q3_fy25_ppa_net_sales_usdm": {
       "value": 4273.0,
@@ -58,7 +72,11 @@
       "quote": "| Net sales         | $ 4,273         | $ 5,099         | -16%         |",
       "note": "",
       "period": "Q3-FY2025",
-      "basis": "SEGMENT"
+      "basis": "SEGMENT",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759333+00:00"
     },
     "q3_fy25_ppa_op_profit_usdm": {
       "value": 580.0,
@@ -66,7 +84,11 @@
       "quote": "| Operating profit         | $ 580         | $ 1,162         | -50%         |",
       "note": "",
       "period": "Q3-FY2025",
-      "basis": "SEGMENT"
+      "basis": "SEGMENT",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759337+00:00"
     },
     "q3_fy25_sat_net_sales_usdm": {
       "value": 3025.0,
@@ -74,7 +96,11 @@
       "quote": "| Net sales         | $ 3,025         | $ 3,053         | -1%         |",
       "note": "",
       "period": "Q3-FY2025",
-      "basis": "SEGMENT"
+      "basis": "SEGMENT",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759339+00:00"
     },
     "q3_fy25_sat_op_profit_usdm": {
       "value": 485.0,
@@ -82,7 +108,11 @@
       "quote": "| Operating profit         | $ 485         | $ 496         | -2%         |",
       "note": "",
       "period": "Q3-FY2025",
-      "basis": "SEGMENT"
+      "basis": "SEGMENT",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759340+00:00"
     },
     "q3_fy25_cf_net_sales_usdm": {
       "value": 3059.0,
@@ -90,7 +120,11 @@
       "quote": "| Net sales         | $ 3,059         | $ 3,235         | -5%         |",
       "note": "",
       "period": "Q3-FY2025",
-      "basis": "SEGMENT"
+      "basis": "SEGMENT",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759530+00:00"
     },
     "q3_fy25_cf_op_profit_usdm": {
       "value": 237.0,
@@ -98,7 +132,11 @@
       "quote": "| Operating profit         | $ 237         | $ 448         | -47%         |",
       "note": "",
       "period": "Q3-FY2025",
-      "basis": "SEGMENT"
+      "basis": "SEGMENT",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759532+00:00"
     },
     "q3_fy25_equip_net_sales_usdm": {
       "value": 10357.0,
@@ -106,7 +144,11 @@
       "quote": "Net sales were $10.357 billion for the quarter and $28.338 billion for nine months, compared with $11.387 billion and $35.484 billion last year, respectively.",
       "note": "agent+verified (Claude Code interactive; ok)",
       "period": "Q3-FY2025",
-      "basis": "GAAP-REPORTED"
+      "basis": "GAAP-REPORTED",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759543+00:00"
     },
     "ppa_fy_margin_guide_pct": {
       "value": 12.0,
@@ -137,7 +179,9 @@
         "13.25 @ 2025-11-26",
         "12.0 @ 2026-02-19",
         "12.0 @ 2026-05-21"
-      ]
+      ],
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759547+00:00"
     },
     "q2_tariff_refund_usdm": {
       "value": 272.0,
@@ -145,7 +189,11 @@
       "quote": "The company recorded a recovery of $272 million for refund claims related to IEEPA tariffs which have been filed and accepted by the U.S. Customs and Border Protection.",
       "period": "Q2-FY2026-one-off",
       "note": "agent+verified (Claude Code interactive; ok)",
-      "basis": "GAAP-REPORTED"
+      "basis": "GAAP-REPORTED",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759549+00:00"
     },
     "sat_fy_sales_guide": {
       "value": 15.0,
@@ -153,7 +201,11 @@
       "quote": "We continue to expect net sales to be up approximately 15% for the full year.",
       "period": "FY2026",
       "note": "agent+verified (Claude Code interactive; ok)",
-      "basis": "SEGMENT"
+      "basis": "SEGMENT",
+      "is_latest": true,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759550+00:00"
     },
     "h1_fy26_net_income_usdm": {
       "value": 2429.0,
@@ -161,7 +213,11 @@
       "quote": "| Net income attributable to Deere & Company | \u200b | $ | 1,773 | \u200b | $ | 1,804 | | -2 | \u200b | $ | 2,429 | \u200b | $ | 2,673 | | -9 | \u200b |",
       "period": "H1-FY2026",
       "note": "agent+verified (Claude Code interactive; ok)",
-      "basis": "GAAP"
+      "basis": "GAAP",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759570+00:00"
     },
     "q3_fy25_net_income_usdm": {
       "value": 1289.0,
@@ -169,7 +225,11 @@
       "quote": "Deere Reports Third Quarter Net Income of $1.289 Billion",
       "period": "Q3-FY2025",
       "note": "agent+verified (Claude Code interactive; ok)",
-      "basis": "GAAP"
+      "basis": "GAAP",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759571+00:00"
     },
     "q4_fy25_net_income_usdm": {
       "value": 1065.0,
@@ -177,7 +237,11 @@
       "quote": "Deere Reports Net Income of $1.065 Billion for Fourth Quarter, $5.027 Billion for",
       "period": "Q4-FY2025",
       "note": "agent+verified (Claude Code interactive; ok)",
-      "basis": "GAAP"
+      "basis": "GAAP",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759573+00:00"
     },
     "cf_fy_sales_guide": {
       "value": 20.0,
@@ -185,7 +249,11 @@
       "quote": "| Construction & Forestry | \u200b | Up ~20% | \u200b | +2.0% | \u200b | ~ +2.5% | \u200b |",
       "period": "FY2026",
       "note": "agent+verified (Claude Code interactive; ok)",
-      "basis": "SEGMENT"
+      "basis": "SEGMENT",
+      "is_latest": true,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759575+00:00"
     },
     "q2_fy26_diluted_shares_m": {
       "value": 270.8,
@@ -193,7 +261,11 @@
       "quote": "| Diluted         | 270.8         | 271.8         | 270.9         | 272.1         |",
       "period": "Q2-FY2026",
       "note": "agent+verified (Claude Code interactive; ok)",
-      "basis": "SHARE-COUNT"
+      "basis": "SHARE-COUNT",
+      "is_latest": null,
+      "revised_since_prior": false,
+      "one_offs": [],
+      "extracted_at": "2026-08-16T12:47:53.759577+00:00"
     }
   },
   "notes": [
