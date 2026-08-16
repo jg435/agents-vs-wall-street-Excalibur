@@ -151,6 +151,16 @@ revision traces). With more time we would have regressed the optimal
 guidance weight per name and per metric over the historical corpus and
 shipped twelve calibrated constants; the single 0.8 is the honest, documented
 fallback where that per-cell optimization was beyond a one-day build.</p>
+<p><b>Post-hoc audit of our own constant:</b> late in the day we estimated the
+weight properly on 29 quarters of ADI history. It does not survive — the
+fitted weight is negative, 0.8 sits outside its confidence interval, and out
+of sample the rule loses to leaving consensus alone; what actually predicts
+ADI is a persistent ~5.6% beat over consensus (22/24 quarters) that neither
+consensus nor guidance captures. A revised ADI forecast built on that measured
+beat prior was prepared and preserved on a branch
+(<code>viktorideas</code>, with the study in the repo); the team shipped the
+uniform-rule values as submitted. We publish the negative finding rather than
+hide it: the check we built to audit ourselves is the thing that found it.</p>
 
 <h2>The pipeline</h2>
 <div class="flow">

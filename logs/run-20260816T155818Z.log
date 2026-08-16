@@ -1,0 +1,31 @@
+2026-08-16T15:58:15.831346+00:00 EXCALIBUR run start
+2026-08-16T15:58:18.006803+00:00 revision-diff: all guide facts are latest vintage
+2026-08-16T15:58:18.009452+00:00 HD | Net sales = 47191.0  [TIER1 consensus $47,235m + 0.8x gap to phase+temper target $47,180m (mean(FY +3.5%, Q1 +4.8%) = +4.15% on Q2-FY25 base; Q1 incl GMS/FX one-offs, flagged)]
+2026-08-16T15:58:18.009475+00:00 HD | Adjusted diluted EPS = 4.65  [TIER1 consensus $4.69 + 0.8x gap to phase+temper target $4.64 (mean(FY +2%, Q1 -3.7%) = -0.83% on Q2-FY25 $4.68) [period: FY2026 guide phased+tempered]]
+2026-08-16T15:58:18.009489+00:00 HD | Comparable sales, total company = 0.2  [TIER2 double-temper: mean(mean(FY guide +1.0, Q1 +0.6), April -0.5) = +0.15pp ~ flat (April flipped negative; storm compares) [periods: FY2026 guide, Q1-FY2026, Apr-FY2026]]
+2026-08-16T15:58:18.009500+00:00 HD GATES PASSED: consensus-freshness | revision-diff(latest-vintage) | period+basis-vs-metric-schema | one-off-companion | sanity-range | all-12-present
+2026-08-16T15:58:18.023288+00:00 HD -> submission/HD-FY2026Q2.xlsx
+2026-08-16T15:58:18.023486+00:00 ADI | Revenue = 4000.0  [guide-relative beat prior: $3,900m guide mid x (1 + 3.5% median beat-vs-guide, 9/10 quarters above mid; routes 3,994/4,037 -> 4,000) [period: Q3-FY2026; measured in Claude_work_for_Jayesh/alpha_recent.py]]
+2026-08-16T15:58:18.023498+00:00 ADI | Adjusted diluted EPS = 3.52  [TIER1 consensus $3.33 x (1 + 5.60% measured beat prior, 22/24 quarters beat, out-of-sample MAE -65% vs consensus-alone) [period: Q3-FY2026; the 0.8 gap rule failed OOS on ADI — see weight study]]
+2026-08-16T15:58:18.023512+00:00 ADI | Adjusted gross margin = 72.5  [TIER3 derived: Q2 actual 73.0% (one-off flagged) + guided sequential -0.5pp (CFO, Q2 call) [period: Q3-FY2026-sequential]]
+2026-08-16T15:58:18.023521+00:00 ADI GATES PASSED: consensus-freshness | revision-diff(latest-vintage) | period+basis-vs-metric-schema | one-off-companion | sanity-range | all-12-present
+2026-08-16T15:58:18.035510+00:00 ADI -> submission/ADI-FY2026Q3.xlsx
+2026-08-16T15:58:18.035689+00:00 HAS | Net fees = 881.8  [TIER3 derived: H1 £496m x (1-9.0%) + H2 £476m x (1-6.5%) minus £15m disposed-country fees (cited) [periods: H1-FY2025 base, Q1..Q4-FY2026 LFL]]
+2026-08-16T15:58:18.035711+00:00 HAS | Pre-exceptional basic EPS = 1.12  [TIER3 derived: (OP £45.5m [rule-derived] - £13m FY26 finance-charge guide, Feb-26 UPDATE) x (1 - 45% FY26 ETR guide, Feb-26 UPDATE 'consistent with H1') / 1,595.7m weighted-avg shares [periods: latest FY2026 guides supersede Aug-25 set]]
+2026-08-16T15:58:18.035725+00:00 HAS | Pre-exceptional operating profit = 45.5  [TIER1 consensus 43.5 + 0.8x gap to guidance 46.0 [types: company_published_consensus anchor, management_guidance adjustment; period: FY2026]]
+2026-08-16T15:58:18.035734+00:00 HAS GATES PASSED: consensus-freshness | revision-diff(latest-vintage) | period+basis-vs-metric-schema | one-off-companion | sanity-range | all-12-present
+2026-08-16T15:58:18.046922+00:00 HAS -> submission/HAS-FY2026.xlsx
+2026-08-16T15:58:18.047145+00:00 DE | Worldwide net sales and revenues = 12342.0  [equipment consensus (TIER1, yfinance $10,732m) + finance bridge $1,314m (OUR ESTIMATE from Q2-FY26 actual; excludes ~$277m other revenues per ruling) = anchor $12,046m, + 0.8x gap to segment-sum target $12,416m (PPA -7.5%, SAT +15%, CF +20%) [period: FY2026 guides phased]]
+2026-08-16T15:58:18.047165+00:00 DE | Diluted EPS (GAAP) = 4.7  [TIER1 consensus $4.72 + 0.8x gap to phased-guide target $4.69 ((FY NI mid $4,750m - H1 $2,429m) x Q3-share 54.8% / 270.8m sh) [period: FY2026 guide phased]]
+2026-08-16T15:58:18.047179+00:00 DE | Production & Precision Ag operating profit = 474.0  [TIER3 derived: FY25 Q3 PPA sales x (1-7.5% FY guide) x 12% FY margin guide mid [NOT Q2's 15.7% — $272m tariff-refund one-off] [period: FY2026 guide, phased]]
+2026-08-16T15:58:18.047193+00:00 DE GATES PASSED: consensus-freshness | revision-diff(latest-vintage) | period+basis-vs-metric-schema | one-off-companion | sanity-range | all-12-present
+2026-08-16T15:58:18.058671+00:00 DE -> submission/DE-FY2026Q3.xlsx
+2026-08-16T15:58:18.059388+00:00 structured receipts for 12 forecasts -> cache/receipts.json
+2026-08-16T15:58:18.059400+00:00 REJECTED VALUES (7) — claims refused by the verify gate:
+2026-08-16T15:58:18.059404+00:00   REJECTED ADI.q3_gm_guide_seq_change_pp: not found in challenge/offline-data/analog-devices/filings/2026-01-23__adi-us-20260123-filing__403452.md
+2026-08-16T15:58:18.059407+00:00   REJECTED DE.ppa_fy_margin_guide_pct: not found in challenge/offline-data/deere/filings/2026-01-14__de-us-20260114-filing__401151.md
+2026-08-16T15:58:18.059410+00:00   REJECTED DE.q2_tariff_refund_usdm: not found in challenge/offline-data/deere/filings/2026-01-14__de-us-20260114-filing__401151.md
+2026-08-16T15:58:18.059416+00:00   REJECTED DE.sat_fy_sales_guide: not found in challenge/offline-data/deere/filings/2026-01-14__de-us-20260114-filing__401151.md
+2026-08-16T15:58:18.059418+00:00   REJECTED HAS.q1_net_fees_lfl: not found in challenge/offline-data/hays/filings/2026-06-29__has-ln-20260629-filing-2__1549804.md
+2026-08-16T15:58:18.059420+00:00   REJECTED HAS.q2_net_fees_lfl: not found in challenge/offline-data/hays/filings/2026-06-29__has-ln-20260629-filing-2__1549804.md
+2026-08-16T15:58:18.059422+00:00   REJECTED HAS.q3_net_fees_lfl: not found in challenge/offline-data/hays/filings/2026-06-29__has-ln-20260629-filing-2__1549804.md
